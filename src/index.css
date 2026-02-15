@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* La Neta brand palette — usar en tarjetas flotantes y acentos */
+:root {
+  --laneta-pink: #ff47ac;
+  --laneta-purple: #6641ed;
+  --laneta-blue: #79bcf7;
+  --laneta-bg: #f8fafc;   /* fondo claro para tarjetas flotantes */
+  --laneta-orange: #f87c63;
+  --laneta-darker: #030712;
+  --laneta-slate: #0f172a;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--laneta-darker);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Subtle floating particles animation */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(10px, -15px) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-8px, 10px);
+    opacity: 0.5;
+  }
+}
+
+/* Embla Carousel — required so the carousel can scroll */
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+/* Brand bubbles — soft brownian motion */
+@keyframes brownian {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(4px, -6px) scale(1.02); }
+  50% { transform: translate(-5px, 3px) scale(0.98); }
+  75% { transform: translate(3px, 5px) scale(1.01); }
+}
+
+
