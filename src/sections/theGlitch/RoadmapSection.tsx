@@ -44,8 +44,8 @@ function StepCard({
         boxShadow: isLast ? `0 0 40px ${step.accent}30` : undefined,
       }}
     >
-      <div className="grid h-full min-h-[490px] items-stretch md:grid-cols-[minmax(355px,415px)_1fr] md:min-h-[560px] lg:grid-cols-[minmax(395px,455px)_1fr]">
-        <div className="relative min-h-[280px] w-full overflow-hidden bg-slate-900 md:min-h-0 md:h-full">
+      <div className="grid min-h-0 auto-rows-auto items-stretch md:grid-cols-[minmax(355px,415px)_1fr] md:min-h-[560px] lg:grid-cols-[minmax(395px,455px)_1fr]">
+        <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-slate-900 md:h-full md:min-h-[280px]">
           {step.media === 'video' && step.src && (
             <video
               src={step.src}
@@ -82,23 +82,23 @@ function StepCard({
           </div>
         </div>
 
-        <div className="flex min-h-0 flex-col justify-center overflow-y-auto p-8 md:p-10 lg:p-12">
+        <div className="flex min-h-0 flex-col justify-center overflow-y-auto p-5 md:p-10 lg:p-12">
           <div className="flex flex-wrap items-center gap-2">
             <span
-              className="text-sm font-bold uppercase tracking-widest"
+              className="text-xs font-bold uppercase tracking-widest md:text-sm"
               style={{ color: step.accent }}
             >
               {dayLabel}
             </span>
             <span className="text-slate-500">·</span>
-            <span className="rounded-full bg-slate-200 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-medium text-slate-700 md:px-3 md:py-1 md:text-sm">
               Step {stepIndex + 1} of {totalSteps}
             </span>
             {step.phase && (
               <>
                 <span className="text-slate-500">·</span>
                 <span
-                  className="rounded-full px-3 py-1 text-sm font-semibold"
+                  className="rounded-full px-2.5 py-0.5 text-xs font-semibold md:px-3 md:py-1 md:text-sm"
                   style={{
                     backgroundColor: `${step.accent}20`,
                     color: step.accent,
@@ -109,31 +109,29 @@ function StepCard({
               </>
             )}
           </div>
-          <h3 className="mt-3 text-2xl font-bold text-slate-900 md:text-3xl lg:text-4xl">
+          <h3 className="mt-2 text-xl font-bold text-slate-900 md:mt-3 md:text-3xl lg:text-4xl">
             {step.title}
           </h3>
-          <p className="mt-2 text-base font-medium italic text-slate-600 md:text-lg">
+          <p className="mt-1.5 text-sm font-medium italic text-slate-600 md:mt-2 md:text-base md:text-lg">
             {step.tagline}
           </p>
-          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
+          <p className="mt-3 text-sm leading-relaxed text-slate-700 md:mt-4 md:text-base md:text-lg">
             {step.description}
           </p>
 
-          {/* 1️⃣ Outcome Layer */}
           {step.outcome && (
-            <div className="mt-6 rounded-xl border border-slate-200 bg-blue-50/80 p-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-blue-800">
+            <div className="mt-4 rounded-xl border border-slate-200 bg-blue-50/80 p-3 md:mt-6 md:p-4">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-blue-800 md:text-xs">
                 By the end of this phase, you&apos;ll have…
               </p>
-              <p className="mt-1.5 font-semibold text-slate-800">
+              <p className="mt-1 text-sm font-semibold text-slate-800 md:mt-1.5 md:text-base">
                 {step.outcome}
               </p>
             </div>
           )}
 
-          {/* 2️⃣ Client Effort */}
           {step.clientEffort && (
-            <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs md:mt-4 md:text-sm">
               <span className="text-slate-600">Your effort:</span>
               <span
                 className="inline-flex items-center gap-1.5 font-semibold"
@@ -161,9 +159,9 @@ function StepCard({
 
           {/* 3️⃣ Behind-the-scenes — confianza invisible */}
           {step.behindTheScenes && step.behindTheScenes.length > 0 && (
-            <ul className="mt-4 space-y-1.5">
+            <ul className="mt-3 space-y-1 md:mt-4 md:space-y-1.5">
               {step.behindTheScenes.map((line) => (
-                <li key={line} className="flex items-center gap-2 text-sm text-slate-700">
+                <li key={line} className="flex items-center gap-2 text-xs text-slate-700 md:text-sm">
                   <TbCheck className="size-4 shrink-0 text-emerald-600" aria-hidden />
                   <span>{line}</span>
                 </li>
@@ -172,11 +170,11 @@ function StepCard({
           )}
 
           {step.deliverables && step.deliverables.length > 0 && (
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-3 flex flex-wrap gap-1.5 md:mt-5 md:gap-2">
               {step.deliverables.map((d) => (
                 <span
                   key={d}
-                  className="rounded-lg px-4 py-2 text-sm font-semibold"
+                  className="rounded-lg px-3 py-1.5 text-xs font-semibold md:px-4 md:py-2 md:text-sm"
                   style={{
                     backgroundColor: `${step.accent}25`,
                     color: step.accent,
@@ -260,19 +258,19 @@ export function RoadmapSection() {
         </div>
       </div>
 
-      {/* MUI Joy Stepper — horizontal, La Neta themed (scoped dark theme) */}
+      {/* MUI Joy Stepper — círculos y fuente más pequeños en móvil */}
       <CssVarsProvider defaultColorScheme="dark">
         <Stepper
           orientation="horizontal"
-          size="md"
+          size="sm"
           sx={{
             '--Stepper-connectorLine': 'rgba(255,255,255,0.2)',
-            '--StepIndicator-size': '40px',
+            '--StepIndicator-size': '28px',
             '--Step-connectorLine': '1px solid rgba(255,255,255,0.2)',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            gap: 0,
-            mb: 3,
+            gap: 1.5,
+            mb: 2,
           }}
         >
           {ROADMAP_STEPS.map((s, i) => (
@@ -289,6 +287,8 @@ export function RoadmapSection() {
                     backgroundColor: activeStep === i ? 'var(--laneta-blue)' : activeStep > i ? 'transparent' : 'transparent',
                     color: activeStep > i ? 'var(--laneta-blue)' : activeStep === i ? '#fff' : 'rgba(255,255,255,0.6)',
                     borderColor: activeStep > i ? 'transparent' : 'rgba(255,255,255,0.3)',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
                     '&:hover': {
                       backgroundColor: activeStep === i ? 'var(--laneta-blue)' : 'rgba(255,255,255,0.15)',
                     },
@@ -300,7 +300,7 @@ export function RoadmapSection() {
                       style={{
                         color: 'var(--laneta-blue)',
                         filter: 'brightness(1.15)',
-                        fontSize: '1.35rem',
+                        fontSize: '0.85rem',
                       }}
                       aria-hidden
                     />
@@ -329,8 +329,8 @@ export function RoadmapSection() {
         </Stepper>
       </CssVarsProvider>
 
-      {/* 4️⃣ Momentum — progress bar */}
-      <div className="mb-4 mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+      {/* Progress bar — separada de los pasos */}
+      <div className="mb-4 mt-6 h-2 w-full overflow-hidden rounded-full bg-white/10">
         <motion.div
           className="h-full rounded-full bg-[var(--laneta-blue)]"
           initial={false}
@@ -338,6 +338,9 @@ export function RoadmapSection() {
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         />
       </div>
+      <p className="mb-4 mt-1 text-center text-xs text-white/60">
+        Step {activeStep + 1} of {totalSteps}
+      </p>
 
       {/* Persistent phase track (Discovery | Create | Deliver) — click jumps to first step of phase */}
       <div className="mb-4 flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2 px-4">
@@ -363,8 +366,8 @@ export function RoadmapSection() {
         })}
       </div>
 
-      {/* Single card — animated by step */}
-      <div className="relative min-h-[490px] overflow-hidden rounded-2xl md:min-h-[650px]">
+      {/* Step card — en móvil altura automática para ver todo el contenido */}
+      <div className="relative min-h-0 overflow-visible rounded-2xl md:min-h-[650px] md:overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeStep}
@@ -372,7 +375,7 @@ export function RoadmapSection() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -direction * 80 }}
             transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            className="absolute inset-0 overflow-hidden rounded-2xl"
+            className="relative overflow-hidden rounded-2xl md:absolute md:inset-0"
           >
             <StepCard
               step={step}

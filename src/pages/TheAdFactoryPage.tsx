@@ -6,6 +6,7 @@ import { LiquidGlassBackground } from '../components/LiquidGlassBackground'
 import { Footer } from '../components/Footer'
 import { ServicePresentationSection } from '../sections/theAdFactory/ServicePresentationSection'
 import { ProblemsVsSolutionsSection } from '../sections/theAdFactory/ProblemsVsSolutionsSection'
+import { RoadmapSection } from '../sections/theAdFactory/RoadmapSection'
 import { LetsWorkTogetherSection } from '../sections/theAdFactory/LetsWorkTogetherSection'
 
 export function TheAdFactoryPage() {
@@ -21,6 +22,9 @@ export function TheAdFactoryPage() {
             </div>
             <div id="problems-vs-solutions" className="scroll-mt-24">
               <ProblemsVsSolutionsSection />
+            </div>
+            <div id="roadmap" className="scroll-mt-24">
+              <RoadmapSection />
             </div>
             <div id="lets-work-together" className="scroll-mt-24">
               <LetsWorkTogetherSection />

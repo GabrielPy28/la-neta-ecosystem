@@ -26,7 +26,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'We start with a live session to align on your goals, brand voice, and creative direction. Whether you choose The Hook Hunter, The Amplifier, or Empire Mode, we map your vision to our production pipeline. We define which hooks will convert, which talents will represent you, and what success looks like—so everyone is on the same page from day one.',
     media: 'image',
-    src: '/assets/images/kick-off.png',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/kick-off.png',
     accent: '#f59e0b',
     phase: 'discovery',
     outcome: 'A shared vision document and clear success metrics. Ready to validate winning hooks—Hunter, Amplifier, or Empire.',
@@ -40,7 +40,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Our team turns the kickoff into a structured creative brief. We lock in audience, tone, hooks, and must-have elements for your UGC content. Whether you are scaling with 1 talent (The Hook Hunter), 3 (The Amplifier), or 5 (Empire Mode), you receive a document that serves as the single source of truth—no ambiguity, no last-minute surprises.',
     media: 'image',
-    src: '/assets/images/brief.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/brief.jpg',
     accent: '#10b981',
     phase: 'discovery',
     outcome: 'One creative brief that serves as the single source of truth. Same quality across all Hook Hunter packs.',
@@ -54,7 +54,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Contracts, usage rights, and project governance are finalized. We handle the paperwork so you can focus on the creative. All approvals and sign-offs are collected, and we set clear ownership for feedback and delivery milestones. Same process for The Hook Hunter, The Amplifier, and Empire Mode.',
     media: 'image',
-    src: '/assets/images/administration.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/administration.jpg',
     accent: '#8b5cf6',
     phase: 'discovery',
     outcome: 'Contracts and usage rights signed. Clear ownership for feedback and delivery. You focus on creative only.',
@@ -68,7 +68,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'We present UGC talents that match your brand—look, style, and persona. You choose the creators who will represent your message. The Hook Hunter uses 1 talent; The Amplifier, 3; Empire Mode, 5. People buy from people—we get the right faces so your hooks convert and your feed dominates.',
     media: 'image',
-    src: '/assets/images/selection.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/selection.jpg',
     accent: '#f59e0b',
     phase: 'create',
     outcome: 'Pre-vetted UGC talents aligned with your brand voice. The face of your campaign, chosen together—Hunter to Empire.',
@@ -82,7 +82,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Copy and scripts are drafted for every asset: hero videos, clips of 10 seconds, and variations. We optimize for platform and for your KPIs. You review and approve the words before a single frame is produced. Whether 24, 66, or 120 assets—same strategy system, only scale changes.',
     media: 'image',
-    src: '/assets/images/script.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/script.jpg',
     accent: '#10b981',
     phase: 'create',
     outcome: 'Approved scripts for every asset. Words locked before a single frame is produced—no surprises in edit.',
@@ -96,7 +96,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'First drafts go live for your review. You give structured feedback; we iterate. This window is built for collaboration—no endless rounds, just clear notes and quick turnarounds. By the end, every clip and video is approved and ready for final production. Hunter, Amplifier, or Empire—same workflow.',
     media: 'image',
-    src: '/assets/images/feedback.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/feedback.jpg',
     accent: '#8b5cf6',
     phase: 'create',
     outcome: 'Every asset approved and ready for final production. Structured feedback loop—no endless rounds.',
@@ -110,7 +110,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Our UGC talents and creative team produce the final content. All approved scripts and talent are filmed. We generate the full set of variants—every format, every cut—24 assets for The Hook Hunter, 66 for The Amplifier, 120 for Empire Mode. Quality checks run throughout so what you get is ready to dominate your feed.',
     media: 'image',
-    src: '/assets/images/production.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/production.jpg',
     accent: '#f59e0b',
     phase: 'create',
     outcome: 'Full set of variants produced: every format, every cut. Quality-checked and ready to publish.',

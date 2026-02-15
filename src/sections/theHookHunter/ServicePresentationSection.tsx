@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from 'motion/react'
 const ROTATE_IMAGE_MS = 4000
 
 const OPTION_IMAGES = [
-  '/assets/images/option_1.jpg',
-  '/assets/images/option_2.jpg',
-  '/assets/images/option_3.jpg',
-  '/assets/images/option_4.jpg',
+  'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/option_1.jpg',
+  'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/option_2.jpg',
+  'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/option_3.jpg',
+  'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/option_4.jpg',
 ] as const
 
 type PresentationVariant = '1' | '2' | '3' | '4'

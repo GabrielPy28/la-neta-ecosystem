@@ -16,7 +16,7 @@ const LOCATIONS = [
     name: 'United States',
     video: '/assets/video/USA.mp4',
     fallbackVideo: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/USA.mp4',
-    image: '/assets/images/ceo.jpg',
+    image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ceo.jpg',
     leader: 'Jorge de los Santos',
     role: 'CEO',
     quote: 'Designed in the USA. Scaled for the world. We design campaigns with American standards and global reach—world-class talent, flawless execution, results that cross borders.',
@@ -26,7 +26,7 @@ const LOCATIONS = [
     name: 'Mexico',
     video: '/assets/video/mexico.mp4',
     fallbackVideo: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/mexico.mp4',
-    image: '/assets/images/tech_lead.jpg',
+    image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/tech_lead.jpg',
     leader: 'Daniel Ramirez',
     role: 'IT Lead',
     quote: 'Talent that breaks the mold. Mexican creativity at the service of big ideas—precise execution, local flavor, and the energy you only find here.',
@@ -36,7 +36,7 @@ const LOCATIONS = [
     name: 'Colombia',
     video: '/assets/video/colombia.mp4',
     fallbackVideo: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/colombia.mp4',
-    image: '/assets/images/sales_lead.jpg',
+    image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/sales_lead.jpg',
     leader: 'Jose Hijar',
     role: 'Sales Lead',
     quote: 'Creativity without filter. Results without excuses. Colombia doesn\'t follow trends—it sets them. Cultural sensitivity, fresh narrative, and an obsession with quality.',
@@ -46,9 +46,9 @@ const LOCATIONS = [
     name: 'LATAM',
     video: '/assets/video/colombia.mp4',
     fallbackVideo: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/latam.mp4',
-    image: '/assets/images/campaigns.jpg',
-    leader: 'Ana Romero',
-    role: 'Campaigns Director',
+    image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/campaigns.jpg',
+    leader: 'Giovina Varela',
+    role: 'RR.HH. Director',
     quote: 'From Latin America, to the world. We operate with a global vision—the same quality, the same impact, with the warmth and resilience that set us apart.',
   },
 ]
@@ -61,43 +61,46 @@ function LocationSlide({
   onVideoRef: (el: HTMLVideoElement | null) => void
 }) {
   return (
-    <div className="relative h-full overflow-hidden rounded-2xl bg-slate-900">
-      {/* Video: city / location */}
-      <div className="aspect-video w-full">
-        <video
-          ref={onVideoRef}
-          src={location.video}
-          muted
-          loop
-          playsInline
-          className="h-full w-full object-cover"
-          aria-hidden
-          onError={(e) => {
-            const v = e.currentTarget
-            if (v.src !== location.fallbackVideo) v.src = location.fallbackVideo
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+    <div className="relative flex min-h-[420px] flex-col overflow-hidden rounded-2xl bg-slate-900 md:min-h-0 md:flex-none">
+      {/* Video: en móvil más alto para apreciarlo; en desktop aspect-video con overlay */}
+      <div className="relative w-full shrink-0 basis-auto md:aspect-video md:min-h-[280px]">
+        <div className="aspect-[4/3] w-full md:absolute md:inset-0 md:aspect-auto">
+          <video
+            ref={onVideoRef}
+            src={location.video}
+            muted
+            loop
+            playsInline
+            className="h-full w-full object-cover"
+            aria-hidden
+            onError={(e) => {
+              const v = e.currentTarget
+              if (v.src !== location.fallbackVideo) v.src = location.fallbackVideo
+            }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent md:block" />
       </div>
 
-      {/* Team member card: image + words — reflects their message over the city */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-6">
+      {/* Tarjeta del personal: en móvil debajo del video (siempre visible); en desktop superpuesta */}
+      <div className="relative z-10 flex shrink-0 flex-col justify-end bg-gradient-to-t from-slate-900 to-slate-900/95 px-4 py-5 md:absolute md:bottom-0 md:left-0 md:right-0 md:shrink-0 md:bg-transparent md:p-6 md:pb-6 md:pt-0">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-6 md:gap-6">
           <div className="flex shrink-0 items-center gap-4">
-            <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-white/30 shadow-xl md:h-24 md:w-24">
+            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-white/30 shadow-xl md:h-24 md:w-24">
               <img
                 src={location.image}
                 alt={location.leader}
                 className="h-full w-full object-cover"
+                loading="lazy"
               />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-semibold text-white">{location.leader}</p>
               <p className="text-sm text-white/80">{location.role}</p>
               <p className="mt-0.5 text-sm font-medium text-[var(--laneta-blue)]">{location.name}</p>
             </div>
           </div>
-          <blockquote className="flex-1 border-l-2 border-[var(--laneta-pink)] pl-4 text-sm leading-relaxed text-white/95 md:text-base">
+          <blockquote className="min-h-0 flex-1 border-l-2 border-[var(--laneta-pink)] pl-4 text-sm leading-relaxed text-white/95 md:text-base">
             {location.quote}
           </blockquote>
         </div>
@@ -108,8 +111,10 @@ function LocationSlide({
 
 export function BranchOfficeLocations() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' })
+  const sectionRef = useRef<HTMLElement>(null)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [sectionInView, setSectionInView] = useState(false)
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -141,13 +146,39 @@ export function BranchOfficeLocations() {
     }
   }, [emblaApi, onSelect])
 
+  // Solo avanzar el carrusel en automático cuando la sección está visible
   useEffect(() => {
-    if (!emblaApi) return
+    const section = sectionRef.current
+    if (!section) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        setSectionInView(!!entries[0]?.isIntersecting)
+      },
+      { rootMargin: '50px', threshold: 0 }
+    )
+    io.observe(section)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!emblaApi || !sectionInView) return
     const interval = setInterval(() => {
       emblaApi.scrollNext()
     }, 5000)
     return () => clearInterval(interval)
-  }, [emblaApi])
+  }, [emblaApi, sectionInView])
+
+  // Pausar todos los videos al salir de la sección; reproducir solo el del slide activo al entrar
+  useEffect(() => {
+    videoRefs.current.forEach((video, i) => {
+      if (!video) return
+      if (sectionInView && i === selectedIndex) {
+        video.play().catch(() => {})
+      } else {
+        video.pause()
+      }
+    })
+  }, [sectionInView, selectedIndex])
 
   const setVideoRef = useCallback((index: number) => (el: HTMLVideoElement | null) => {
     videoRefs.current[index] = el
@@ -155,6 +186,7 @@ export function BranchOfficeLocations() {
 
   return (
     <section
+      ref={sectionRef}
       id={SECTION_ID}
       className="relative overflow-hidden bg-slate-50 py-20 md:py-28"
     >
@@ -235,14 +267,14 @@ export function BranchOfficeLocations() {
           </div>
         </div>
 
-        {/* Thumbnails */}
-        <div className="mt-6 flex justify-center gap-3 overflow-x-auto pb-2 md:mt-8 md:gap-4">
+        {/* Paginación: en móvil grid 4 columnas para que quepan USA, Mexico, Colombia, LATAM; en desktop flex */}
+        <div className="mt-6 grid min-w-0 grid-cols-4 gap-2 pb-2 md:mt-8 md:flex md:justify-center md:gap-4">
           {LOCATIONS.map((location, index) => (
             <button
               key={location.id}
               type="button"
               onClick={() => scrollTo(index)}
-              className={`relative flex shrink-0 flex-col items-center gap-2 rounded-xl border-2 p-2 transition-all md:flex-row md:gap-3 md:px-4 md:py-3 ${
+              className={`relative flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-xl border-2 p-2 transition-all md:min-w-[8.5rem] md:min-h-[4.5rem] md:shrink-0 md:flex-row md:gap-3 md:px-4 md:py-3 ${
                 selectedIndex === index
                   ? 'border-[var(--laneta-pink)] bg-white shadow-md ring-2 ring-[var(--laneta-pink)]/30'
                   : 'border-slate-200 bg-white/80 hover:border-slate-300'
@@ -250,14 +282,19 @@ export function BranchOfficeLocations() {
               aria-label={`View ${location.name}`}
               aria-pressed={selectedIndex === index}
             >
-              <div className="h-12 w-12 overflow-hidden rounded-lg md:h-14 md:w-14">
+              <div className="h-9 w-9 shrink-0 overflow-hidden rounded-lg md:h-14 md:w-14">
                 <img
                   src={location.image}
                   alt=""
                   className="h-full w-full object-cover"
+                  loading="lazy"
                 />
               </div>
-              <span className={`text-sm font-medium md:text-base ${selectedIndex === index ? 'text-[var(--laneta-pink)]' : 'text-slate-700'}`}>
+              <span
+                className={`line-clamp-2 min-h-[2rem] text-center text-xs font-medium leading-tight md:min-h-0 md:line-clamp-none md:text-base ${
+                  selectedIndex === index ? 'text-[var(--laneta-pink)]' : 'text-slate-700'
+                }`}
+              >
                 {location.name}
               </span>
             </button>

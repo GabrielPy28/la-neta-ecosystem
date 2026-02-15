@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   SiMeta,
@@ -56,16 +56,16 @@ type PartnershipModalContent = {
 const PARTNERSHIPS: (Brand & { modalKey?: string })[] = [
   { id: 'meta', name: 'META', type: 'icon', icon: SiMeta, since: '2025', campaigns: 100, modalKey: 'meta' },
   { id: 'pinterest', name: 'Pinterest', type: 'icon', icon: SiPinterest, since: '2022', campaigns: 60, modalKey: 'pinterest' },
-  { id: 'airmediatech', name: 'Air Media Tech', type: 'image', image: '/assets/images/brands/air_media_tech.png', since: '2025', campaigns: 12, modalKey: 'airmediatech' },
+  { id: 'airmediatech', name: 'Air Media Tech', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/air_media_tech.png', since: '2025', campaigns: 12, modalKey: 'airmediatech' },
   { id: 'tubi', name: 'Tubi', type: 'icon', icon: SiTubi, since: '2025', campaigns: 2, modalKey: 'tubi', iconSize: 52 },
-  { id: 'gyre', name: 'Gyre', type: 'image', image: '/assets/images/brands/Gyre-Logo.png', since: '2025', campaigns: 6, modalKey: 'gyre' },
+  { id: 'gyre', name: 'Gyre', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png', since: '2025', campaigns: 6, modalKey: 'gyre' },
 ]
 
 const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
   meta: {
     partnerId: 'meta',
     partnerName: 'META',
-    heroImage: '/assets/images/hobby_creator.jpg',
+    heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/hobby_creator.jpg',
     model: 'Breakthrough Bonus Program (Facebook & Instagram Monetization)',
     sellingPoints: [
       'Immediate Access: Accepted creators unlock immediate access to Facebook Monetization (no waiting period).',
@@ -82,8 +82,8 @@ const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
   airmediatech: {
     partnerId: 'airmediatech',
     partnerName: 'Air Media Tech',
-    heroImage: '/assets/images/youtube_creator.jpg',
-    logoImage: '/assets/images/brands/air_media_tech.png',
+    heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/youtube_creator.jpg',
+    logoImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/air_media_tech.png',
     models: [
       {
         title: 'A. AIR CREATORS ECOSYSTEM',
@@ -120,7 +120,7 @@ const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
   pinterest: {
     partnerId: 'pinterest',
     partnerName: 'Pinterest',
-    heroImage: '/assets/images/artist.jpg',
+    heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/artist.jpg',
     model: 'Pinterest Creator Program — UGC & Multi-Platform Growth',
     sellingPoints: [
       'An arena where your creativity and frames get real impressions: Pinterest is built for discovery, so your visuals reach people who are actively looking for inspiration.',
@@ -137,7 +137,7 @@ const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
   tubi: {
     partnerId: 'tubi',
     partnerName: 'Tubi',
-    heroImage: '/assets/images/thriller.jpg',
+    heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/thriller.jpg',
     model: 'Niche Syndication (Long-form Fiction & Mystery)',
     models: [
       {
@@ -159,8 +159,8 @@ const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
   gyre: {
     partnerId: 'gyre',
     partnerName: 'Gyre',
-    heroImage: '/assets/images/streaming_loop.jpg',
-    logoImage: '/assets/images/brands/Gyre-Logo.png',
+    heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/streaming_loop.jpg',
+    logoImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png',
     models: [
       {
         title: 'A. YouTube 24/7 Live Stream Looping',
@@ -223,27 +223,27 @@ const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
 }
 
 const CLOSER_FRIENDS: Brand[] = [
-  { id: 'loreal', name: "L'Oréal", type: 'image', image: '/assets/images/brands/LOreal-Logo.png', since: '2022', campaigns: 14 },
-  { id: 'nyx', name: 'NYX Professional Makeup', type: 'image', image: '/assets/images/brands/NYX-logo.png', since: '2023', campaigns: 9 },
-  { id: 'garnier', name: 'Garnier', type: 'image', image: '/assets/images/brands/Garnier-Logo.png', since: '2022', campaigns: 11 },
-  { id: 'maybelline', name: 'Maybelline New York', type: 'image', image: '/assets/images/brands/Maybelline-logo.png', since: '2022', campaigns: 16 },
-  { id: 'dove', name: 'Dove', type: 'image', image: '/assets/images/brands/dove-logo.png', since: '2021', campaigns: 20 },
-  { id: 'nivea', name: 'Nivea', type: 'image', image: '/assets/images/brands/Nivea-Logo.png', since: '2023', campaigns: 7, imageScale: 1.4 },
-  { id: 'nestle', name: 'Nestlé', type: 'image', image: '/assets/images/brands/nestle-logo.png', since: '2022', campaigns: 12, imageScale: 0.75 },
-  { id: 'nescafe', name: 'Nescafé', type: 'image', image: '/assets/images/brands/Nescafe_logo.png', since: '2022', campaigns: 10 },
+  { id: 'loreal', name: "L'Oréal", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/LOreal-Logo.png', since: '2022', campaigns: 14 },
+  { id: 'nyx', name: 'NYX Professional Makeup', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/NYX-logo.png', since: '2023', campaigns: 9 },
+  { id: 'garnier', name: 'Garnier', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Garnier-Logo.png', since: '2022', campaigns: 11 },
+  { id: 'maybelline', name: 'Maybelline New York', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Maybelline-logo.png', since: '2022', campaigns: 16 },
+  { id: 'dove', name: 'Dove', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/dove-logo.png', since: '2021', campaigns: 20 },
+  { id: 'nivea', name: 'Nivea', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Nivea-Logo.png', since: '2023', campaigns: 7, imageScale: 1.4 },
+  { id: 'nestle', name: 'Nestlé', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/nestle-logo.png', since: '2022', campaigns: 12, imageScale: 0.75 },
+  { id: 'nescafe', name: 'Nescafé', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Nescafe_logo.png', since: '2022', campaigns: 10 },
   { id: 'sony', name: 'Sony', type: 'icon', icon: SiSony, since: '2021', campaigns: 22, iconSize: 44 },
   { id: 'amd', name: 'AMD', type: 'icon', icon: SiAmd, since: '2022', campaigns: 15, iconSize: 44 },
   { id: 'xiaomi', name: 'Xiaomi', type: 'icon', icon: SiXiaomi, since: '2023', campaigns: 8 },
-  { id: 'max', name: 'Max', type: 'image', image: '/assets/images/brands/max-logo.png', since: '2023', campaigns: 5 },
+  { id: 'max', name: 'Max', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/max-logo.png', since: '2023', campaigns: 5 },
   { id: 'mercadopago', name: 'Mercado Pago', type: 'icon', icon: SiMercadopago, since: '2022', campaigns: 13 },
   { id: 'audi', name: 'Audi', type: 'icon', icon: SiAudi, since: '2021', campaigns: 18, iconSize: 44 },
-  { id: 'dentalia', name: 'Dentalia', type: 'image', image: '/assets/images/brands/dentalia-logo.png', since: '2023', campaigns: 6 },
-  { id: 'levis', name: "Levi's", type: 'image', image: '/assets/images/brands/levis-logo.png', since: '2022', campaigns: 11 },
-  { id: 'temu', name: "Temu", type: 'image', image: '/assets/images/brands/Temu-Logo.png', since: '2022', campaigns: 7 },
+  { id: 'dentalia', name: 'Dentalia', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/dentalia-logo.png', since: '2023', campaigns: 6 },
+  { id: 'levis', name: "Levi's", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/levis-logo.png', since: '2022', campaigns: 11 },
+  { id: 'temu', name: "Temu", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Temu-Logo.png', since: '2022', campaigns: 7 },
   { id: 'burgerking', name: "Burger King", type: 'icon', icon: SiBurgerking, since: '2020', campaigns: 9 },
-  { id: 'sears', name: "Sears", type: 'image', image: '/assets/images/brands/sears-logo.png', since: '2022', campaigns: 7 },
-  { id: 'liverpool', name: "Liverpool", type: 'image', image: '/assets/images/brands/liverpool-logo.png', since: '2022', campaigns: 20, imageScale: .9 },
-  { id: 'InComm-InCentives', name: "InComm InCentives", type: 'image', image: '/assets/images/brands/InComm-Incentives-logo.png', since: '2018', campaigns: 11, imageScale: .9 },
+  { id: 'sears', name: "Sears", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/sears-logo.png', since: '2022', campaigns: 7 },
+  { id: 'liverpool', name: "Liverpool", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/liverpool-logo.png', since: '2022', campaigns: 20, imageScale: .9 },
+  { id: 'InComm-InCentives', name: "InComm InCentives", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/InComm-Incentives-logo.png', since: '2018', campaigns: 11, imageScale: .9 },
 ]
 
 /** Generate deterministic but varied stats per ally for dashboard credibility */
@@ -529,20 +529,37 @@ function PartnershipModal({
 }
 
 export function PartnershipsAlliances() {
+  const sectionRef = useRef<HTMLElement>(null)
   const [modalKey, setModalKey] = useState<string | null>(null)
   const [selectedAllyIndex, setSelectedAllyIndex] = useState(0)
+  const [sectionInView, setSectionInView] = useState(false)
   const modalContent = modalKey ? PARTNERSHIP_MODALS[modalKey] : null
 
-  // Auto-rotate Closer Friends dashboard every 11 seconds
+  // Solo rotar el dashboard cuando la sección está visible
   useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        setSectionInView(!!entries[0]?.isIntersecting)
+      },
+      { rootMargin: '50px', threshold: 0 }
+    )
+    io.observe(section)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!sectionInView) return
     const interval = setInterval(() => {
       setSelectedAllyIndex((prev) => (prev + 1) % CLOSER_FRIENDS.length)
     }, 11_000)
     return () => clearInterval(interval)
-  }, [])
+  }, [sectionInView])
 
   return (
     <section
+      ref={sectionRef}
       id={SECTION_ID}
       className="relative overflow-hidden bg-white py-20 md:py-28"
     >

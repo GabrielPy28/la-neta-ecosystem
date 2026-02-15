@@ -34,7 +34,7 @@ export function Footer() {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <img
-                src="/assets/images/logo.png"
+                src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/logo.png"
                 alt="La Neta Logo"
                 className="h-7 w-auto shrink-0 object-contain"
                 width={28}

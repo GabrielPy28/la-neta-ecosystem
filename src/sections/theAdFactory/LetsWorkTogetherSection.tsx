@@ -3,7 +3,34 @@ import { motion, AnimatePresence } from 'motion/react'
 import { FloatingCard } from '../../components/FloatingCard'
 import { HiArrowRight, HiX } from 'react-icons/hi'
 
-const LETS_TALK_IMAGE = '/assets/images/lets_talk.png'
+const LETS_TALK_IMAGE = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/lets_talk.png'
+
+const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSd8IlDTvRy-PT3XmVqUHvnZOKsqWjgjsBoaT_CVmNz7PoYdtw/formResponse'
+const GOOGLE_FORM_ENTRIES = {
+  name: 'entry.1809546207',
+  email: 'entry.1010474045',
+  company: 'entry.466047948',
+  serviceTopic: 'entry.1477597184',
+  subject: 'entry.1122482931',
+  message: 'entry.1302748606',
+  urgency: 'entry.1628389655',
+} as const
+
+const SERVICE_TOPIC_OPTIONS: { label: string; value: string }[] = [
+  { label: 'The Ad Factory (Advertising / influencer campaigns)', value: 'The Ad Factory (Campañas publicitarias/de influencia)' },
+  { label: 'The Glitch (Content / media strategy)', value: 'The Glitch (Estrategia de contenido/Medios)' },
+  { label: 'The Hook Hunter (Opportunity / trend identification)', value: 'The Hook Hunter (Identificación de oportunidades/Tendencias)' },
+  { label: 'Partnership / general collaboration', value: 'Partnership/Colaboración general' },
+  { label: 'Other topic', value: 'Otro tema' },
+]
+
+const URGENCY_LABELS: Record<string, string> = {
+  1: 'Just exploring',
+  2: 'Not urgent (next quarter)',
+  3: 'Moderate need (this month)',
+  4: 'Urgent (this week)',
+  5: 'We need it as soon as possible'
+}
 
 type LetsWorkTogetherVariant = 'adFactory' | 'glitch' | 'hookHunter' | 'global'
 
@@ -38,18 +65,70 @@ const COPY = {
   },
 }
 
+const IFRAME_NAME = 'google-form-submit-target'
+
 function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => void; variant?: LetsWorkTogetherVariant }) {
   const copy = COPY[variant ?? 'adFactory']
+  const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.currentTarget
+    const data = new FormData(form)
+    const name = (data.get('name') as string)?.trim() ?? ''
+    const email = (data.get('email') as string)?.trim() ?? ''
+    const company = (data.get('company') as string)?.trim() ?? ''
+    const serviceTopic = (data.get('serviceTopic') as string) ?? ''
+    const subject = (data.get('subject') as string)?.trim() ?? ''
+    const message = (data.get('message') as string)?.trim() ?? ''
+    const urgency = (data.get('urgency') as string) ?? ''
+
+    const payload: Record<string, string> = {
+      [GOOGLE_FORM_ENTRIES.name]: name,
+      [GOOGLE_FORM_ENTRIES.email]: email,
+      [GOOGLE_FORM_ENTRIES.company]: company,
+      [GOOGLE_FORM_ENTRIES.serviceTopic]: serviceTopic,
+      [GOOGLE_FORM_ENTRIES.subject]: subject,
+      [GOOGLE_FORM_ENTRIES.message]: message,
+      [GOOGLE_FORM_ENTRIES.urgency]: urgency,
+    }
+
+    setIsSubmitting(true)
+    const doc = typeof document !== 'undefined' ? document : null
+    if (doc) {
+      const submitForm = doc.createElement('form')
+      submitForm.setAttribute('action', GOOGLE_FORM_ACTION)
+      submitForm.setAttribute('method', 'POST')
+      submitForm.setAttribute('target', IFRAME_NAME)
+      submitForm.setAttribute('style', 'display:none')
+      Object.entries(payload).forEach(([key, value]) => {
+        const input = doc.createElement('input')
+        input.setAttribute('type', 'hidden')
+        input.setAttribute('name', key)
+        input.setAttribute('value', value)
+        submitForm.appendChild(input)
+      })
+      doc.body.appendChild(submitForm)
+      submitForm.submit()
+      doc.body.removeChild(submitForm)
+    }
+    setSubmitted(true)
+    setIsSubmitting(false)
+    setTimeout(() => onClose(), 2200)
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex min-h-0 items-center justify-center overflow-y-auto p-3 py-6 sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
     >
+      <iframe name={IFRAME_NAME} title="Google Form submit" className="hidden" />
       <div
         className="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"
         onClick={onClose}
@@ -59,19 +138,19 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.96 }}
-        className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200/80"
+        className="relative my-auto w-full min-w-0 max-w-[25rem] max-h-[calc(100dvh-2rem)] min-h-0 flex flex-col overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200/80 md:max-w-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <div
           aria-hidden
-          className="h-1 w-full"
+          className="h-1 w-full shrink-0"
           style={{
             background: 'linear-gradient(90deg, var(--laneta-purple), var(--laneta-pink), var(--laneta-blue))',
           }}
         />
-        <div className="p-6 md:p-8">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 id="contact-modal-title" className="text-xl font-bold text-[var(--laneta-slate)] md:text-2xl">
+        <div className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-5 md:p-8">
+          <div className="mb-4 flex items-center justify-between md:mb-6">
+            <h2 id="contact-modal-title" className="text-lg font-bold text-[var(--laneta-slate)] md:text-2xl">
               Let&apos;s talk
             </h2>
             <button
@@ -84,66 +163,119 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
             </button>
           </div>
 
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-slate-700">
-                Name
-              </label>
-              <input
-                id="contact-name"
-                type="text"
-                name="name"
-                required
-                placeholder="Your name"
-                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20"
-              />
+          {submitted ? (
+            <div className="flex flex-col items-center justify-center py-8 text-center">
+              <p className="text-lg font-semibold text-[var(--laneta-slate)]">Thank you.</p>
+              <p className="mt-2 text-slate-600">We&apos;ve received your message and will get back to you with next steps as soon as possible. 🚀</p>
             </div>
-            <div>
-              <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-slate-700">
-                Email
-              </label>
-              <input
-                id="contact-email"
-                type="email"
-                name="email"
-                required
-                placeholder="you@company.com"
-                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20"
-              />
-            </div>
-            <div>
-              <label htmlFor="contact-company" className="mb-1.5 block text-sm font-medium text-slate-700">
-                Company <span className="text-slate-400">(optional)</span>
-              </label>
-              <input
-                id="contact-company"
-                type="text"
-                name="company"
-                placeholder="Your brand or company"
-                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20"
-              />
-            </div>
-            <div>
-              <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-slate-700">
-                Tell us about your idea
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                required
-                rows={4}
-                placeholder={copy.messagePlaceholder}
-                className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20"
-              />
-            </div>
-            <button
-              type="submit"
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--laneta-purple)] px-6 py-3.5 font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-[var(--laneta-purple)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2"
-            >
-              Send message
-              <HiArrowRight className="size-5" />
-            </button>
-          </form>
+          ) : (
+            <form className="space-y-3 md:space-y-4" onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="contact-name" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
+                  Full name
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="John Doe"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
+                  Email
+                </label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="john.doe@example.com"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-company" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
+                  Company or project
+                </label>
+                <input
+                  id="contact-company"
+                  type="text"
+                  name="company"
+                  required
+                  placeholder="Your brand or company"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-service" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
+                  What service or topic would you like to discuss?
+                </label>
+                <select
+                  id="contact-service"
+                  name="serviceTopic"
+                  required
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
+                >
+                  <option value="">Choose</option>
+                  {SERVICE_TOPIC_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="contact-subject" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
+                  Subject (brief title of your project or idea)
+                </label>
+                <input
+                  id="contact-subject"
+                  type="text"
+                  name="subject"
+                  required
+                  placeholder="e.g. Campaign inquiry, The Glitch, partnership"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-message" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
+                  Message: tell us what you need (goals, timeline, formats, or any relevant details)
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows={3}
+                  placeholder={copy.messagePlaceholder}
+                  className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:rows-4 md:px-4 md:py-3 md:text-base"
+                />
+              </div>
+              <div>
+                <span className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
+                  How urgent is your need for a response?
+                </span>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2" role="radiogroup" aria-label="Urgency">
+                  {(['1', '2', '3', '4', '5'] as const).map((num) => (
+                    <label key={num} className="flex cursor-pointer items-center gap-1.5">
+                      <input type="radio" name="urgency" value={num} required className="text-[var(--laneta-purple)]" />
+                      <span className="text-sm text-slate-700">{URGENCY_LABELS[num]}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--laneta-purple)] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-[var(--laneta-purple)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 disabled:opacity-70 md:rounded-xl md:px-6 md:py-3.5 md:text-base cursor-pointer hover:cursor-pointer"
+              >
+                {isSubmitting ? 'Sending…' : 'Send message'}
+                <HiArrowRight className="size-5" />
+              </button>
+            </form>
+          )}
         </div>
       </motion.div>
     </motion.div>
@@ -198,7 +330,7 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2"
+            className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer hover:cursor-pointer"
             style={{
               backgroundColor: isDark ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)',
             }}

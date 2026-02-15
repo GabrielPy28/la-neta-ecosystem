@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
-import { HiMenu, HiX, HiCog } from 'react-icons/hi'
+import { HiMenu, HiX, HiCog, HiArrowRight } from 'react-icons/hi'
 import { PiWebhooksLogoDuotone } from "react-icons/pi";
 import { CgUserlane } from "react-icons/cg";
 import type { IconType } from 'react-icons'
@@ -14,27 +14,25 @@ type ServiceChild = {
 }
 
 const AD_FACTORY_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#service-presentation', label: 'Service' },
+  { href: '#service-presentation', label: 'The Ad Factory' },
   { href: '#problems-vs-solutions', label: 'Problems & Solutions' },
-  { href: '#lets-work-together', label: "Let's Work Together" },
+  { href: '#roadmap', label: '21-Day Roadmap' },
 ]
 
 const GLITCH_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#service-presentation', label: 'Service' },
+  { href: '#service-presentation', label: 'The Glitch' },
   { href: '#product-value', label: 'Product Value' },
   { href: '#ai-agent-videos', label: 'AI Agent' },
   { href: '#pack-includes', label: 'Pack Includes' },
-  { href: '#roadmap', label: 'Roadmap' },
-  { href: '#lets-work-together', label: "Let's Work Together" },
+  { href: '#roadmap', label: '21-Day Roadmap' },
 ]
 
 const HOOK_HUNTER_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#service-presentation', label: 'Service' },
+  { href: '#service-presentation', label: 'The Hook Hunter' },
   { href: '#product-value', label: 'Product Value' },
   { href: '#ugc-talents', label: 'UGC Talents' },
   { href: '#pack-includes', label: 'Packs' },
-  { href: '#roadmap', label: 'Roadmap' },
-  { href: '#lets-work-together', label: "Let's Work Together" },
+  { href: '#roadmap', label: '21-Day Roadmap' },
 ]
 
 const NAV_LINKS: (
@@ -43,7 +41,6 @@ const NAV_LINKS: (
 )[] = [
   { href: '#who-is-la-neta', label: 'Who we are' },
   { href: '#branch-offices', label: 'Branch offices' },
-  { href: '#partnerships-alliances', label: 'Partnerships' },
   {
     label: 'Services',
     children: [
@@ -66,7 +63,8 @@ const NAV_LINKS: (
         icon: PiWebhooksLogoDuotone,
       },
     ],
-  },
+  },  
+  { href: '#partnerships-alliances', label: 'Partnerships' },
 ]
 
 const isDropdown = (
@@ -76,6 +74,11 @@ const isDropdown = (
 
 function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   e.preventDefault()
+  const el = document.querySelector(href)
+  el?.scrollIntoView({ behavior: 'smooth' })
+}
+
+function scrollToSectionById(href: string) {
   const el = document.querySelector(href)
   el?.scrollIntoView({ behavior: 'smooth' })
 }
@@ -111,17 +114,21 @@ export function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
+      <div
+          className={`mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-8 md:pr-8 ${
+            pathname === '/' ? 'pr-10' : 'pr-20'
+          }`}
+        >
         {/* Logo + name */}
         {pathname === '/' ? (
           <a
             href="#hero"
             onClick={(e) => scrollToSection(e, '#hero')}
-            className="flex items-center gap-2 transition-opacity hover:opacity-90"
+            className="flex min-w-0 shrink items-center gap-2 transition-opacity hover:opacity-90"
             aria-label="La Neta — Home"
           >
           <img
-            src="/assets/images/logo.png"
+            src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/logo.png"
             alt=""
             className="h-8 w-auto object-contain md:h-9"
             aria-hidden
@@ -139,11 +146,11 @@ export function Header() {
         ) : (
           <Link
             to="/"
-            className="flex items-center gap-2 transition-opacity hover:opacity-90"
+            className="flex min-w-0 shrink items-center gap-2 transition-opacity hover:opacity-90"
             aria-label="La Neta — Home"
           >
           <img
-            src="/assets/images/logo.png"
+            src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/logo.png"
             alt=""
             className="h-8 w-auto object-contain md:h-9"
             aria-hidden
@@ -263,15 +270,23 @@ export function Header() {
             }
             return null
           })}
+            <a
+              href="#lets-work-together"
+              onClick={(e) => scrollToSection(e, '#lets-work-together')}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-[var(--laneta-purple)] px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-lg"
+            >
+              Let&apos;s Work Together
+              <HiArrowRight className="size-4" />
+            </a>
           </>
           )}
         </nav>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button — shrink-0 para que no se empuje a la esquina */}
         <button
           type="button"
           onClick={() => setMobileOpen((o) => !o)}
-          className={`flex h-10 w-10 items-center justify-center rounded-lg md:hidden ${
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg md:hidden ${
             isScrolled ? 'text-slate-700' : 'text-white'
           }`}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -306,8 +321,9 @@ export function Header() {
                       key={link.href}
                       href={link.href}
                       onClick={(e) => {
-                        scrollToSection(e, link.href)
+                        e.preventDefault()
                         closeMobile()
+                        setTimeout(() => scrollToSectionById(link.href), 300)
                       }}
                       className="rounded-lg px-4 py-3 text-left font-medium text-slate-800 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
                     >
@@ -323,8 +339,9 @@ export function Header() {
                         <a
                           href="#services-cta"
                           onClick={(e) => {
-                            scrollToSection(e, '#services-cta')
+                            e.preventDefault()
                             closeMobile()
+                            setTimeout(() => scrollToSectionById('#services-cta'), 300)
                           }}
                           className="flex-1 rounded-lg px-4 py-3 font-medium text-slate-800 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
                         >
@@ -381,8 +398,9 @@ export function Header() {
                       key={link.href}
                       href={link.href}
                       onClick={(e) => {
-                        scrollToSection(e, link.href)
+                        e.preventDefault()
                         closeMobile()
+                        setTimeout(() => scrollToSectionById(link.href), 300)
                       }}
                       className="rounded-lg px-4 py-3 text-left font-medium text-slate-800 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
                     >
@@ -392,6 +410,18 @@ export function Header() {
                 }
                 return null
               })}
+              <a
+                href="#lets-work-together"
+                onClick={(e) => {
+                  e.preventDefault()
+                  closeMobile()
+                  setTimeout(() => scrollToSectionById('#lets-work-together'), 300)
+                }}
+                className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-[var(--laneta-purple)] px-4 py-3 font-semibold text-white shadow-md"
+              >
+                Let&apos;s Work Together
+                <HiArrowRight className="size-4" />
+              </a>
             </nav>
           </motion.div>
         )}

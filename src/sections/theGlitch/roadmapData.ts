@@ -26,7 +26,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'We start with a live session to align on your goals, brand voice, and creative direction. You share your vision; we map it to our production pipeline. We define the AI avatar profile, key messages, and success metrics so everyone is on the same page from day one.',
     media: 'image',
-    src: '/assets/images/kick-off.png',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/kick-off.png',
     accent: 'var(--laneta-blue)',
     phase: 'discovery',
     outcome: 'A shared vision document and clear success metrics. Everyone aligned from day one.',
@@ -40,7 +40,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Our team turns the kickoff into a structured creative brief. We lock in audience, tone, hooks, and must-have elements. You receive a document that serves as the single source of truth for the entire project—no ambiguity, no last-minute surprises.',
     media: 'image',
-    src: '/assets/images/brief.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/brief.jpg',
     accent: 'var(--laneta-pink)',
     phase: 'discovery',
     outcome: 'One creative brief that serves as the single source of truth. No ambiguity for the rest of the project.',
@@ -54,7 +54,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Contracts, usage rights, and project governance are finalized. We handle the paperwork so you can focus on the creative. All approvals and sign-offs are collected, and we set clear ownership for feedback and delivery milestones.',
     media: 'image',
-    src: '/assets/images/administration.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/administration.jpg',
     accent: 'var(--laneta-purple)',
     phase: 'discovery',
     outcome: 'Contracts and usage rights signed. Clear ownership for feedback and delivery. You focus on creative only.',
@@ -68,7 +68,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'We present AI avatar options that match your brand—look, style, and persona. You choose the talent that will represent your message. We refine the selection until you have the perfect fit. This is the face of your campaign; we get it right.',
     media: 'image',
-    src: '/assets/images/selection.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/selection.jpg',
     accent: 'var(--laneta-orange)',
     phase: 'create',
     outcome: 'Pre-vetted creators aligned with your brand voice. The face of your campaign, chosen together.',
@@ -82,7 +82,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Copy and scripts are drafted for every asset: hero videos, clips, and variations. We optimize for platform (feed, story, reel) and for your KPIs. You review and approve the words before a single frame is produced.',
     media: 'image',
-    src: '/assets/images/script.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/script.jpg',
     accent: 'var(--laneta-blue)',
     phase: 'create',
     outcome: 'Approved scripts for every asset. Words locked before a single frame is produced—no surprises in edit.',
@@ -96,7 +96,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'First drafts go live for your review. You give structured feedback; we iterate. This window is built for collaboration—no endless rounds, just clear notes and quick turnarounds. By the end, every asset is approved and ready for final production.',
     media: 'image',
-    src: '/assets/images/feedback.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/feedback.jpg',
     accent: 'var(--laneta-pink)',
     phase: 'create',
     outcome: 'Every asset approved and ready for final production. Structured feedback loop—no endless rounds.',
@@ -110,7 +110,7 @@ const ROADMAP_INPUT: RoadmapStepInput[] = [
     description:
       'Our AI engine and creative team produce the final content. All approved scripts and talent are rendered into video. We generate the full set of variants—every format, every cut—in parallel. Quality checks run throughout so what you get is ready to publish.',
     media: 'image',
-    src: '/assets/images/production.jpg',
+    src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/production.jpg',
     accent: 'var(--laneta-purple)',
     phase: 'create',
     outcome: 'Full set of variants produced: every format, every cut. Quality-checked and ready to publish.',

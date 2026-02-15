@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { gsap } from 'gsap'
 import {
@@ -283,7 +283,7 @@ function OfferCarousel() {
           </button>
         </div>
       </div>
-      <div className="relative min-h-[380px] md:min-h-[340px] px-6 py-8 md:px-10 md:py-10">
+      <div className="relative min-h-[483px] pb-2 md:min-h-[414px] md:pb-0">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={index}
@@ -291,7 +291,7 @@ function OfferCarousel() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: direction * -80 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 flex flex-col md:flex-row md:items-center gap-8 md:gap-12 px-6 py-6 md:px-10 md:py-10"
+            className="absolute inset-0 flex flex-col md:flex-row md:items-center gap-6 md:gap-12 px-6 pt-6 pb-4 md:px-10 md:py-10"
           >
             <motion.span
               className="flex h-28 w-28 shrink-0 items-center justify-center rounded-3xl text-4xl text-white md:h-32 md:w-32 md:text-6xl"
@@ -345,15 +345,20 @@ function OfferCarousel() {
           </motion.div>
         </AnimatePresence>
       </div>
-      <div className="flex items-center gap-2 px-6 pb-5">
-        <div className="flex-1 h-1 rounded-full bg-white/10 overflow-hidden">
+      <div
+        className="relative z-10 flex items-center gap-2 border-t border-white/10 bg-slate-900/40 px-6 py-4 backdrop-blur-sm"
+        style={{
+          background: 'linear-gradient(180deg, rgba(15,23,42,0.4) 0%, rgba(3,7,18,0.6) 100%)',
+        }}
+      >
+        <div className="flex-1 h-1.5 min-w-0 rounded-full bg-white/10 overflow-hidden">
           <motion.div
             className="h-full rounded-full bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)]"
             style={{ width: `${progress * 100}%` }}
             transition={{ duration: 0.1 }}
           />
         </div>
-        <div className="flex gap-1.5">
+        <div className="flex shrink-0 gap-1.5">
           {OFFER_SLIDES.map((_, i) => (
             <button
               key={i}
@@ -372,28 +377,60 @@ function OfferCarousel() {
 }
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [heroInView, setHeroInView] = useState(true)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        setHeroInView(!!entries[0]?.isIntersecting)
+      },
+      { rootMargin: '0px', threshold: 0 }
+    )
+    io.observe(section)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (heroInView) {
+      video.playbackRate = VIDEO_PLAYBACK_RATE
+      video.play().catch(() => {})
+    } else {
+      video.pause()
+    }
+  }, [heroInView])
+
+  const setVideoRef = useCallback((el: HTMLVideoElement | null) => {
+    videoRef.current = el
+    if (el) {
+      el.playbackRate = VIDEO_PLAYBACK_RATE
+    }
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen overflow-hidden"
       style={{ perspective: '1000px' }}
     >
-      {/* Background video */}
+      {/* Background video: solo se reproduce cuando el hero está en vista */}
       <div className="absolute inset-0">
         <video
-          ref={(el) => {
-            if (el) {
-              el.playbackRate = VIDEO_PLAYBACK_RATE
-            }
-          }}
+          ref={setVideoRef}
           onLoadedMetadata={(e) => {
             e.currentTarget.playbackRate = VIDEO_PLAYBACK_RATE
           }}
           onCanPlay={(e) => {
             e.currentTarget.playbackRate = VIDEO_PLAYBACK_RATE
+            if (heroInView) e.currentTarget.play().catch(() => {})
           }}
           src={HERO_VIDEO_SRC}
-          autoPlay
           muted
           loop
           playsInline

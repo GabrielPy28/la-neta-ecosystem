@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, memo } from 'react'
 import { motion } from 'motion/react'
 import gsap from 'gsap'
 
@@ -6,30 +6,30 @@ const SECTION_ID = 'who-is-la-neta'
 
 const IMAGES = {
   creatorTypes: [
-    { src: '/assets/images/Food_blogger.jpg', label: 'Food' },
-    { src: '/assets/images/gamer.jpg', label: 'Gaming' },
-    { src: '/assets/images/influencer_male.jpg', label: 'Fashion' },
-    { src: '/assets/images/influencer_famel.jpg', label: 'Creator Content' },
-    { src: '/assets/images/fotographer.jpg', label: 'Photography' },
-    { src: '/assets/images/traveler.jpg', label: 'Traveler' },
-    { src: '/assets/images/sci-fy_influencer.jpg', label: 'Sci-Fi' },
-    { src: '/assets/images/music_influencer.jpg', label: 'Music' },
-    { src: '/assets/images/mode_influencer.jpg', label: 'Mode' },
-    { src: '/assets/images/influencer_fitness.jpg', label: 'Fitness' },
-    { src: '/assets/images/influencer_artist.jpg', label: 'Artist' },
-    { src: '/assets/images/humor_influencer.jpg', label: 'Humor' },
-    { src: '/assets/images/mistery_influencer.jpg', label: 'Mystery' },
-    { src: '/assets/images/pets_influencer.jpg', label: 'Pets' },
-    { src: '/assets/images/influencer_jewelry.jpg', label: 'Jewelry' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Food_blogger.jpg', label: 'Food' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/gamer.jpg', label: 'Gaming' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/influencer_male.jpg', label: 'Fashion' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/influencer_famel.jpg', label: 'Creator Content' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/fotographer.jpg', label: 'Photography' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/traveler.jpg', label: 'Traveler' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/sci-fy_influencer.jpg', label: 'Sci-Fi' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/music_influencer.jpg', label: 'Music' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/mode_influencer.jpg', label: 'Mode' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/influencer_fitness.jpg', label: 'Fitness' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/influencer_artist.jpg', label: 'Artist' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/humor_influencer.jpg', label: 'Humor' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/mistery_influencer.jpg', label: 'Mystery' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/pets_influencer.jpg', label: 'Pets' },
+    { src: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/influencer_jewelry.jpg', label: 'Jewelry' },
   ],
   story: {
-    main: '/assets/images/studio.jpg',
-    support: '/assets/images/creators.jpg',
+    main: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/studio.jpg',
+    support: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/creators.jpg',
   },
   process: [
-    '/assets/images/Vance.jpg',
-    '/assets/images/editor.jpg',
-    '/assets/images/not_limits.png',
+    'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Vance.jpg',
+    'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/editor.jpg',
+    'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/not_limits.png',
   ],
 } as const
 
@@ -81,11 +81,12 @@ function MetricCard({
 }) {
   return (
     <motion.div
+      layout={false}
       className="rounded-2xl border border-slate-200 bg-slate-50/80 px-6 py-5 shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.35, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
     >
       <p className="font-mono text-2xl font-bold text-[var(--laneta-pink)] md:text-3xl">{value}</p>
       <p className="mt-1 font-semibold text-slate-800">{label}</p>
@@ -94,38 +95,93 @@ function MetricCard({
   )
 }
 
-const CAROUSEL_DURATION = 28
+// 40% más lento: 28 * 1.4 ≈ 39s
+const CAROUSEL_DURATION = 39
+
+const CarouselCard = memo(function CarouselCard({
+  src,
+  label,
+}: {
+  src: string
+  label: string
+}) {
+  return (
+    <div className="relative min-w-[200px] max-w-[200px] shrink-0 overflow-hidden rounded-2xl border-2 border-slate-200 bg-slate-50 shadow-lg">
+      <div className="aspect-[4/3] overflow-hidden">
+        <img
+          src={src}
+          alt={label}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <p className="bg-slate-100 py-3 text-center text-sm font-semibold text-slate-800">
+        {label}
+      </p>
+    </div>
+  )
+})
 
 function CreatorTypesCarousel() {
   const trackRef = useRef<HTMLDivElement>(null)
-  const [isPaused, setIsPaused] = useState(false)
-  const tweenRef = useRef<gsap.core.Tween | gsap.core.Timeline | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
+  const tweenRef = useRef<gsap.core.Timeline | null>(null)
   const items = IMAGES.creatorTypes
   const duplicated = [...items, ...items]
 
+  // Animar solo cuando el carrusel está en vista; al salir de vista se detiene para evitar lag
   useEffect(() => {
-    const track = trackRef.current
-    if (!track) return
+    const container = containerRef.current
+    if (!container) return
 
-    const totalWidth = track.scrollWidth / 2
-    const tl = gsap.timeline({ repeat: -1 })
-    tl.to(track, { x: -totalWidth, duration: CAROUSEL_DURATION, ease: 'none' }).set(track, {
-      x: 0,
-    })
-    tweenRef.current = tl
-
-    return () => {
-      tl.kill()
-    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        const [e] = entries
+        setIsInView(!!e?.isIntersecting)
+      },
+      { rootMargin: '100px', threshold: 0 }
+    )
+    io.observe(container)
+    return () => io.disconnect()
   }, [])
 
   useEffect(() => {
-    if (!tweenRef.current) return
-    tweenRef.current.timeScale(isPaused ? 0 : 1)
-  }, [isPaused])
+    if (!isInView) return
+
+    const track = trackRef.current
+    if (!track) return
+
+    let cancelled = false
+    // Diferir inicio de GSAP al siguiente frame para no bloquear el paint
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (cancelled) return
+        const totalWidth = track.scrollWidth / 2
+        const tl = gsap.timeline({ repeat: -1 })
+        tl.to(track, {
+          x: -totalWidth,
+          duration: CAROUSEL_DURATION,
+          ease: 'none',
+          force3D: true,
+        }).set(track, { x: 0 })
+        tweenRef.current = tl
+      })
+    })
+
+    return () => {
+      cancelled = true
+      cancelAnimationFrame(id)
+      tweenRef.current?.kill()
+      tweenRef.current = null
+    }
+  }, [isInView])
 
   return (
     <motion.div
+      ref={containerRef}
+      layout={false}
       className="mb-16 md:mb-20"
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -135,33 +191,18 @@ function CreatorTypesCarousel() {
       <p className="mb-6 text-center text-sm font-medium tracking-wider uppercase text-slate-500">
         The content we help distribute
       </p>
-      <div
-        className="relative overflow-hidden py-4"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+      <div className="relative overflow-hidden py-4">
         <div
           ref={trackRef}
-          className="flex w-max gap-5 will-change-transform"
-          style={{ width: 'max-content' }}
+          className="flex w-max gap-5"
+          style={{
+            width: 'max-content',
+            willChange: isInView ? 'transform' : 'auto',
+            contain: 'layout style',
+          }}
         >
           {duplicated.map((img, i) => (
-            <div
-              key={`${img.src}-${i}`}
-              className="group relative min-w-[200px] max-w-[200px] shrink-0 cursor-default overflow-hidden rounded-2xl border-2 border-slate-200 bg-slate-50 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-[var(--laneta-pink)]/50 hover:shadow-xl hover:shadow-[var(--laneta-purple)]/20"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={img.src}
-                  alt={img.label}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <p className="bg-slate-100 py-3 text-center text-sm font-semibold text-slate-800 transition-colors group-hover:bg-[var(--laneta-purple)]/10 group-hover:text-[var(--laneta-purple)]">
-                {img.label}
-              </p>
-            </div>
+            <CarouselCard key={`${img.src}-${i}`} src={img.src} label={img.label} />
           ))}
         </div>
       </div>
@@ -184,6 +225,7 @@ function ProcessStepCard({
 }) {
   return (
     <motion.article
+      layout={false}
       className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md md:flex"
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -195,6 +237,8 @@ function ProcessStepCard({
           <img
             src={imageSrc}
             alt=""
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover object-center"
           />
         </div>
@@ -219,10 +263,12 @@ export function WhoIsLaNeta() {
     <section
       id={SECTION_ID}
       className="relative overflow-hidden bg-white py-20 md:py-28"
+      style={{ contentVisibility: 'auto' }}
     >
       <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-8">
         {/* Head */}
         <motion.header
+          layout={false}
           className="mb-16 text-center md:mb-20"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -245,6 +291,7 @@ export function WhoIsLaNeta() {
 
         {/* Story */}
         <motion.div
+          layout={false}
           className="mb-20 md:mb-24"
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -256,6 +303,8 @@ export function WhoIsLaNeta() {
             <img
               src={IMAGES.story.main}
               alt="Our studio and production ecosystem"
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover object-center"
             />
             <div
@@ -293,6 +342,8 @@ export function WhoIsLaNeta() {
                 <img
                   src={IMAGES.story.support}
                   alt="Creator at work"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -304,6 +355,7 @@ export function WhoIsLaNeta() {
         {/* Metrics dashboard */}
         <div className="mb-20 md:mb-28">
           <motion.h3
+            layout={false}
             className="mb-8 text-center text-xl font-bold text-[var(--laneta-blue)] md:text-2xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -328,6 +380,7 @@ export function WhoIsLaNeta() {
         {/* Creative process */}
         <div>
           <motion.h3
+            layout={false}
             className="mb-4 text-center text-xl font-bold text-[var(--laneta-blue)] md:text-2xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -337,6 +390,7 @@ export function WhoIsLaNeta() {
             Our creative process
           </motion.h3>
           <motion.p
+            layout={false}
             className="mx-auto mb-12 max-w-2xl text-center text-slate-600"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}

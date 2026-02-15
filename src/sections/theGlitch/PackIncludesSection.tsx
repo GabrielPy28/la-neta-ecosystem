@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import { FloatingCard } from '../../components/FloatingCard'
 
-const IMAGE_SRC = '/assets/images/blank_slate.jpg'
+const IMAGE_SRC = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/blank_slate.jpg'
 
 const PACK_ITEMS = [
   {

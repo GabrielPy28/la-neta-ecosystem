@@ -7,8 +7,8 @@ import { DiCodeigniter } from 'react-icons/di'
 import { FloatingCard } from '../../components/FloatingCard'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
-const VIDEO_SRC = '/assets/videos/ad_cafe.mp4'
-const SCROLL_CLICK_IMAGE = '/assets/images/ad_laneta.png'
+const VIDEO_SRC = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_cafe.mp4'
+const SCROLL_CLICK_IMAGE = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_laneta.png'
 
 const FEATURES = [
   {
@@ -45,7 +45,7 @@ const AD_SCORES = [
 
 const AD_EXAMPLES = [
   {
-    image: '/assets/images/ad_nyx.png',
+    image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_nyx.png',
     brand: 'Nyx',
     caption: 'Performance that converts',
     accent: 'var(--laneta-purple)',
@@ -57,7 +57,7 @@ const AD_EXAMPLES = [
     format: 'Static · Feed',
   },
   {
-    image: '/assets/images/ad_amd.png',
+    image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_amd.png',
     brand: 'AMD',
     caption: 'Reach that scales',
     accent: 'var(--laneta-pink)',
@@ -69,7 +69,7 @@ const AD_EXAMPLES = [
     format: 'Video · Cross-platform',
   },
   {
-    image: '/assets/images/ad_pinterest.png',
+    image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_pinterest.png',
     brand: 'Pinterest',
     caption: 'Quality that elevates',
     accent: 'var(--laneta-blue)',
@@ -128,11 +128,11 @@ export function ServicePresentationSection() {
       />
 
       <div className="relative space-y-4 lg:space-y-5">
-        {/* 1. HERO — Video as protagonist, floating title */}
-        <div className="relative overflow-hidden rounded-2xl">
+        {/* 1. HERO — Video as protagonist, floating title; en móvil el bloque ocupa ~70vh y el título el doble de grande */}
+        <div className="relative h-[70vh] min-h-[380px] overflow-hidden rounded-2xl md:h-auto md:min-h-0">
           <video
             src={VIDEO_SRC}
-            className="aspect-video w-full object-cover md:aspect-[21/9]"
+            className="absolute inset-0 h-full w-full object-cover md:relative md:aspect-video md:aspect-[21/9] md:h-auto"
             controls
             playsInline
             preload="metadata"
@@ -142,17 +142,17 @@ export function ServicePresentationSection() {
             Your browser does not support video playback.
           </video>
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent md:bg-gradient-to-b md:from-black/60 md:via-transparent md:to-transparent"
             aria-hidden
           />
-          <div className="absolute top-6 left-6 right-6 text-white md:top-8 md:left-8">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] opacity-90">
+          <div className="absolute bottom-6 left-6 right-6 text-white md:bottom-auto md:top-8 md:left-8 md:right-auto">
+            <p className="text-base font-medium uppercase tracking-[0.2em] opacity-90 md:text-xs">
               Full-service creative engine
             </p>
-            <h1 className="mt-1 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+            <h1 className="mt-2 text-6xl font-bold leading-tight tracking-tight md:mt-1 md:text-4xl lg:text-5xl">
               The Ad Factory
             </h1>
-            <p className="mt-2 text-lg text-white/90 md:text-xl">
+            <p className="mt-3 text-2xl text-white/90 md:mt-2 md:text-lg md:text-xl">
               Where ideas become ads.
             </p>
           </div>

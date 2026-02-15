@@ -96,7 +96,7 @@
 
 ## Assets principales
 
-- **Imágenes:** `public/assets/images/` — logo, opciones de presentación, creadores, marcas, lets_talk.png.
+- **Imágenes:** `publichttps://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/` — logo, opciones de presentación, creadores, marcas, lets_talk.png.
 - **Videos:** `public/assets/videos/` — ad_cafe, IA_Agent, influencer_food, CasaPinterest, etc.
 - **Icono:** `public/images/laneta.ico` (favicon).
 

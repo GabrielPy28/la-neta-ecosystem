@@ -25,7 +25,7 @@ function App() {
               <BranchOfficeLocations />
               <ServicesCTA />
               <PartnershipsAlliances />
-              <div className="bg-[var(--laneta-bg)] py-16 md:py-20">
+              <div id="lets-work-together" className="scroll-mt-24 bg-[var(--laneta-bg)] py-16 md:py-20">
                 <LetsWorkTogetherSection variant="global" />
               </div>
               <Footer />

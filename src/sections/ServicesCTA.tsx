@@ -48,7 +48,7 @@ const SERVICE_CTAS: ServiceCTA[] = [
     description:
       'Our full-service creative engine: strategy, talent, production, and distribution under one roof. From brief to feed—we own the entire pipeline so you can scale without the operational headache.',
     ctaLabel: 'Discover The Ad Factory',
-    imageSrc: '/assets/images/Ad-Factory.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Ad-Factory.jpg',
   },
   {
     pageUrl: '/the-glitch',
@@ -57,7 +57,7 @@ const SERVICE_CTAS: ServiceCTA[] = [
     description:
       'Fully AI-generated talent with strong narrative and content built around your brand. Creators that embody what you sell—authentic storytelling and on-brand presence, designed to connect with your audience and scale your message.',
     ctaLabel: 'Discover The Glitch',
-    imageSrc: '/assets/images/the-glitch.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/the-glitch.jpg',
     imagePosition: 'center 35%',
   },
   {
@@ -67,7 +67,7 @@ const SERVICE_CTAS: ServiceCTA[] = [
     description:
       'UGC creators and content built around hooks that convert. We find and craft the angles that grab attention and drive action—including The Amplifier and Empire Mode for brands ready to own the feed at scale.',
     ctaLabel: 'Discover The Hook Hunter',
-    imageSrc: '/assets/images/ugc_creator.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ugc_creator.jpg',
   },
 ]
 
@@ -78,7 +78,7 @@ const CREATOR_PROFILES: CreatorProfile[] = [
     slogan: 'Authentic fashion voice that turns browsers into buyers.',
     niche: 'Fashion & Style',
     rating: 4.9,
-    imageSrc: '/assets/images/fashion_influencer.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/fashion_influencer.jpg',
     brands: [{ type: 'icon', icon: SiMeta }, { type: 'icon', icon: SiPinterest }],
     stats: { ads: 42, videos: 128, engagement: '2.4x', likes: '1.2M', followers: '285K', ctr: '4.8%' },
     socials: [
@@ -92,7 +92,7 @@ const CREATOR_PROFILES: CreatorProfile[] = [
     slogan: 'Content that makes people hungry—and click.',
     niche: 'Food & Beverage',
     rating: 4.8,
-    imageSrc: '/assets/images/influencer_food_male.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/influencer_food_male.jpg',
     brands: [{ type: 'icon', icon: SiPinterest }, { type: 'icon', icon: SiMeta }],
     stats: { ads: 38, videos: 94, engagement: '3.2x', likes: '890K', followers: '192K', ctr: '5.1%' },
     socials: [
@@ -107,7 +107,7 @@ const CREATOR_PROFILES: CreatorProfile[] = [
     slogan: 'Speaks the language of tech and gaming audiences.',
     niche: 'Tech & Gaming',
     rating: 4.7,
-    imageSrc: '/assets/images/influencer_geek.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/influencer_geek.jpg',
     brands: [{ type: 'icon', icon: SiAmd, iconSize: 32 }, { type: 'icon', icon: SiMeta }],
     stats: { ads: 31, videos: 76, engagement: '1.8x', likes: '540K', followers: '420K', ctr: '3.9%' },
     socials: [
@@ -121,7 +121,7 @@ const CREATOR_PROFILES: CreatorProfile[] = [
     slogan: 'Travel that inspires—and converts. Discovery content that drives action.',
     niche: 'Travel & Discovery',
     rating: 4.8,
-    imageSrc: '/assets/images/Luis_Julia_influencers_travel.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Luis_Julia_influencers_travel.jpg',
     brands: [{ type: 'icon', icon: SiPinterest }, { type: 'icon', icon: SiMeta }],
     stats: { ads: 29, videos: 82, engagement: '2.5x', likes: '720K', followers: '318K', ctr: '4.2%' },
     socials: [
@@ -136,7 +136,7 @@ const CREATOR_PROFILES: CreatorProfile[] = [
     slogan: 'Sports and fitness energy that connects with your audience.',
     niche: 'Sports',
     rating: 4.6,
-    imageSrc: '/assets/images/Matt_influencer_sport.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Matt_influencer_sport.jpg',
     brands: [{ type: 'icon', icon: SiPinterest }, { type: 'icon', icon: SiAudi }],
     stats: { ads: 24, videos: 61, engagement: '2.9x', likes: '380K', followers: '156K', ctr: '4.5%' },
     socials: [
@@ -146,12 +146,12 @@ const CREATOR_PROFILES: CreatorProfile[] = [
     ],
   },
   {
-    id: 'derek',
-    name: 'Derek',
+    id: 'samantha',
+    name: 'Samantha',
     slogan: 'Raw energy and authenticity that converts.',
     niche: 'Art & Music',
     rating: 4.5,
-    imageSrc: '/assets/images/artist.jpg',
+    imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/samantha.jpg',
     brands: [{ type: 'icon', icon: SiMeta }, { type: 'icon', icon: SiPinterest }],
     stats: { ads: 18, videos: 45, engagement: '2.1x', likes: '290K', followers: '98K', ctr: '3.6%' },
     socials: [

@@ -164,17 +164,17 @@ export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyS
         </div>
       </div>
 
-      {/* Charts row */}
+      {/* Charts row: min-w-0 evita que el gráfico de barras se salga; doughnut centrado */}
       <div className="grid gap-6 md:grid-cols-2">
-        <div>
+        <div className="min-w-0 overflow-hidden">
           <p className="mb-2 text-sm font-semibold text-slate-700">Impressions by quarter</p>
-          <div className="h-48">
+          <div className="h-48 w-full min-w-0">
             <Bar data={barData} options={barOptions} />
           </div>
         </div>
-        <div>
-          <p className="mb-2 text-sm font-semibold text-slate-700">Engagement by channel</p>
-          <div className="h-48">
+        <div className="flex min-w-0 flex-col items-center">
+          <p className="mb-2 w-full text-sm font-semibold text-slate-700">Engagement by channel</p>
+          <div className="h-48 w-full max-w-[260px] md:max-w-[280px]">
             <Doughnut data={doughnutData} options={doughnutOptions} />
           </div>
         </div>

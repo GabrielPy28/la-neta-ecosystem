@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 
-const HERO_IMAGE = '/assets/images/the_glitch.png'
+const HERO_IMAGE = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/the_glitch.png'
 
 export function ServicePresentationSection() {
   return (
@@ -16,26 +16,26 @@ export function ServicePresentationSection() {
       />
 
       <div className="relative">
-        {/* Hero — image as protagonist, floating title */}
-        <div className="group relative overflow-hidden rounded-2xl bg-slate-900">
+        {/* Hero — en móvil más alto, imagen que rellena, título abajo legible; en desktop igual que antes */}
+        <div className="group relative min-h-[max(70vh,380px)] overflow-hidden rounded-2xl bg-slate-900 md:min-h-0">
           <img
             src={HERO_IMAGE}
             alt="The Glitch — AI-generated influencers that speak your brand"
-            className="aspect-video w-full object-contain transition-transform duration-700 group-hover:scale-105"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 md:relative md:aspect-video md:h-auto md:object-contain"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent md:bg-gradient-to-b md:from-black/40 md:via-transparent md:to-transparent"
           />
-          <div className="absolute inset-0 flex items-end p-6 md:p-8">
-            <div className="w-full rounded-xl bg-black/50 px-6 py-5 backdrop-blur-md ring-1 ring-white/10 md:max-w-2xl md:px-8 md:py-6">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/90">
+          <div className="absolute inset-0 flex items-end p-4 pb-6 md:p-8">
+            <div className="w-full rounded-xl bg-black/50 px-5 py-4 backdrop-blur-md ring-1 ring-white/10 md:max-w-2xl md:px-8 md:py-6">
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/90 md:text-xs">
                 AI-driven creator platform
               </p>
-              <h1 className="mt-1 text-3xl font-bold tracking-tight text-white drop-shadow-sm md:text-4xl lg:text-5xl">
+              <h1 className="mt-1 text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-sm md:mt-1 md:text-4xl lg:text-5xl">
                 The Glitch
               </h1>
-              <p className="mt-2 text-lg leading-relaxed text-white md:text-xl">
+              <p className="mt-2 text-base leading-relaxed text-white/95 md:text-lg md:text-xl">
                 AI never rests. An endless testing engine to discover which messages sell best.
               </p>
             </div>
