@@ -11,6 +11,7 @@ const SERVICES_LINKS = [
   { href: '/the-ad-factory', label: 'The Ad Factory' },
   { href: '/the-glitch', label: 'The Glitch' },
   { href: '/the-hook-hunter', label: 'The Hook Hunter' },
+  { href: '/#elevn', label: 'Elevn Hub' },
 ] as const
 
 const LEGAL_LINKS = [
@@ -68,10 +69,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Services */}
+          {/* Col 3: The Ad Factory */}
           <div className="flex flex-col">
             <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">
-              Services
+              The Ad Factory
             </h4>
             <ul className="space-y-2">
               {SERVICES_LINKS.map((link) => (
@@ -133,7 +134,7 @@ export function Footer() {
         <div className="mt-12 border-t border-slate-700 pt-6">
           <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-4">
             <p className="text-sm text-slate-500">
-              © 2026 La Neta · Powered by Eleven Labs
+              © 2026 La Neta · Powered by Elevn
             </p>            
           </div>
         </div>

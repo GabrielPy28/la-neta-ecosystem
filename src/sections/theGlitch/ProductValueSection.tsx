@@ -69,7 +69,7 @@ export function ProductValueSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.08 }}
           >
-            <FloatingCard withAccentBar={false} className="h-full">
+            <FloatingCard variant="dark" withAccentBar={false} className="h-full">
               <div className="flex gap-4">
                 <div
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
@@ -82,10 +82,10 @@ export function ProductValueSection() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-lg font-semibold text-[var(--laneta-slate)]">
+                  <h3 className="text-lg font-semibold text-white">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
                     {item.description}
                   </p>
                 </div>

@@ -22,6 +22,8 @@ export type AllyBrand = {
   letter?: string
   since?: string
   imageScale?: number
+  /** Brand color for icon/letter and dashboard accent (e.g. #1877F2) */
+  brandColor?: string
 }
 
 ChartJS.register(
@@ -50,12 +52,24 @@ const formatImpressions = (n: number) => {
   return String(n)
 }
 
+/** Convert hex to rgba for Chart.js */
+function hexToRgba(hex: string, alpha: number): string {
+  const match = hex.replace(/^#/, '').match(/(.{2})(.{2})(.{2})/)
+  if (!match) return `rgba(102, 65, 237, ${alpha})`
+  const r = parseInt(match[1], 16)
+  const g = parseInt(match[2], 16)
+  const b = parseInt(match[3], 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
 function BrandLogo({ brand }: { brand: AllyBrand }) {
   const iconSize = 28
+  const colorStyle = brand.brandColor ? { color: brand.brandColor } : undefined
+  const colorClass = !brand.brandColor ? 'text-[var(--laneta-purple)]' : ''
   return (
     <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1">
       {brand.type === 'icon' && brand.icon && (
-        <brand.icon className="text-[var(--laneta-purple)]" size={iconSize} />
+        <brand.icon className={colorClass} style={colorStyle} size={iconSize} />
       )}
       {brand.type === 'image' && brand.image && (
         <img
@@ -66,7 +80,7 @@ function BrandLogo({ brand }: { brand: AllyBrand }) {
         />
       )}
       {(brand.type === 'letter' || (!brand.icon && !brand.image)) && (
-        <span className="text-lg font-bold text-[var(--laneta-purple)]">
+        <span className="text-lg font-bold" style={colorStyle}>
           {brand.letter || brand.name.charAt(0)}
         </span>
       )}
@@ -75,14 +89,17 @@ function BrandLogo({ brand }: { brand: AllyBrand }) {
 }
 
 export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyStats }) {
+  const primaryRgba = brand.brandColor ? hexToRgba(brand.brandColor, 0.7) : 'rgba(102, 65, 237, 0.7)'
+  const primaryRgb = brand.brandColor || 'rgb(102, 65, 237)'
+
   const barData = {
     labels: ['Q1', 'Q2', 'Q3', 'Q4'],
     datasets: [
       {
         label: 'Impressions (K)',
         data: stats.impressionsByQuarter.map((v) => Math.round(v / 1000)),
-        backgroundColor: 'rgba(102, 65, 237, 0.7)',
-        borderColor: 'rgb(102, 65, 237)',
+        backgroundColor: primaryRgba,
+        borderColor: primaryRgb,
         borderWidth: 1,
       },
     ],
@@ -104,18 +121,30 @@ export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyS
     },
   }
 
+  const doughnutPalette = brand.brandColor
+    ? [
+        'rgba(255, 71, 172, 0.8)',
+        hexToRgba(brand.brandColor, 0.8),
+        'rgba(121, 188, 247, 0.8)',
+        'rgba(248, 124, 99, 0.8)',
+      ]
+    : [
+        'rgba(255, 71, 172, 0.8)',
+        'rgba(102, 65, 237, 0.8)',
+        'rgba(121, 188, 247, 0.8)',
+        'rgba(248, 124, 99, 0.8)',
+      ]
+  const doughnutBorders = brand.brandColor
+    ? ['#ff47ac', brand.brandColor, '#79bcf7', '#f87c63']
+    : ['#ff47ac', '#6641ed', '#79bcf7', '#f87c63']
+
   const doughnutData = {
     labels: stats.engagementByChannel.map((c) => c.label),
     datasets: [
       {
         data: stats.engagementByChannel.map((c) => c.value),
-        backgroundColor: [
-          'rgba(255, 71, 172, 0.8)',
-          'rgba(102, 65, 237, 0.8)',
-          'rgba(121, 188, 247, 0.8)',
-          'rgba(248, 124, 99, 0.8)',
-        ],
-        borderColor: ['#ff47ac', '#6641ed', '#79bcf7', '#f87c63'],
+        backgroundColor: doughnutPalette,
+        borderColor: doughnutBorders,
         borderWidth: 1,
       },
     ],
@@ -144,8 +173,16 @@ export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyS
 
       {/* KPI cards */}
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-xl bg-[var(--laneta-purple)]/10 px-4 py-3 text-center">
-          <p className="text-2xl font-bold text-[var(--laneta-purple)]">{stats.engagementRate}%</p>
+        <div
+          className={`rounded-xl px-4 py-3 text-center ${!brand.brandColor ? 'bg-[var(--laneta-purple)]/10' : ''}`}
+          style={brand.brandColor ? { backgroundColor: hexToRgba(brand.brandColor, 0.12) } : undefined}
+        >
+          <p
+            className={`text-2xl font-bold ${!brand.brandColor ? 'text-[var(--laneta-purple)]' : ''}`}
+            style={brand.brandColor ? { color: brand.brandColor } : undefined}
+          >
+            {stats.engagementRate}%
+          </p>
           <p className="text-xs font-medium text-slate-600">Avg. engagement</p>
         </div>
         <div className="rounded-xl bg-[var(--laneta-pink)]/10 px-4 py-3 text-center">

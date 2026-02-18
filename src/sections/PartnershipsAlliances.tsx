@@ -8,7 +8,7 @@ import {
   SiAudi,
   SiXiaomi,
   SiMercadopago,
-  SiTubi,
+  // SiTubi, // Tubi belongs to Air — commented out
   SiBurgerking,
 } from 'react-icons/si'
 import { FiCheckCircle } from 'react-icons/fi'
@@ -16,6 +16,19 @@ import type { IconType } from 'react-icons'
 import { AllyDashboard, type AllyStats } from './AllyDashboard'
 
 const SECTION_ID = 'partnerships-alliances'
+
+/** Brand colors for icon-type partners (official brand colors) */
+const BRAND_COLORS: Record<string, string> = {
+  meta: '#1877F2',       // Meta blue
+  pinterest: '#E60023',   // Pinterest red
+  tubi: '#F7F590',       // Tubi yellow
+  amd: '#ED1C24',        // AMD red
+  sony: '#000000',       // Sony black
+  audi: '#BB0A30',       // Audi red
+  xiaomi: '#FF6900',     // Xiaomi orange
+  mercadopago: '#009EE3', // Mercado Pago blue
+  burgerking: '#D62300',  // Burger King red
+}
 
 type Brand = {
   id: string
@@ -28,6 +41,8 @@ type Brand = {
   campaigns?: number
   iconSize?: number
   imageScale?: number
+  /** Optional brand color for icon (e.g. #1877F2 for Meta) */
+  brandColor?: string
 }
 
 type PartnershipModalContent = {
@@ -54,11 +69,12 @@ type PartnershipModalContent = {
 }
 
 const PARTNERSHIPS: (Brand & { modalKey?: string })[] = [
-  { id: 'meta', name: 'META', type: 'icon', icon: SiMeta, since: '2025', campaigns: 100, modalKey: 'meta' },
-  { id: 'pinterest', name: 'Pinterest', type: 'icon', icon: SiPinterest, since: '2022', campaigns: 60, modalKey: 'pinterest' },
+  { id: 'meta', name: 'META', type: 'icon', icon: SiMeta, since: '2025', campaigns: 100, modalKey: 'meta', brandColor: BRAND_COLORS.meta },
+  { id: 'pinterest', name: 'Pinterest', type: 'icon', icon: SiPinterest, since: '2022', campaigns: 60, modalKey: 'pinterest', brandColor: BRAND_COLORS.pinterest },
   { id: 'airmediatech', name: 'Air Media Tech', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/air_media_tech.png', since: '2025', campaigns: 12, modalKey: 'airmediatech' },
-  { id: 'tubi', name: 'Tubi', type: 'icon', icon: SiTubi, since: '2025', campaigns: 2, modalKey: 'tubi', iconSize: 52 },
-  { id: 'gyre', name: 'Gyre', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png', since: '2025', campaigns: 6, modalKey: 'gyre' },
+  // Tubi and Gyre belong to Air — commented out per request
+  // { id: 'tubi', name: 'Tubi', type: 'icon', icon: SiTubi, since: '2025', campaigns: 2, modalKey: 'tubi', iconSize: 52, brandColor: BRAND_COLORS.tubi },
+  // { id: 'gyre', name: 'Gyre', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png', since: '2025', campaigns: 6, modalKey: 'gyre' },
 ]
 
 const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
@@ -134,92 +150,93 @@ const PARTNERSHIP_MODALS: Record<string, PartnershipModalContent> = {
       { title: 'Grow with us', items: ['Use insights and best practices to turn your creativity into lasting impressions and growth on Pinterest.'] },
     ],
   },
-  tubi: {
-    partnerId: 'tubi',
-    partnerName: 'Tubi',
-    heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/thriller.jpg',
-    model: 'Niche Syndication (Long-form Fiction & Mystery)',
-    models: [
-      {
-        title: 'Tubi Niche Syndication',
-        model: 'Long-form Fiction & Mystery',
-        target: 'YouTube Creators',
-        criteria: [
-          'Format: Long-form only (15+ minutes).',
-          'Content: Serialized or episodic (Miniseries, Episodes, Movies).',
-          'Production: High audiovisual value (TV quality).',
-          'Ownership: 100% IP owned by creator.',
-          'Music: Sync + Master rights (no YouTube Audio Library).',
-          'Cleanliness: No burnt-in ads, watermarks, or lower-thirds.',
-        ],
-        verticals: ['Horror', 'Thriller', 'Mystery'],
-      },
-    ],
-  },
-  gyre: {
-    partnerId: 'gyre',
-    partnerName: 'Gyre',
-    heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/streaming_loop.jpg',
-    logoImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png',
-    models: [
-      {
-        title: 'A. YouTube 24/7 Live Stream Looping',
-        model: '24/7 Live Stream Looping',
-        target: 'YouTube Creators',
-        criteria: [
-          'Platform: YouTube. No minimum subscribers.',
-          'Monthly Views: 1,000,000+ views.',
-          'Content: 100+ long-form videos OR 200+ Shorts.',
-          'Activity: At least 1 video in the last month.',
-          'Frequency: 1–2 videos per month regularly.',
-        ],
-        verticals: [
-          'Kids & Teens',
-          'Gaming',
-          'Music',
-          'Entertainment & Fun',
-          'Business',
-          'Fashion & Beauty',
-          'Lifestyle',
-          'Culinary / Food',
-          'Education & Science',
-          'DIY',
-        ],
-        qualitativeCheck: [
-          'Continuity: Content works well on a continuous loop.',
-          'Flow: Videos join to form a long stream that makes sense at any join point.',
-        ],
-        restricted: ['NO Podcasts.', 'NO Tech Reviews.', 'NO Interviews.'],
-      },
-      {
-        title: 'B. GYRE REFERRAL CODE SALES',
-        model: 'Affiliate Sales / Software Subscription via Referral',
-        target: 'Active YouTube creators who need increased watch time or passive revenue.',
-        criteria: [
-          'Platform: YouTube. Subscribers: 5,000 – 500,000 (sweet spot).',
-          'YPP recommended (understand ROI of passive watch time).',
-          'Content: Sufficient for non-repetitive loop (e.g. 20+ videos ~10 min, or fewer very long).',
-          'Activity: At least 1 video in the last month.',
-        ],
-        verticals: [
-          'Music & Audio (lo-fi, ambient, ASMR)',
-          'Gaming (playthroughs, background)',
-          'Podcasts & Talk Shows',
-          'Education (tutorials, study-with-me)',
-          'Niche Hobbyists (process videos)',
-        ],
-        qualitativeCheck: [
-          'Continuity: Content works well on a continuous loop.',
-          'Evergreen: Back catalog still relevant (not heavily dated).',
-        ],
-        sellingPoints: [
-          'Passive Watch Time: Boost watch hours while the creator sleeps.',
-          'Back Catalog Monetization: Revenue from old videos getting zero views.',
-          'Gap Filling: Keep the channel active between regular uploads.',
-        ],
-      },
-    ],
-  },
+  // Tubi and Gyre belong to Air — commented out per request
+  // tubi: {
+  //   partnerId: 'tubi',
+  //   partnerName: 'Tubi',
+  //   heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/thriller.jpg',
+  //   model: 'Niche Syndication (Long-form Fiction & Mystery)',
+  //   models: [
+  //     {
+  //       title: 'Tubi Niche Syndication',
+  //       model: 'Long-form Fiction & Mystery',
+  //       target: 'YouTube Creators',
+  //       criteria: [
+  //         'Format: Long-form only (15+ minutes).',
+  //         'Content: Serialized or episodic (Miniseries, Episodes, Movies).',
+  //         'Production: High audiovisual value (TV quality).',
+  //         'Ownership: 100% IP owned by creator.',
+  //         'Music: Sync + Master rights (no YouTube Audio Library).',
+  //         'Cleanliness: No burnt-in ads, watermarks, or lower-thirds.',
+  //       ],
+  //       verticals: ['Horror', 'Thriller', 'Mystery'],
+  //     },
+  //   ],
+  // },
+  // gyre: {
+  //   partnerId: 'gyre',
+  //   partnerName: 'Gyre',
+  //   heroImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/streaming_loop.jpg',
+  //   logoImage: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png',
+  //   models: [
+  //     {
+  //       title: 'A. YouTube 24/7 Live Stream Looping',
+  //       model: '24/7 Live Stream Looping',
+  //       target: 'YouTube Creators',
+  //       criteria: [
+  //         'Platform: YouTube. No minimum subscribers.',
+  //         'Monthly Views: 1,000,000+ views.',
+  //         'Content: 100+ long-form videos OR 200+ Shorts.',
+  //         'Activity: At least 1 video in the last month.',
+  //         'Frequency: 1–2 videos per month regularly.',
+  //       ],
+  //       verticals: [
+  //         'Kids & Teens',
+  //         'Gaming',
+  //         'Music',
+  //         'Entertainment & Fun',
+  //         'Business',
+  //         'Fashion & Beauty',
+  //         'Lifestyle',
+  //         'Culinary / Food',
+  //         'Education & Science',
+  //         'DIY',
+  //       ],
+  //       qualitativeCheck: [
+  //         'Continuity: Content works well on a continuous loop.',
+  //         'Flow: Videos join to form a long stream that makes sense at any join point.',
+  //       ],
+  //       restricted: ['NO Podcasts.', 'NO Tech Reviews.', 'NO Interviews.'],
+  //     },
+  //     {
+  //       title: 'B. GYRE REFERRAL CODE SALES',
+  //       model: 'Affiliate Sales / Software Subscription via Referral',
+  //       target: 'Active YouTube creators who need increased watch time or passive revenue.',
+  //       criteria: [
+  //         'Platform: YouTube. Subscribers: 5,000 – 500,000 (sweet spot).',
+  //         'YPP recommended (understand ROI of passive watch time).',
+  //         'Content: Sufficient for non-repetitive loop (e.g. 20+ videos ~10 min, or fewer very long).',
+  //         'Activity: At least 1 video in the last month.',
+  //       ],
+  //       verticals: [
+  //         'Music & Audio (lo-fi, ambient, ASMR)',
+  //         'Gaming (playthroughs, background)',
+  //         'Podcasts & Talk Shows',
+  //         'Education (tutorials, study-with-me)',
+  //         'Niche Hobbyists (process videos)',
+  //       ],
+  //       qualitativeCheck: [
+  //         'Continuity: Content works well on a continuous loop.',
+  //         'Evergreen: Back catalog still relevant (not heavily dated).',
+  //       ],
+  //       sellingPoints: [
+  //         'Passive Watch Time: Boost watch hours while the creator sleeps.',
+  //         'Back Catalog Monetization: Revenue from old videos getting zero views.',
+  //         'Gap Filling: Keep the channel active between regular uploads.',
+  //       ],
+  //     },
+  //   ],
+  // },
 }
 
 const CLOSER_FRIENDS: Brand[] = [
@@ -231,16 +248,16 @@ const CLOSER_FRIENDS: Brand[] = [
   { id: 'nivea', name: 'Nivea', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Nivea-Logo.png', since: '2023', campaigns: 7, imageScale: 1.4 },
   { id: 'nestle', name: 'Nestlé', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/nestle-logo.png', since: '2022', campaigns: 12, imageScale: 0.75 },
   { id: 'nescafe', name: 'Nescafé', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Nescafe_logo.png', since: '2022', campaigns: 10 },
-  { id: 'sony', name: 'Sony', type: 'icon', icon: SiSony, since: '2021', campaigns: 22, iconSize: 44 },
-  { id: 'amd', name: 'AMD', type: 'icon', icon: SiAmd, since: '2022', campaigns: 15, iconSize: 44 },
-  { id: 'xiaomi', name: 'Xiaomi', type: 'icon', icon: SiXiaomi, since: '2023', campaigns: 8 },
+  { id: 'sony', name: 'Sony', type: 'icon', icon: SiSony, since: '2021', campaigns: 22, iconSize: 44, brandColor: BRAND_COLORS.sony },
+  { id: 'amd', name: 'AMD', type: 'icon', icon: SiAmd, since: '2022', campaigns: 15, iconSize: 44, brandColor: BRAND_COLORS.amd },
+  { id: 'xiaomi', name: 'Xiaomi', type: 'icon', icon: SiXiaomi, since: '2023', campaigns: 8, brandColor: BRAND_COLORS.xiaomi },
   { id: 'max', name: 'Max', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/max-logo.png', since: '2023', campaigns: 5 },
-  { id: 'mercadopago', name: 'Mercado Pago', type: 'icon', icon: SiMercadopago, since: '2022', campaigns: 13 },
-  { id: 'audi', name: 'Audi', type: 'icon', icon: SiAudi, since: '2021', campaigns: 18, iconSize: 44 },
+  { id: 'mercadopago', name: 'Mercado Pago', type: 'icon', icon: SiMercadopago, since: '2022', campaigns: 13, brandColor: BRAND_COLORS.mercadopago },
+  { id: 'audi', name: 'Audi', type: 'icon', icon: SiAudi, since: '2021', campaigns: 18, iconSize: 44, brandColor: BRAND_COLORS.audi },
   { id: 'dentalia', name: 'Dentalia', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/dentalia-logo.png', since: '2023', campaigns: 6 },
   { id: 'levis', name: "Levi's", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/levis-logo.png', since: '2022', campaigns: 11 },
   { id: 'temu', name: "Temu", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Temu-Logo.png', since: '2022', campaigns: 7 },
-  { id: 'burgerking', name: "Burger King", type: 'icon', icon: SiBurgerking, since: '2020', campaigns: 9 },
+  { id: 'burgerking', name: "Burger King", type: 'icon', icon: SiBurgerking, since: '2020', campaigns: 9, brandColor: BRAND_COLORS.burgerking },
   { id: 'sears', name: "Sears", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/sears-logo.png', since: '2022', campaigns: 7 },
   { id: 'liverpool', name: "Liverpool", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/liverpool-logo.png', since: '2022', campaigns: 20, imageScale: .9 },
   { id: 'InComm-InCentives', name: "InComm InCentives", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/InComm-Incentives-logo.png', since: '2018', campaigns: 11, imageScale: .9 },
@@ -311,7 +328,11 @@ function BrandBubble({
         style={onClick ? { cursor: 'pointer' } : undefined}
       >
         {brand.type === 'icon' && brand.icon && (
-          <brand.icon className="text-[var(--laneta-purple)]" size={brand.iconSize ?? iconSize} />
+          <brand.icon
+            size={brand.iconSize ?? iconSize}
+            style={brand.brandColor ? { color: brand.brandColor } : undefined}
+            className={!brand.brandColor ? 'text-[var(--laneta-purple)]' : ''}
+          />
         )}
         {brand.type === 'image' && brand.image && (
           <img

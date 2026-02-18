@@ -9,7 +9,9 @@ import {
   HiChartBar,
   HiSearchCircle,
   HiCash,
+  HiArrowRight,
 } from 'react-icons/hi'
+import { SiMeta, SiPinterest } from 'react-icons/si'
 import { MdAddReaction } from 'react-icons/md'
 import { ImEye } from 'react-icons/im'
 import { FaPhotoVideo } from 'react-icons/fa'
@@ -34,7 +36,7 @@ const OFFER_SLIDES = [
   {
     icon: HiUserGroup,
     title: 'Top-Tier Talent',
-    metric: '1,000+',
+    metric: '2,000+',
     metricLabel: 'vetted creators in our network',
     impact: 'Real people. Real results. No dead weight.',
     copy: 'We handpick creators who actually move the needle. Access to the best talent across niches and regions. Your brand in the right hands, every time.',
@@ -198,7 +200,7 @@ function StatCard({
   )
 }
 
-const HERO_VIDEO_SRC = '/assets/videos/record_video.mp4'
+const HERO_VIDEO_SRC = '/assets/videos/presence_on_the_net.mp4'
 
 function OfferCarousel() {
   const [index, setIndex] = useState(0)
@@ -455,12 +457,12 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Global · Digital · Creators
+          For brands · Global · Digital · Creators
         </motion.p>
 
         {/* Title */}
         <motion.h1
-          className="mb-8 max-w-5xl overflow-visible md:mb-10"
+          className="mb-6 max-w-5xl overflow-visible md:mb-8"
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.08, ease: 'easeOut' }}
@@ -471,21 +473,19 @@ export function HeroSection() {
             style={{
               filter: 'drop-shadow(0 0 24px rgba(238, 34, 211, 0.46)) drop-shadow(0 2px 12px rgba(23, 103, 207, 0.25))',
             }}
-          >La Neta</span> - Leaders of the digital ecosystem
+          >La Neta</span> — Leaders of the digital ecosystem
           </span>
           <span
-            className="mt-2 block pb-1 leading-[1.35] bg-gradient-to-r from-[var(--laneta-blue)] via-[var(--laneta-purple)] to-[#a78bfa] bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl md:pb-1.5 lg:text-6xl xl:text-7xl"
-            style={{
-              filter: 'drop-shadow(0 0 24px rgba(121,188,247,0.35)) drop-shadow(0 2px 12px rgba(102,65,237,0.25))',
-            }}
+            className="mt-2 block pb-1 leading-[1.35] text-white/95 text-2xl font-semibold md:text-3xl lg:text-4xl"
+            style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' }}
           >
-            on a global scale
+            Content & talent infrastructure for brands that scale.
           </span>
         </motion.h1>
 
         {/* Slogan */}
         <motion.div
-          className="mb-14 md:mb-16"
+          className="mb-6 md:mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
@@ -496,6 +496,55 @@ export function HeroSection() {
           <p className="inline-block rounded-xl bg-white/10 px-5 py-2.5 text-xl font-bold tracking-tight text-white shadow-[0_0_30px_rgba(102,65,237,0.3)] ring-1 ring-white/20 backdrop-blur-sm md:text-2xl">
             We Dominate Feeds.
           </p>
+        </motion.div>
+
+        {/* Trusted by + CTA */}
+        <motion.div
+          className="mb-12 flex flex-col gap-8 md:mb-14 md:flex-row md:items-center md:justify-between md:gap-10"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <div className="flex flex-wrap items-center gap-6">
+            <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/60 md:text-sm">
+              Trusted by & official partners
+            </span>
+            <div className="flex items-center gap-6 md:gap-8">
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
+                aria-hidden
+              >
+                <SiMeta className="h-7 w-7 md:h-8 md:w-8" style={{ color: '#1877F2' }} aria-label="Meta" />
+              </div>
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
+                aria-hidden
+              >
+                <SiPinterest className="h-7 w-7 md:h-8 md:w-8" style={{ color: '#E60023' }} aria-label="Pinterest" />
+              </div>
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
+                aria-hidden
+              >
+                <img
+                  src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/max-logo.png"
+                  alt="MAX"
+                  className="h-25 w-25 object-contain md:h-25 md:w-25"
+                />
+              </div>
+            </div>
+          </div>
+          <a
+            href="#lets-work-together"
+            onClick={(e) => {
+              e.preventDefault()
+              document.getElementById('lets-work-together')?.scrollIntoView({ behavior: 'smooth' })
+            }}
+            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-bold text-slate-900 shadow-xl transition hover:bg-white/95 hover:shadow-[0_0_40px_rgba(102,65,237,0.4)] md:px-8 md:py-4 md:text-lg"
+          >
+            Get in touch
+            <HiArrowRight className="h-5 w-5 transition group-hover:translate-x-0.5" aria-hidden />
+          </a>
         </motion.div>
 
         {/* Stats grid */}
@@ -514,14 +563,19 @@ export function HeroSection() {
         </div>
 
         {/* Positioning statement */}
-        <motion.p
-          className="mb-12 max-w-3xl text-lg font-medium leading-relaxed text-white/90 md:mb-14 md:text-xl"
+        <motion.div
+          className="mb-12 max-w-3xl md:mb-14"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          We're not an agency. We're the content, data, and talent infrastructure your brand needs to scale today.
-        </motion.p>
+          <p className="text-lg font-medium leading-relaxed text-white/90 md:text-xl">
+            We're not an agency. We're the content, data, and talent infrastructure your brand needs to scale today.
+          </p>
+          <p className="mt-3 text-base font-medium text-white/70 md:text-lg">
+            500+ brands powered · 98% client retention
+          </p>
+        </motion.div>
 
         {/* Offer carousel */}
         <OfferCarousel />

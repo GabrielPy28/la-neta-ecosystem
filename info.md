@@ -4,6 +4,16 @@
 
 ---
 
+## Producción
+
+La página **ya se encuentra en producción** y disponible en:
+
+**URL:** [https://la-neta-ecosystem.vercel.app/](https://la-neta-ecosystem.vercel.app/)
+
+Se invita al equipo a **revisar el trabajo realizado** y a **compartir comentarios de mejora** para los flujos de integración y despliegue continuo (C/I & C/D).
+
+---
+
 ## Estructura global
 
 - **Header** (navegación global): Visible en todas las páginas. Muestra secciones según la ruta actual.
@@ -21,7 +31,7 @@
 | 1 | **Hero** | `HeroSection` | Sección inicial con video/imagen de fondo, título principal ("Líderes del ecosistema digital"), métricas (2B impressions, 1M dollars, 100M views, 2k+ videos), carrusel de ofertas (Strategy & Creative, Top-Tier Talent, Flawless Ops, Full-Service Fire, Data & Analytics, Elite Scouting) con auto-avance. |
 | 2 | **Who is La Neta** | `WhoIsLaNeta` | Presentación de La Neta: "No somos una agencia. Somos la infraestructura de contenido, data y talento." Proceso de 3 pasos (AI variants, edición, UGC ads). |
 | 3 | **Branch Offices** | `BranchOfficeLocations` | Ubicaciones: USA, México, Colombia, LATAM. Videos por ciudad, slogans, fotos del equipo (CEO, Tech Lead, Sales Lead, etc.). Carousel interactivo. |
-| 4 | **Services & Business Model** | `ServicesCTA` | Título "How we operate". 3 cards de servicios con enlace a sus páginas: **The Ad Factory**, **The Glitch**, **The Hook Hunter**. Debajo: **Our creator network** — "More than 1,000 creators ready to record" — 6 perfiles de creadores (Maya, Victoria, Jezael, Luis & Julia, Matt, Derek) con slogan, nicho, rating (MUI), marcas, stats (ads, videos, engagement, likes, followers, CTR) e iconos de redes. |
+| 4 | **Services & Business Model** | `ServicesCTA` | Título "How we operate". 3 cards de servicios con enlace a sus páginas: **The Ad Factory**, **The Glitch**, **The Hook Hunter**. Debajo: **Our creator network** — "More than 2,000 creators ready to record" — 6 perfiles de creadores (Maya, Victoria, Jezael, Luis & Julia, Matt, Derek) con slogan, nicho, rating (MUI), marcas, stats (ads, videos, engagement, likes, followers, CTR) e iconos de redes. |
 | 5 | **Partnerships & Alliances** | `PartnershipsAlliances` | Aliados estratégicos (META, Pinterest, Air Media Tech, Tubi, Gyre). Dashboard de burbujas con métricas. Modales con detalle de cada partnership. |
 | 6 | **Let's Work Together** | `LetsWorkTogetherSection` (variant: global) | CTA con tono global. Copy: "Whether you need UGC ads, AI-powered content, high-performing hooks, or a full creative pipeline…" Formulario de contacto en modal. Imagen lets_talk.png. Fondo claro para continuidad visual. |
 | 7 | **Footer** | `Footer` | Logo, dirección (174 Nassau Street, Princeton), teléfono. Links: Company, Services, Legal. Iconos de redes sociales. |
@@ -37,7 +47,7 @@
 | # | Sección | ID | Componente | Descripción |
 |---|---------|-----|------------|-------------|
 | 1 | **Service Presentation** | `#service-presentation` | `ServicePresentationSection` (theAdFactory) | Presentación del servicio The Ad Factory: creatividad distintiva, obsesión por el detalle, awareness de tendencias. Carousel de ejemplos (Nyx, AMD, Pinterest) con métricas (popularity, impressions, trend). Video ad_cafe.mp4, phone mockup. |
-| 2 | **Problems vs Solutions** | `#problems-vs-solutions` | `ProblemsVsSolutionsSection` | "Eliminate Friction, Amplify Production". 6 filas problema/solución: sin anuncios → producimos; tiempo → lo hacemos rápido; sin creadores → red 1,000+; sin equipo → adaptamos; variedad → creamos variedad; atención → diseñamos para atención. Iconos por fila. |
+| 2 | **Problems vs Solutions** | `#problems-vs-solutions` | `ProblemsVsSolutionsSection` | "Eliminate Friction, Amplify Production". 6 filas problema/solución: sin anuncios → producimos; tiempo → lo hacemos rápido; sin creadores → red 2,000+; sin equipo → adaptamos; variedad → creamos variedad; atención → diseñamos para atención. Iconos por fila. |
 | 3 | **Let's Work Together** | `#lets-work-together` | `LetsWorkTogetherSection` (variant: adFactory) | CTA específico de The Ad Factory. Copy centrado en ads, creatividad, pipeline brief-to-feed. Modal de contacto. |
 
 **Navegación:** Header muestra Home + Service, Problems & Solutions, Let's Work Together.
@@ -99,6 +109,13 @@
 - **Imágenes:** `publichttps://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/` — logo, opciones de presentación, creadores, marcas, lets_talk.png.
 - **Videos:** `public/assets/videos/` — ad_cafe, IA_Agent, influencer_food, CasaPinterest, etc.
 - **Icono:** `public/images/laneta.ico` (favicon).
+
+---
+
+## Créditos de imágenes — Unsplash
+
+Parte de las imágenes empleadas en este portal provienen de **[Unsplash](https://unsplash.com)**. Son fotografías y obras publicadas en dicha plataforma por sus usuarios, que comparten su contenido bajo licencias que permiten su uso.  
+Desde aquí queremos **agradecer a todos los autores y a la comunidad de Unsplash** por su trabajo y por el apoyo que la propia plataforma recomienda dar a los creadores. Si deseas conocer o apoyar a quienes hayan contribuido con sus imágenes, puedes buscarlos en [unsplash.com](https://unsplash.com).
 
 ---
 

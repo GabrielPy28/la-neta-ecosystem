@@ -17,15 +17,20 @@ export function ServicePresentationSection() {
 
       <div className="relative">
         {/* Hero — en móvil más alto, imagen que rellena, título abajo legible; en desktop igual que antes */}
-        <div className="group relative min-h-[max(70vh,380px)] overflow-hidden rounded-2xl bg-slate-900 md:min-h-0">
+        <div className="group relative min-h-[max(70vh,380px)] overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-white/10 shadow-2xl md:min-h-0">
           <img
             src={HERO_IMAGE}
             alt="The Glitch — AI-generated influencers that speak your brand"
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 md:relative md:aspect-video md:h-auto md:object-contain"
           />
+          {/* Depth overlay — same as Hook Hunter for consistent card presentation */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent md:bg-gradient-to-b md:from-black/40 md:via-transparent md:to-transparent"
+            className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-tr from-black/20 via-transparent to-white/5"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-transparent to-transparent md:bg-gradient-to-b md:from-black/40 md:via-transparent md:to-transparent"
           />
           <div className="absolute inset-0 flex items-end p-4 pb-6 md:p-8">
             <div className="w-full rounded-xl bg-black/50 px-5 py-4 backdrop-blur-md ring-1 ring-white/10 md:max-w-2xl md:px-8 md:py-6">

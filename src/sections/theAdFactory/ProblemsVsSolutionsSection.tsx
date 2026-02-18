@@ -32,7 +32,7 @@ const TRANSFORMATION_ROWS: {
   },
   {
     problem: "You don't have any content creators",
-    solution: 'We have a network of 1,000+ creators',
+    solution: 'We have a network of 2,000+ creators',
     tagline: 'Curated talent, ready to perform for your brand.',
     icon: FaUsersLine,
     iconPosition: 'right',
@@ -68,27 +68,27 @@ export function ProblemsVsSolutionsSection() {
       transition={{ duration: 0.5 }}
       className="mx-auto w-full max-w-7xl px-4 md:px-6"
     >
-      <FloatingCard className="overflow-hidden">
+      <FloatingCard variant="dark" className="overflow-hidden">
         <div className="mb-10 text-center md:mb-12">
           <p
             className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
-            style={{ color: 'var(--laneta-purple)', backgroundColor: 'rgba(102, 65, 237, 0.1)' }}
+            style={{ color: 'var(--laneta-purple)', backgroundColor: 'rgba(102, 65, 237, 0.25)' }}
           >
             6 friction points · 6 ways we fix them
           </p>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--laneta-slate)] md:text-3xl lg:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
           Eliminate Friction, Amplify Production
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-slate-600 md:text-lg">
+          <p className="mx-auto mt-3 max-w-xl text-slate-300 md:text-lg">
             Stop struggling with ads. Start scaling them.
           </p>
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-400">
             Every bottleneck you feel—we built The Ad Factory to remove it.
           </p>
         </div>
 
         <div className="relative mx-auto max-w-3xl">
-          <div className="divide-y divide-slate-200/80">
+          <div className="divide-y divide-white/10">
             {TRANSFORMATION_ROWS.map((row, i) => {
               const Icon = row.icon
               return (
@@ -97,7 +97,7 @@ export function ProblemsVsSolutionsSection() {
                 className="group grid items-start gap-4 py-6 md:grid-cols-[1fr_auto_1fr_auto] md:gap-x-[8%] md:gap-y-0 md:py-8"
               >
                 {/* Problem */}
-                <div className="flex items-start gap-3 text-slate-500">
+                <div className="flex items-start gap-3 text-slate-400">
                   <HiXCircle
                     className="mt-0.5 size-5 shrink-0 opacity-60"
                     aria-hidden
@@ -110,7 +110,7 @@ export function ProblemsVsSolutionsSection() {
                 {/* Arrow — transform */}
                 <div className="hidden items-center justify-center md:flex">
                   <span
-                    className="text-2xl text-slate-300 transition-all duration-300 group-hover:text-[var(--laneta-purple)]"
+                    className="text-2xl text-slate-500 transition-all duration-300 group-hover:text-[var(--laneta-purple)]"
                     aria-hidden
                   >
                     →
@@ -118,17 +118,17 @@ export function ProblemsVsSolutionsSection() {
                 </div>
 
                 {/* Solution — hover = progress */}
-                <div className="flex items-start gap-3 transition-transform duration-300 group-hover:translate-x-1 md:rounded-lg md:py-2 md:pr-2 md:transition-colors group-hover:md:bg-[var(--laneta-purple)]/5">
+                <div className="flex items-start gap-3 transition-transform duration-300 group-hover:translate-x-1 md:rounded-lg md:py-2 md:pr-2 md:transition-colors group-hover:md:bg-[var(--laneta-purple)]/10">
                   <HiCheckCircle
                     className="mt-0.5 size-5 shrink-0"
                     style={{ color: 'var(--laneta-purple)' }}
                     aria-hidden
                   />
                   <div>
-                    <p className="text-sm font-semibold leading-relaxed text-slate-800 md:text-base">
+                    <p className="text-sm font-semibold leading-relaxed text-white md:text-base">
                       {row.solution}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-500 md:text-sm">
+                    <p className="mt-1 text-xs leading-relaxed text-slate-400 md:text-sm">
                       {row.tagline}
                     </p>
                   </div>
@@ -147,11 +147,11 @@ export function ProblemsVsSolutionsSection() {
           </div>
 
           {/* Closing hook */}
-          <div className="mt-10 border-t border-slate-200/80 pt-10 text-center md:mt-12 md:pt-12">
-            <p className="text-lg font-semibold text-[var(--laneta-slate)] md:text-xl">
+          <div className="mt-10 border-t border-white/10 pt-10 text-center md:mt-12 md:pt-12">
+            <p className="text-lg font-semibold text-white md:text-xl">
               One partner. Full pipeline. No more guesswork.
             </p>
-            <p className="mt-2 text-sm text-slate-500">
+            <p className="mt-2 text-sm text-slate-400">
               The Ad Factory turns creative chaos into ads that scale.
             </p>
           </div>

@@ -13,26 +13,23 @@ type ServiceChild = {
   icon: IconType
 }
 
-const AD_FACTORY_SECTION_LINKS: { href: string; label: string }[] = [
+/** Single services page: all services in one, one roadmap. Used for /the-ad-factory, /the-glitch, /the-hook-hunter */
+const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
   { href: '#service-presentation', label: 'The Ad Factory' },
   { href: '#problems-vs-solutions', label: 'Problems & Solutions' },
+  { href: '#modus-operandi', label: 'How we operate' },
+  { href: '#the-glitch', label: 'The Glitch' },
+  { href: '#the-hook-hunter', label: 'The Hook Hunter' },
   { href: '#roadmap', label: '21-Day Roadmap' },
 ]
 
-const GLITCH_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#service-presentation', label: 'The Glitch' },
-  { href: '#product-value', label: 'Product Value' },
-  { href: '#ai-agent-videos', label: 'AI Agent' },
-  { href: '#pack-includes', label: 'Pack Includes' },
-  { href: '#roadmap', label: '21-Day Roadmap' },
-]
-
-const HOOK_HUNTER_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#service-presentation', label: 'The Hook Hunter' },
-  { href: '#product-value', label: 'Product Value' },
-  { href: '#ugc-talents', label: 'UGC Talents' },
-  { href: '#pack-includes', label: 'Packs' },
-  { href: '#roadmap', label: '21-Day Roadmap' },
+/** Home page: section anchors for scroll spy (pathname === '/'). Order matches DOM order. */
+const HOME_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
+  { href: '#who-is-la-neta', label: 'Who we are' },
+  { href: '#the-ad-factory', label: 'The Ad Factory' },
+  { href: '#partnerships-alliances', label: 'Partnerships' },
+  { href: '#elevn', label: 'Elevn Hub' },
+  { href: '#branch-offices', label: 'Branch offices' },
 ]
 
 const NAV_LINKS: (
@@ -40,24 +37,23 @@ const NAV_LINKS: (
   | { label: string; children: ServiceChild[] }
 )[] = [
   { href: '#who-is-la-neta', label: 'Who we are' },
-  { href: '#branch-offices', label: 'Branch offices' },
   {
-    label: 'Services',
+    href: '#service-presentation', label: 'The Ad Factory',
     children: [
       {
-        href: '/the-ad-factory',
+        href: '/the-ad-factory#service-presentation',
         label: 'The Ad Factory',
         description: 'Full-service creative engine',
         icon: HiCog,
       },
       {
-        href: '/the-glitch',
+        href: '/the-ad-factory#the-glitch',
         label: 'The Glitch',
         description: 'Creative experimentation lab',
         icon: CgUserlane,
       },
       {
-        href: '/the-hook-hunter',
+        href: '/the-ad-factory#the-hook-hunter',
         label: 'The Hook Hunter',
         description: 'High-performing hooks system',
         icon: PiWebhooksLogoDuotone,
@@ -65,6 +61,8 @@ const NAV_LINKS: (
     ],
   },  
   { href: '#partnerships-alliances', label: 'Partnerships' },
+  { href: '#elevn', label: 'Elevn Hub' },
+  //{ href: '#branch-offices', label: 'Branch offices' },
 ]
 
 const isDropdown = (
@@ -83,26 +81,59 @@ function scrollToSectionById(href: string) {
   el?.scrollIntoView({ behavior: 'smooth' })
 }
 
+/** Offset from top of viewport (px) to consider a section "active". Use a generous value so the section is marked when it enters the upper part of the screen. */
+const getActiveSectionOffset = () => Math.min(280, typeof window !== 'undefined' ? window.innerHeight * 0.35 : 280)
+
 export function Header() {
   const { pathname } = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
-  const isAdFactoryPage = pathname === '/the-ad-factory'
-  const isGlitchPage = pathname === '/the-glitch'
-  const isHookHunterPage = pathname === '/the-hook-hunter'
-  const pageSectionLinks =
-    isAdFactoryPage ? AD_FACTORY_SECTION_LINKS
-    : isGlitchPage ? GLITCH_SECTION_LINKS
-    : isHookHunterPage ? HOOK_HUNTER_SECTION_LINKS
-    : null
+  const [activeSectionHref, setActiveSectionHref] = useState<string | null>(null)
+  const isServicesPage =
+    pathname === '/the-ad-factory' ||
+    pathname === '/the-glitch' ||
+    pathname === '/the-hook-hunter'
+  const pageSectionLinks = isServicesPage ? SERVICES_PAGE_SECTION_LINKS : null
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 48)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // Scroll spy: highlight the section link for the section currently in view (home + services page)
+  useEffect(() => {
+    const sectionLinks =
+      pathname === '/' ? HOME_PAGE_SECTION_LINKS : isServicesPage ? SERVICES_PAGE_SECTION_LINKS : null
+    if (!sectionLinks?.length) {
+      setActiveSectionHref(null)
+      return
+    }
+
+    const updateActiveSection = () => {
+      const offset = getActiveSectionOffset()
+      const candidates: { href: string; top: number }[] = []
+      for (const link of sectionLinks) {
+        const el = document.getElementById(link.href.slice(1))
+        if (!el) continue
+        const top = el.getBoundingClientRect().top
+        if (top <= offset) candidates.push({ href: link.href, top })
+      }
+      if (candidates.length === 0) {
+        setActiveSectionHref(sectionLinks[0].href)
+        return
+      }
+      const current = candidates.sort((a, b) => b.top - a.top)[0]
+      setActiveSectionHref(current.href)
+    }
+
+    updateActiveSection()
+    const onScroll = () => updateActiveSection()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [pathname, isServicesPage])
 
   const closeMobile = () => setMobileOpen(false)
 
@@ -179,23 +210,33 @@ export function Header() {
               >
                 Home
               </Link>
-              {pageSectionLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  className={`text-sm font-medium transition-colors ${
-                    isScrolled ? 'text-slate-700 hover:text-[var(--laneta-pink)]' : 'text-white/90 hover:text-white'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {pageSectionLinks.map((link) => {
+                const isActive = activeSectionHref === link.href
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => scrollToSection(e, link.href)}
+                    className={`text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'font-semibold text-[var(--laneta-pink)]'
+                        : isScrolled
+                          ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
+                          : 'text-white/90 hover:text-white'
+                    }`}
+                    aria-current={isActive ? 'location' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                )
+              })}
             </>
           ) : (
           <>
           {NAV_LINKS.map((link) => {
             if (isDropdown(link)) {
+              const dropdownHref = pathname === '/' ? '#the-ad-factory' : isServicesPage ? '#service-presentation' : '/the-ad-factory'
+              const isActive = activeSectionHref === (pathname === '/' ? '#the-ad-factory' : '#service-presentation')
               return (
                 <div
                   key={link.label}
@@ -204,16 +245,25 @@ export function Header() {
                   onMouseLeave={() => setServicesDropdownOpen(false)}
                 >
                   <a
-                    href="#services-cta"
+                    href={dropdownHref}
                     onClick={(e) => {
-                      scrollToSection(e, '#services-cta')
+                      if (pathname === '/') {
+                        e.preventDefault()
+                        scrollToSection(e, '#the-ad-factory')
+                      } else if (isServicesPage) {
+                        e.preventDefault()
+                        scrollToSection(e, '#service-presentation')
+                      }
                       setServicesDropdownOpen(false)
                     }}
                     className={`cursor-pointer text-sm font-medium transition-colors ${
-                      isScrolled
-                        ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
-                        : 'text-white/90 hover:text-white'
-                    } ${servicesDropdownOpen ? (isScrolled ? 'text-[var(--laneta-pink)]' : 'text-white') : ''}`}
+                      isActive
+                        ? 'font-semibold text-[var(--laneta-pink)]'
+                        : isScrolled
+                          ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
+                          : 'text-white/90 hover:text-white'
+                    } ${servicesDropdownOpen && !isActive ? (isScrolled ? 'text-[var(--laneta-pink)]' : 'text-white') : ''}`}
+                    aria-current={isActive ? 'location' : undefined}
                   >
                     {link.label}
                   </a>
@@ -253,16 +303,20 @@ export function Header() {
               )
             }
             if ('href' in link) {
+              const isActive = activeSectionHref === link.href
               return (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => scrollToSection(e, link.href)}
                   className={`text-sm font-medium transition-colors ${
-                    isScrolled
-                      ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
-                      : 'text-white/90 hover:text-white'
+                    isActive
+                      ? 'font-semibold text-[var(--laneta-pink)]'
+                      : isScrolled
+                        ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
+                        : 'text-white/90 hover:text-white'
                   }`}
+                  aria-current={isActive ? 'location' : undefined}
                 >
                   {link.label}
                 </a>
@@ -316,20 +370,28 @@ export function Header() {
                   >
                     Home
                   </Link>
-                  {pageSectionLinks.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        closeMobile()
-                        setTimeout(() => scrollToSectionById(link.href), 300)
-                      }}
-                      className="rounded-lg px-4 py-3 text-left font-medium text-slate-800 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
+                  {pageSectionLinks.map((link) => {
+                    const isActive = activeSectionHref === link.href
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          closeMobile()
+                          setTimeout(() => scrollToSectionById(link.href), 300)
+                        }}
+                        className={`rounded-lg px-4 py-3 text-left font-medium hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)] ${
+                          isActive
+                            ? 'bg-[var(--laneta-purple)]/10 font-semibold text-[var(--laneta-purple)]'
+                            : 'text-slate-800'
+                        }`}
+                        aria-current={isActive ? 'location' : undefined}
+                      >
+                        {link.label}
+                      </a>
+                    )
+                  })}
                 </>
               ) : NAV_LINKS.map((link) => {
                 if (isDropdown(link)) {
@@ -337,13 +399,23 @@ export function Header() {
                     <div key={link.label}>
                       <div className="flex w-full items-center">
                         <a
-                          href="#services-cta"
+                          href={pathname === '/' ? '#the-ad-factory' : isServicesPage ? '#service-presentation' : '/the-ad-factory'}
                           onClick={(e) => {
-                            e.preventDefault()
                             closeMobile()
-                            setTimeout(() => scrollToSectionById('#services-cta'), 300)
+                            if (pathname === '/') {
+                              e.preventDefault()
+                              setTimeout(() => scrollToSectionById('#the-ad-factory'), 300)
+                            } else if (isServicesPage) {
+                              e.preventDefault()
+                              setTimeout(() => scrollToSectionById('#service-presentation'), 300)
+                            }
                           }}
-                          className="flex-1 rounded-lg px-4 py-3 font-medium text-slate-800 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
+                          className={`flex-1 rounded-lg px-4 py-3 font-medium hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)] ${
+                            activeSectionHref === (pathname === '/' ? '#the-ad-factory' : '#service-presentation')
+                              ? 'bg-[var(--laneta-purple)]/10 font-semibold text-[var(--laneta-purple)]'
+                              : 'text-slate-800'
+                          }`}
+                          aria-current={activeSectionHref === (pathname === '/' ? '#the-ad-factory' : '#service-presentation') ? 'location' : undefined}
                         >
                           {link.label}
                         </a>
@@ -393,6 +465,7 @@ export function Header() {
                   )
                 }
                 if ('href' in link) {
+                  const isActive = activeSectionHref === link.href
                   return (
                     <a
                       key={link.href}
@@ -402,7 +475,12 @@ export function Header() {
                         closeMobile()
                         setTimeout(() => scrollToSectionById(link.href), 300)
                       }}
-                      className="rounded-lg px-4 py-3 text-left font-medium text-slate-800 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
+                      className={`rounded-lg px-4 py-3 text-left font-medium hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)] ${
+                        isActive
+                          ? 'bg-[var(--laneta-purple)]/10 font-semibold text-[var(--laneta-purple)]'
+                          : 'text-slate-800'
+                      }`}
+                      aria-current={isActive ? 'location' : undefined}
                     >
                       {link.label}
                     </a>

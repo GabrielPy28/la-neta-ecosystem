@@ -66,7 +66,7 @@ export function PackIncludesSection() {
         </p>
       </div>
 
-      <FloatingCard withAccentBar={false} className="overflow-hidden [&>div]:p-0">
+      <FloatingCard variant="dark" withAccentBar={false} className="overflow-hidden [&>div]:p-0">
         <div className="grid lg:grid-cols-[1fr_1fr]">
           <div className="relative flex aspect-[4/3] items-end overflow-hidden lg:aspect-auto lg:min-h-[480px]">
             <img
@@ -94,7 +94,7 @@ export function PackIncludesSection() {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="border-b border-slate-200/60 py-5 first:pt-0 last:border-0 last:pb-0"
+                className="border-b border-white/10 py-5 first:pt-0 last:border-0 last:pb-0"
               >
                 <h3
                   className="text-base font-bold md:text-lg"
@@ -102,7 +102,7 @@ export function PackIncludesSection() {
                 >
                   {item.title}
                 </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+                <p className="mt-1.5 text-sm leading-relaxed text-slate-300">
                   {item.description}
                 </p>
               </motion.div>

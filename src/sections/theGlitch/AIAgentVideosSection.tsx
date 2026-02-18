@@ -74,14 +74,14 @@ export function AIAgentVideosSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
           >
-            <FloatingCard withAccentBar={false} className="overflow-hidden">
+            <FloatingCard variant="dark" withAccentBar={false} className="overflow-hidden">
               <div
                 className={`grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:gap-10 ${
                   i % 2 === 1 ? 'lg:grid-flow-dense' : ''
                 }`}
               >
                 <div
-                  className={`aspect-video overflow-hidden rounded-xl bg-slate-900 ring-1 ring-slate-200/50 lg:aspect-[16/10] ${
+                  className={`aspect-video overflow-hidden rounded-xl bg-slate-800 ring-1 ring-white/10 lg:aspect-[16/10] ${
                     i % 2 === 1 ? 'lg:col-start-2' : ''
                   }`}
                 >
@@ -110,17 +110,17 @@ export function AIAgentVideosSection() {
                   >
                     {video.label}
                   </span>
-                  <h3 className="text-xl font-bold text-[var(--laneta-slate)] md:text-2xl">
+                  <h3 className="text-xl font-bold text-white md:text-2xl">
                     {video.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-slate-600">
+                  <p className="text-sm leading-relaxed text-slate-300">
                     {video.description}
                   </p>
                   <div className="flex flex-wrap gap-4 pt-2">
                     {video.metrics.map((m, j) => (
                       <div
                         key={j}
-                        className="rounded-xl bg-slate-50 px-5 py-3 ring-1 ring-slate-200/60"
+                        className="rounded-xl bg-slate-800/80 px-5 py-3 ring-1 ring-white/10"
                       >
                         <p
                           className="text-xl font-bold"
@@ -128,7 +128,7 @@ export function AIAgentVideosSection() {
                         >
                           {m.value}
                         </p>
-                        <p className="text-xs font-medium text-slate-500">
+                        <p className="text-xs font-medium text-slate-400">
                           {m.label}
                         </p>
                       </div>

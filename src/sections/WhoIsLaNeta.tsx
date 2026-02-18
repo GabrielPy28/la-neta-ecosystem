@@ -33,16 +33,29 @@ const IMAGES = {
   ],
 } as const
 
+/* old_paragraph
+
+"What started as a belief that creators and brands could win together became something bigger. We 
+    built the largest, most vibrant community of creators in our space. We don't just represent talent; we 
+    boost their content, help them monetize, and connect them with the right audiences. In return, brands 
+    get access to people who actually move the needle—no dead weight, no guesswork.",
+    "We specialize in taking users from scroll to click. Every ad we make is built to create community and 
+    immediate credibility. We don't just launch campaigns; we bring experiences and partnerships to life, 
+    with creators and teams across different countries. You bring the vision. We bring the creative 
+    execution that makes you global.", 
+    
+*/
+
 const STORY = {
-  hook: "We're not an agency. We're the infrastructure content, data, and talent that your brand needs to scale today.",
+  hook: "One team. Clear timelines. Full rights to the content. We run the entire pipeline so your brand can focus on strategy—not logistics.",
   paragraphs: [
-    "What started as a belief that creators and brands could win together became something bigger. We built the largest, most vibrant community of creators in our space. We don't just represent talent; we boost their content, help them monetize, and connect them with the right audiences. In return, brands get access to people who actually move the needle—no dead weight, no guesswork.",
-    "We specialize in taking users from scroll to click. Every ad we make is built to create community and immediate credibility. We don't just launch campaigns; we bring experiences and partnerships to life, with creators and teams across different countries. You bring the vision. We bring the creative execution that makes you global.",
+    "Brands and marketing teams choose us because they get one partner for the full pipeline: strategy, talent, production, and distribution. We built a vetted network of 2,000+ creators and a proven process so you can scale creative output without scaling headcount or operational friction. No guesswork—clear deliverables, clear ownership, and results that compound.",
+    "We're built for performance. Every ad we produce is designed to move users from scroll to click—authentic, platform-native, and optimized for the channels that drive your business. Whether you're a growth team, a brand manager, or a CMO looking to own the feed, we bring the execution; you keep control of the strategy and the vision.",
   ],
 }
 
 const METRICS = [
-  { value: '1,000+', label: 'Creators in our network', sub: 'Vetted, active, ready to perform' },
+  { value: '2,000+', label: 'Creators in our network', sub: 'Vetted, active, ready to perform' },
   { value: '15+', label: 'Countries', sub: 'Local talent, global reach' },
   { value: '2B+', label: 'Impressions delivered', sub: 'Across platforms and formats' },
   { value: '98%', label: 'Client retention', sub: 'Brands that scale with us stay' },
@@ -188,8 +201,11 @@ function CreatorTypesCarousel() {
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <p className="mb-6 text-center text-sm font-medium tracking-wider uppercase text-slate-500">
-        The content we help distribute
+      <p className="mb-1 text-center text-sm font-medium tracking-wider uppercase text-slate-500">
+        Verticals where we already perform
+      </p>
+      <p className="mb-6 text-center text-xs text-slate-500 md:text-sm">
+        From food and beauty to tech and finance, our vetted creators cover the categories brands care about most.
       </p>
       <div className="relative overflow-hidden py-4">
         <div
@@ -262,7 +278,7 @@ export function WhoIsLaNeta() {
   return (
     <section
       id={SECTION_ID}
-      className="relative overflow-hidden bg-white py-20 md:py-28"
+      className="relative overflow-hidden border-b-0 bg-slate-50 py-20 md:py-28 shadow-none"
       style={{ contentVisibility: 'auto' }}
     >
       <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-8">
@@ -286,9 +302,6 @@ export function WhoIsLaNeta() {
           </p>
         </motion.header>
 
-        {/* Creator types */}
-        <CreatorTypesCarousel />
-
         {/* Story */}
         <motion.div
           layout={false}
@@ -298,8 +311,8 @@ export function WhoIsLaNeta() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Studio */}
-          <div className="relative -mx-6 mb-10 aspect-[16/10] min-h-[280px] overflow-hidden md:-mx-8 md:mb-12 md:aspect-[21/9] md:min-h-[380px] lg:min-h-[420px]">
+          {/* Studio image — comentado por feedback: generaba ruido/confusión. Restaurar con IMAGES.story.main cuando se defina nuevo asset. */}
+          {/* <div className="relative -mx-6 mb-10 aspect-[16/10] min-h-[280px] overflow-hidden md:-mx-8 md:mb-12 md:aspect-[21/9] md:min-h-[380px] lg:min-h-[420px]">
             <img
               src={IMAGES.story.main}
               alt="Our studio and production ecosystem"
@@ -319,7 +332,7 @@ export function WhoIsLaNeta() {
                 Content, data, and talent under one roof.
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* Text + support image */}
           <div className="grid gap-8 md:grid-cols-12 md:gap-10">
@@ -351,6 +364,9 @@ export function WhoIsLaNeta() {
             </div>
           </div>
         </motion.div>
+        
+        {/* Creator types */}
+        <CreatorTypesCarousel />
 
         {/* Metrics dashboard */}
         <div className="mb-20 md:mb-28">
@@ -391,13 +407,23 @@ export function WhoIsLaNeta() {
           </motion.h3>
           <motion.p
             layout={false}
-            className="mx-auto mb-12 max-w-2xl text-center text-slate-600"
+            className="mx-auto mb-3 max-w-2xl text-center text-slate-600"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
             From idea to live ad—how we turn your vision into content that performs.
+          </motion.p>
+          <motion.p
+            layout={false}
+            className="mx-auto mb-12 max-w-2xl text-center text-sm text-slate-500"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Single point of contact · Clear SLAs · NDA & IP-friendly when you need it
           </motion.p>
           <div className="space-y-6 md:space-y-8">
             {PROCESS_STEPS.map((step, index) => (
