@@ -129,7 +129,7 @@ export function ServicePresentationSection() {
 
       <div className="relative space-y-4 lg:space-y-5">
         {/* 1. HERO — Video as protagonist, floating title; en móvil el bloque ocupa ~70vh y el título el doble de grande */}
-        <div className="relative h-[70vh] min-h-[380px] overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-white/10 shadow-2xl md:h-auto md:min-h-0">
+        <div className="relative h-[70vh] min-h-[380px] overflow-hidden rounded-2xl bg-slate-900 shadow-2xl ring-1 ring-slate-200/80 md:h-auto md:min-h-0">
           <video
             src={VIDEO_SRC}
             className="absolute inset-0 h-full w-full object-cover md:relative md:aspect-video md:aspect-[21/9] md:h-auto"
@@ -164,16 +164,16 @@ export function ServicePresentationSection() {
         </div>
 
         {/* 2. Carousel — Full width, below video, ads displayed completely */}
-        <FloatingCard variant="dark" withAccentBar={false} className="w-full">
+        <FloatingCard variant="light" withAccentBar={false} className="w-full">
           <div className="mb-4 flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
               Creatives that tell a story
             </p>
             <div className="flex gap-1">
               <button
                 type="button"
                 onClick={scrollPrev}
-                className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-[var(--laneta-purple)]"
+                className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-[var(--laneta-purple)]"
                 aria-label="Previous slide"
               >
                 <HiChevronLeft className="size-5" />
@@ -181,7 +181,7 @@ export function ServicePresentationSection() {
               <button
                 type="button"
                 onClick={scrollNext}
-                className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-[var(--laneta-purple)]"
+                className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-[var(--laneta-purple)]"
                 aria-label="Next slide"
               >
                 <HiChevronRight className="size-5" />
@@ -198,7 +198,7 @@ export function ServicePresentationSection() {
                     className="embla__slide min-w-0 flex-[0_0_100%] px-2 md:px-4"
                   >
                     <div className="flex flex-col gap-6 md:gap-8">
-                      <div className="aspect-video w-full overflow-hidden rounded-xl bg-slate-800 shadow-lg ring-1 ring-white/10">
+                      <div className="aspect-video w-full overflow-hidden rounded-xl bg-slate-100 shadow-lg ring-1 ring-slate-200/80">
                         <img
                           src={ad.image}
                           alt=""
@@ -215,15 +215,15 @@ export function ServicePresentationSection() {
                             >
                               {ad.brand}
                             </span>
-                            <span className="text-slate-500">·</span>
-                            <span className="text-xs text-slate-400">
+                            <span className="text-slate-400">·</span>
+                            <span className="text-xs text-slate-500">
                               {ad.format}
                             </span>
                           </div>
-                          <h3 className="text-lg font-semibold text-white">
+                          <h3 className="text-lg font-semibold text-slate-800">
                             {ad.caption}
                           </h3>
-                          <p className="text-sm leading-relaxed text-slate-300">
+                          <p className="text-sm leading-relaxed text-slate-600">
                             {ad.story}
                           </p>
                         </div>
@@ -231,7 +231,7 @@ export function ServicePresentationSection() {
                           {AD_SCORES.map(({ icon: Icon, key }) => (
                             <div
                               key={key}
-                              className="flex flex-col items-center rounded-xl bg-slate-800/80 px-6 py-4 ring-1 ring-white/10"
+                              className="flex flex-col items-center rounded-xl bg-white px-6 py-4 shadow-md ring-1 ring-slate-200/80"
                             >
                               <Icon
                                 className="size-6 mb-2"
@@ -262,7 +262,7 @@ export function ServicePresentationSection() {
                 type="button"
                 onClick={() => emblaApi?.scrollTo(i)}
                 className={`h-2 rounded-full transition-all ${
-                  i === selectedIndex ? 'w-6' : 'w-2 bg-slate-500'
+                  i === selectedIndex ? 'w-6' : 'w-2 bg-slate-300'
                 }`}
                 style={{
                   backgroundColor:
@@ -277,8 +277,8 @@ export function ServicePresentationSection() {
         {/* 3. Value statement (with capabilities), feature grid */}
         <div className="flex flex-col gap-3 lg:gap-4">
             {/* Value statement — short, punchy + capabilities chips */}
-            <FloatingCard variant="dark" className="py-6 md:py-8">
-              <p className="text-lg leading-relaxed text-slate-200 md:text-xl">
+            <FloatingCard variant="light" className="py-6 md:py-8">
+              <p className="text-lg leading-relaxed text-slate-700 md:text-xl">
                 A fully integrated creative engine combining strategy, production, talent,
                 and distribution under one roof. From brief to feed, we build ads designed
                 to scale.
@@ -287,7 +287,7 @@ export function ServicePresentationSection() {
                 {CAPABILITIES.map((item, i) => (
                   <span
                     key={i}
-                    className="rounded-full bg-[var(--laneta-purple)]/20 px-4 py-2 text-sm font-medium text-slate-200 transition-colors hover:bg-[var(--laneta-purple)]/30 hover:text-white"
+                    className="rounded-full bg-[var(--laneta-purple)]/15 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-[var(--laneta-purple)]/25 hover:text-[var(--laneta-purple)]"
                   >
                     {item}
                   </span>
@@ -301,28 +301,28 @@ export function ServicePresentationSection() {
                 aria-hidden
                 className="pointer-events-none absolute -right-24 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[var(--laneta-purple)]/10 blur-3xl"
               />
-              <FloatingCard variant="dark" className="group relative overflow-hidden">
+              <FloatingCard variant="light" className="group relative overflow-hidden">
                 <div
                   aria-hidden
                   className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--laneta-purple)] to-transparent"
                 />
                 <div className="relative grid gap-10 md:grid-cols-[1fr_1fr] md:items-center md:gap-12 lg:gap-16">
                   <div className="order-2 md:order-1">
-                    <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-slate-800 md:text-4xl">
                       From{' '}
-                      <span className="text-slate-400">Scroll</span>
+                      <span className="text-slate-500">Scroll</span>
                       <span className="mx-3 text-[var(--laneta-purple)]">→</span>
                       <span className="text-[var(--laneta-purple)]">Click</span>
                     </h2>
-                    <p className="mt-4 text-lg leading-relaxed text-slate-300">
+                    <p className="mt-4 text-lg leading-relaxed text-slate-600">
                       We turn passive scrolling into intentional action.
                     </p>
-                    <p className="mt-3 leading-relaxed text-slate-300">
+                    <p className="mt-3 leading-relaxed text-slate-600">
                       Ads designed to build credibility, spark connection, and
                       convert attention into measurable engagement.
                     </p>
                     <div className="mt-8 border-l-4 border-[var(--laneta-purple)] pl-5">
-                      <p className="text-lg font-medium text-slate-200 md:text-xl">
+                      <p className="text-lg font-medium text-slate-700 md:text-xl">
                         You bring the vision.{' '}
                         <span className="text-[var(--laneta-purple)]">
                           We turn it into global creative impact.
@@ -356,7 +356,7 @@ export function ServicePresentationSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                 >
-                  <FloatingCard variant="dark" withAccentBar={false} className="h-full">
+                  <FloatingCard variant="light" withAccentBar={false} className="h-full">
                     <div className="space-y-2">
                       <h3
                         className="text-base font-semibold"
@@ -364,7 +364,7 @@ export function ServicePresentationSection() {
                       >
                         {f.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-slate-300">
+                      <p className="text-sm leading-relaxed text-slate-600">
                         {f.description}
                       </p>
                     </div>

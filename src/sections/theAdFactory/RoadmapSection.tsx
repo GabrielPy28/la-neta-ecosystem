@@ -228,45 +228,45 @@ export function RoadmapSection() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Header — texto claro sobre fondo transparente/oscuro */}
+          {/* Header — legible sobre fondo claro */}
           <div className="mb-10 text-center md:mb-12">
             <p
-              className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/95"
-              style={{ backgroundColor: 'rgba(102, 65, 237, 0.35)' }}
+              className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--laneta-purple)]"
+              style={{ backgroundColor: 'rgba(102, 65, 237, 0.12)' }}
             >
               8 steps · 21 days
             </p>
-            <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
               21-day roadmap
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-white/85 md:text-lg">
+            <p className="mx-auto mt-3 max-w-2xl text-slate-600 md:text-lg">
               From your brief to ad-ready content. Follow the journey—or use the stepper to jump to any step.
             </p>
-            <div className="mx-auto mt-4 flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-white/80">
+            <div className="mx-auto mt-4 flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-slate-600">
               <span>
-                <span className="font-semibold text-white">Week 1</span>
-                <span className="text-white/75"> — Strategy &amp; alignment</span>
+                <span className="font-semibold text-slate-800">Week 1</span>
+                <span className="text-slate-500"> — Strategy &amp; alignment</span>
               </span>
               <span>
-                <span className="font-semibold text-white">Week 2</span>
-                <span className="text-white/75"> — Creation &amp; feedback</span>
+                <span className="font-semibold text-slate-800">Week 2</span>
+                <span className="text-slate-500"> — Creation &amp; feedback</span>
               </span>
               <span>
-                <span className="font-semibold text-white">Week 3</span>
-                <span className="text-white/75"> — Production &amp; delivery</span>
+                <span className="font-semibold text-slate-800">Week 3</span>
+                <span className="text-slate-500"> — Production &amp; delivery</span>
               </span>
             </div>
           </div>
 
-          {/* Stepper — círculos y fuente más pequeños para que no se vean pegados */}
-          <CssVarsProvider defaultColorScheme="dark">
+          {/* Stepper — estilos para fondo claro */}
+          <CssVarsProvider defaultColorScheme="light">
             <Stepper
               orientation="horizontal"
               size="sm"
               sx={{
-                '--Stepper-connectorLine': 'rgba(255,255,255,0.25)',
+                '--Stepper-connectorLine': 'rgb(226 232 240)',
                 '--StepIndicator-size': '28px',
-                '--Step-connectorLine': '1px solid rgba(255,255,255,0.25)',
+                '--Step-connectorLine': '1px solid rgb(226 232 240)',
                 justifyContent: 'center',
                 flexWrap: 'wrap',
                 gap: 1.5,
@@ -284,13 +284,13 @@ export function RoadmapSection() {
                       variant={activeStep === i ? 'solid' : activeStep > i ? 'solid' : 'outlined'}
                       color="neutral"
                       sx={{
-                        backgroundColor: activeStep === i ? 'var(--laneta-purple)' : activeStep > i ? 'transparent' : 'rgba(255,255,255,0.08)',
-                        color: activeStep > i ? 'var(--laneta-purple)' : activeStep === i ? '#fff' : 'rgba(255,255,255,0.9)',
-                        borderColor: activeStep > i ? 'transparent' : 'rgba(255,255,255,0.4)',
+                        backgroundColor: activeStep === i ? 'var(--laneta-purple)' : activeStep > i ? 'transparent' : 'rgb(241 245 249)',
+                        color: activeStep > i ? '#fff' : activeStep === i ? '#fff' : 'rgb(71 85 105)',
+                        borderColor: activeStep > i ? 'transparent' : 'rgb(203 213 225)',
                         fontSize: '0.75rem',
                         fontWeight: 600,
                         '&:hover': {
-                          backgroundColor: activeStep === i ? 'var(--laneta-purple)' : 'rgba(255,255,255,0.18)',
+                          backgroundColor: activeStep === i ? 'var(--laneta-purple)' : 'rgb(226 232 240)',
                         },
                       }}
                     >
@@ -311,15 +311,15 @@ export function RoadmapSection() {
                   }
                   sx={{
                     '&::after': {
-                      borderColor: activeStep > i ? 'var(--laneta-purple)' : 'rgba(255,255,255,0.25)',
+                      borderColor: activeStep > i ? 'var(--laneta-purple)' : 'rgb(226 232 240)',
                     },
                   }}
                 >
                   <StepButton
                     onClick={() => goToStep(i)}
                     sx={{
-                      color: 'rgba(255,255,255,0.9)',
-                      '&:hover': { color: '#fff' },
+                      color: 'rgb(71 85 105)',
+                      '&:hover': { color: 'var(--laneta-purple)' },
                     }}
                   >
                     <span className="sr-only">{s.title}</span>
@@ -329,8 +329,8 @@ export function RoadmapSection() {
             </Stepper>
           </CssVarsProvider>
 
-          {/* Progress bar — separada de los 8 pasos; ancho según paso actual / totalSteps */}
-          <div className="mb-4 mt-6 h-2 w-full overflow-hidden rounded-full bg-white/20">
+          {/* Progress bar */}
+          <div className="mb-4 mt-6 h-2 w-full overflow-hidden rounded-full bg-slate-200">
             <motion.div
               className="h-full rounded-full"
               style={{ backgroundColor: 'var(--laneta-purple)' }}
@@ -339,12 +339,12 @@ export function RoadmapSection() {
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             />
           </div>
-          <p className="mb-4 mt-1 text-center text-xs text-white/60">
+          <p className="mb-4 mt-1 text-center text-xs text-slate-500">
             Step {activeStep + 1} of {totalSteps}
           </p>
 
-          {/* Phase buttons — visibles sobre fondo oscuro */}
-          <div className="mb-4 flex flex-wrap items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 py-2 px-4">
+          {/* Phase buttons — fondo claro */}
+          <div className="mb-4 flex flex-wrap items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-100/80 py-2 px-4">
             {(['discovery', 'create', 'deliver'] as const).map((phase) => {
               const stepIndex = firstStepIndexForPhase(phase)
               const isActive = step.phase === phase
@@ -355,8 +355,8 @@ export function RoadmapSection() {
                   onClick={() => goToStep(stepIndex)}
                   className={`rounded-full px-3 py-1 text-sm font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--laneta-purple)] ${
                     isActive
-                      ? 'bg-[var(--laneta-purple)]/30 text-white'
-                      : 'text-white/90 hover:bg-white/20'
+                      ? 'bg-[var(--laneta-purple)]/20 text-[var(--laneta-purple)]'
+                      : 'text-slate-600 hover:bg-slate-200/80'
                   }`}
                   aria-pressed={isActive}
                   aria-label={`Go to ${PHASE_LABELS[phase]} (step ${stepIndex + 1})`}
@@ -388,12 +388,12 @@ export function RoadmapSection() {
             </AnimatePresence>
           </div>
 
-          <p className="mt-5 text-center text-sm text-white/75">
+          <p className="mt-5 text-center text-sm text-slate-600">
             Step {activeStep + 1} of {totalSteps} · {step.title}
           </p>
 
           {/* Closing — caja con fondo sólido para buena lectura */}
-          <div className="mt-14 rounded-2xl border border-white/20 bg-white/95 px-6 py-8 text-center shadow-lg md:px-10 md:py-10">
+          <div className="mt-14 rounded-2xl border border-slate-200 bg-white px-6 py-8 text-center shadow-lg md:px-10 md:py-10">
             <p className="text-lg font-semibold text-slate-800 md:text-xl">
               Day 1: your brief.
             </p>

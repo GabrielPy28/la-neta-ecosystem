@@ -6,13 +6,14 @@ import { LiquidGlassBackground } from '../components/LiquidGlassBackground'
 import { Footer } from '../components/Footer'
 import { ServicePresentationSection } from '../sections/theAdFactory/ServicePresentationSection'
 import { ProblemsVsSolutionsSection } from '../sections/theAdFactory/ProblemsVsSolutionsSection'
+import { ModusOperandiSection } from '../sections/theAdFactory/ModusOperandiSection'
 import { RoadmapSection } from '../sections/theAdFactory/RoadmapSection'
 import { LetsWorkTogetherSection } from '../sections/theAdFactory/LetsWorkTogetherSection'
 
 export function TheAdFactoryPage() {
   return (
     <>
-      <LiquidGlassBackground />
+      <LiquidGlassBackground variant="servicesLight" />
 
       <div className="relative z-10">
         <main className="min-h-screen">
@@ -22,6 +23,9 @@ export function TheAdFactoryPage() {
             </div>
             <div id="problems-vs-solutions" className="scroll-mt-24">
               <ProblemsVsSolutionsSection />
+            </div>
+            <div id="modus-operandi" className="scroll-mt-24">
+              <ModusOperandiSection />
             </div>
             <div id="roadmap" className="scroll-mt-24">
               <RoadmapSection />

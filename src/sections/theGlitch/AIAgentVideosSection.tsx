@@ -53,15 +53,15 @@ export function AIAgentVideosSection() {
     >
       <div className="mb-10 text-center md:mb-12">
         <p
-          className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90"
-          style={{ backgroundColor: 'rgba(121, 188, 247, 0.25)' }}
+          className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--laneta-blue)]"
+          style={{ backgroundColor: 'rgba(121, 188, 247, 0.15)' }}
         >
           AI in action
         </p>
-        <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
+        <h2 className="text-2xl font-bold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
           Our AI Agents
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-slate-300 md:text-lg">
+        <p className="mx-auto mt-3 max-w-2xl text-slate-600 md:text-lg">
           Fully AI-generated talent. No actors, no shoots—just scalable creative that performs.
         </p>
       </div>
@@ -74,14 +74,14 @@ export function AIAgentVideosSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
           >
-            <FloatingCard variant="dark" withAccentBar={false} className="overflow-hidden">
+            <FloatingCard variant="light" withAccentBar={false} className="overflow-hidden">
               <div
                 className={`grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:gap-10 ${
                   i % 2 === 1 ? 'lg:grid-flow-dense' : ''
                 }`}
               >
                 <div
-                  className={`aspect-video overflow-hidden rounded-xl bg-slate-800 ring-1 ring-white/10 lg:aspect-[16/10] ${
+                  className={`aspect-video overflow-hidden rounded-xl bg-slate-100 ring-1 ring-slate-200/80 lg:aspect-[16/10] ${
                     i % 2 === 1 ? 'lg:col-start-2' : ''
                   }`}
                 >
@@ -110,17 +110,17 @@ export function AIAgentVideosSection() {
                   >
                     {video.label}
                   </span>
-                  <h3 className="text-xl font-bold text-white md:text-2xl">
+                  <h3 className="text-xl font-bold text-slate-800 md:text-2xl">
                     {video.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-slate-300">
+                  <p className="text-sm leading-relaxed text-slate-600">
                     {video.description}
                   </p>
                   <div className="flex flex-wrap gap-4 pt-2">
                     {video.metrics.map((m, j) => (
                       <div
                         key={j}
-                        className="rounded-xl bg-slate-800/80 px-5 py-3 ring-1 ring-white/10"
+                        className="rounded-xl bg-white px-5 py-3 shadow-sm ring-1 ring-slate-200/80"
                       >
                         <p
                           className="text-xl font-bold"
@@ -128,7 +128,7 @@ export function AIAgentVideosSection() {
                         >
                           {m.value}
                         </p>
-                        <p className="text-xs font-medium text-slate-400">
+                        <p className="text-xs font-medium text-slate-500">
                           {m.label}
                         </p>
                       </div>

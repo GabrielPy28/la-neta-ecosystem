@@ -287,7 +287,7 @@ const HOOK_HUNTER_ACCENT = '#f59e0b'
 export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: LetsWorkTogetherVariant }) {
   const [modalOpen, setModalOpen] = useState(false)
   const copy = COPY[variant ?? 'adFactory']
-  const isDark = variant === 'hookHunter'
+  const isHookHunter = variant === 'hookHunter'
 
   const content = (
     <div className="relative grid gap-10 md:grid-cols-[1fr_1fr] md:items-center md:gap-12 lg:gap-16">
@@ -295,52 +295,35 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
         aria-hidden
         className="pointer-events-none absolute -right-32 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full blur-3xl"
         style={{
-          backgroundColor: isDark ? `${HOOK_HUNTER_ACCENT}15` : 'rgba(102, 65, 237, 0.1)',
+          backgroundColor: isHookHunter ? `${HOOK_HUNTER_ACCENT}12` : 'rgba(102, 65, 237, 0.1)',
         }}
       />
       <div className="order-2 md:order-1 text-center md:text-left">
-        <h2
-          className="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl"
-          style={{ color: isDark ? '#fff' : 'var(--laneta-slate)' }}
-        >
+        <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl lg:text-4xl">
           Let&apos;s Work Together
         </h2>
-        <p
-          className="mt-4 text-lg leading-relaxed md:text-xl"
-          style={{ color: isDark ? 'rgb(203 213 225)' : 'rgb(71 85 105)' }}
-        >
+        <p className="mt-4 text-lg leading-relaxed text-slate-700 md:text-xl">
           {copy.intro}
         </p>
-        <p className="mt-3 leading-relaxed" style={{ color: isDark ? 'rgb(148 163 184)' : 'rgb(71 85 105)' }}>
+        <p className="mt-3 leading-relaxed text-slate-700">
           {copy.body}
         </p>
         <div
           className="mt-6 border-l-4 pl-5"
-          style={{ borderColor: isDark ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)' }}
+          style={{ borderColor: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)' }}
         >
-          <p
-            className="text-base font-medium md:text-lg"
-            style={{ color: isDark ? '#fff' : 'var(--laneta-slate)' }}
-          >
+          <p className="text-base font-medium text-slate-900 md:text-lg">
             {copy.quote}{' '}
-            <span style={{ color: isDark ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)' }}>{copy.quoteAccent}</span>
+            <span style={{ color: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)' }}>{copy.quoteAccent}</span>
           </p>
         </div>
         <div className="mt-8 flex justify-center md:justify-start">
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer hover:cursor-pointer"
+            className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white cursor-pointer hover:opacity-95"
             style={{
-              backgroundColor: isDark ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = isDark ? 'rgb(217 119 6)' : 'rgba(102, 65, 237, 0.9)'
-              e.currentTarget.style.boxShadow = isDark ? '0 20px 40px rgba(245, 158, 11, 0.3)' : ''
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = isDark ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)'
-              e.currentTarget.style.boxShadow = ''
+              backgroundColor: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)',
             }}
           >
             Talk to us
@@ -349,7 +332,7 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
         </div>
       </div>
       <div className="order-1 md:order-2">
-        <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10">
+        <div className="relative overflow-hidden rounded-2xl ring-1 ring-slate-200/80 shadow-lg">
           <img
             src={LETS_TALK_IMAGE}
             alt="Let's work together — bring your idea to life"
@@ -372,14 +355,12 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
         transition={{ duration: 0.5 }}
         className="mx-auto w-full max-w-7xl px-4 md:px-6"
       >
-        {isDark ? (
-          <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60 p-6 shadow-xl ring-1 ring-white/10 backdrop-blur-sm md:p-8">
-            <div aria-hidden className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: HOOK_HUNTER_ACCENT }} />
-            {content}
-          </div>
-        ) : (
-          <FloatingCard className="group relative overflow-hidden">{content}</FloatingCard>
-        )}
+        <FloatingCard className="group relative overflow-hidden">
+          {isHookHunter && (
+            <div aria-hidden className="absolute inset-x-0 top-0 z-10 h-1" style={{ backgroundColor: HOOK_HUNTER_ACCENT }} />
+          )}
+          {content}
+        </FloatingCard>
       </motion.section>
 
       <AnimatePresence>

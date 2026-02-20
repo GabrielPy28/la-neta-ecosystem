@@ -8,7 +8,7 @@ import { motion } from 'motion/react'
 const ORB_BASE_CLASS =
   'absolute rounded-full pointer-events-none will-change-transform'
 
-type BackgroundVariant = 'ad-factory' | 'glitch' | 'hookHunter'
+type BackgroundVariant = 'ad-factory' | 'glitch' | 'hookHunter' | 'servicesLight'
 
 /** The Hook Hunter — amber, emerald, warm orange (hooks / attention / catch). */
 const HOOK_HUNTER_STYLES = {
@@ -53,17 +53,34 @@ const AD_FACTORY_STYLES = {
   lensCorner: 'radial-gradient(circle, rgba(255,71,172,0.15) 0%, transparent 70%)',
 }
 
+/** Services page — light, friendly, La Neta palette with stronger blue & pink (darker tones). */
+const SERVICES_LIGHT_STYLES = {
+  baseGradient:
+    'radial-gradient(ellipse 120% 80% at 50% 0%, rgba(102, 65, 237, 0.14) 0%, transparent 50%), radial-gradient(ellipse 80% 120% at 80% 70%, rgba(200, 40, 130, 0.18) 0%, transparent 50%), radial-gradient(ellipse 100% 100% at 20% 80%, rgba(59, 130, 246, 0.22) 0%, transparent 45%), var(--laneta-bg)',
+  orbTopLeft: 'bg-gradient-to-br from-[var(--laneta-purple)]/30 to-[var(--laneta-pink)]/22 backdrop-blur-[100px]',
+  orbTopRight: 'bg-gradient-to-bl from-[#3b82f6]/50 to-transparent backdrop-blur-[80px]',
+  orbBottomLeft: 'bg-gradient-to-tr from-[#d91a7a]/35 to-[var(--laneta-purple)]/18 backdrop-blur-[90px]',
+  orbBottomRight: 'bg-white/50 backdrop-blur-[120px]',
+  orbLeft: 'bg-gradient-to-r from-[var(--laneta-purple)]/22 to-transparent backdrop-blur-[85px]',
+  orbRight: 'bg-gradient-to-l from-[#2563eb]/45 to-transparent backdrop-blur-[90px]',
+  lensTop: 'radial-gradient(circle, rgba(102,65,237,0.18) 0%, transparent 70%)',
+  lensBottom: 'radial-gradient(circle, rgba(59,130,246,0.35) 0%, transparent 70%)',
+  lensCorner: 'radial-gradient(circle, rgba(200,40,130,0.28) 0%, transparent 70%)',
+}
+
 const VARIANT_STYLES = {
   'ad-factory': AD_FACTORY_STYLES,
   glitch: GLITCH_STYLES,
   hookHunter: HOOK_HUNTER_STYLES,
+  servicesLight: SERVICES_LIGHT_STYLES,
 }
 
 export function LiquidGlassBackground({ variant = 'ad-factory' }: { variant?: BackgroundVariant }) {
   const s = VARIANT_STYLES[variant]
 
+  const isLight = variant === 'servicesLight'
   return (
-    <div className="fixed inset-0 overflow-hidden bg-[var(--laneta-darker)]">
+    <div className={`fixed inset-0 overflow-hidden ${isLight ? 'bg-[var(--laneta-bg)]' : 'bg-[var(--laneta-darker)]'}`}>
       {/* Base gradient — deep with subtle brand tint */}
       <div
         className="absolute inset-0 opacity-90"
@@ -143,9 +160,9 @@ export function LiquidGlassBackground({ variant = 'ad-factory' }: { variant?: Ba
         style={{ background: s.lensCorner, filter: 'blur(35px)' }}
       />
 
-      {/* Subtle grain overlay for depth (optional) */}
+      {/* Subtle grain overlay for depth (lighter on light variant) */}
       <div
-        className="absolute inset-0 opacity-[0.025] mix-blend-soft-light"
+        className={`absolute inset-0 mix-blend-soft-light ${isLight ? 'opacity-[0.015]' : 'opacity-[0.025]'}`}
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}

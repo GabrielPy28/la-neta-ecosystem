@@ -52,21 +52,21 @@ export function PackIncludesSection() {
     >
       <div className="mb-10 text-center md:mb-12">
         <p
-          className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90"
-          style={{ backgroundColor: 'rgba(121, 188, 247, 0.25)' }}
+          className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--laneta-blue)]"
+          style={{ backgroundColor: 'rgba(121, 188, 247, 0.15)' }}
         >
           The complete pack
         </p>
-        <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
+        <h2 className="text-2xl font-bold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
           Everything included.
           <span className="block text-[var(--laneta-blue)] md:inline md:ml-2">Nothing hidden.</span>
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-slate-300 md:text-lg">
+        <p className="mx-auto mt-3 max-w-2xl text-slate-600 md:text-lg">
           One pack, 24 assets, 21 days. Here&apos;s exactly what you get.
         </p>
       </div>
 
-      <FloatingCard variant="dark" withAccentBar={false} className="overflow-hidden [&>div]:p-0">
+      <FloatingCard variant="light" withAccentBar={false} className="overflow-hidden [&>div]:p-0">
         <div className="grid lg:grid-cols-[1fr_1fr]">
           <div className="relative flex aspect-[4/3] items-end overflow-hidden lg:aspect-auto lg:min-h-[480px]">
             <img
@@ -94,7 +94,7 @@ export function PackIncludesSection() {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="border-b border-white/10 py-5 first:pt-0 last:border-0 last:pb-0"
+                className="border-b border-slate-200 py-5 first:pt-0 last:border-0 last:pb-0"
               >
                 <h3
                   className="text-base font-bold md:text-lg"
@@ -102,7 +102,7 @@ export function PackIncludesSection() {
                 >
                   {item.title}
                 </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-300">
+                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
                   {item.description}
                 </p>
               </motion.div>

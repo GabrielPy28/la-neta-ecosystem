@@ -17,7 +17,7 @@ export function ServicePresentationSection() {
 
       <div className="relative">
         {/* Hero — en móvil más alto, imagen que rellena, título abajo legible; en desktop igual que antes */}
-        <div className="group relative min-h-[max(70vh,380px)] overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-white/10 shadow-2xl md:min-h-0">
+        <div className="group relative min-h-[max(70vh,380px)] overflow-hidden rounded-2xl bg-slate-900 shadow-2xl ring-1 ring-slate-200/80 md:min-h-0">
           <img
             src={HERO_IMAGE}
             alt="The Glitch — AI-generated influencers that speak your brand"

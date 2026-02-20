@@ -48,15 +48,15 @@ export function ProductValueSection() {
     >
       <div className="mb-10 text-center md:mb-12">
         <p
-          className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90"
-          style={{ backgroundColor: 'rgba(121, 188, 247, 0.25)' }}
+          className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--laneta-blue)]"
+          style={{ backgroundColor: 'rgba(121, 188, 247, 0.15)' }}
         >
           What The Glitch delivers
         </p>
-        <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
+        <h2 className="text-2xl font-bold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
           Your brand, amplified by AI
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-slate-300 md:text-lg">
+        <p className="mx-auto mt-3 max-w-2xl text-slate-600 md:text-lg">
           Implement The Glitch and transform how you create, test, and scale. Here’s what changes.
         </p>
       </div>
@@ -69,11 +69,11 @@ export function ProductValueSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.08 }}
           >
-            <FloatingCard variant="dark" withAccentBar={false} className="h-full">
+            <FloatingCard variant="light" withAccentBar={false} className="h-full">
               <div className="flex gap-4">
                 <div
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-                  style={{ backgroundColor: `${item.accent}20` }}
+                  style={{ backgroundColor: `${item.accent}18` }}
                 >
                   <item.icon
                     className="size-6"
@@ -82,10 +82,10 @@ export function ProductValueSection() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-slate-800">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     {item.description}
                   </p>
                 </div>
@@ -95,8 +95,8 @@ export function ProductValueSection() {
         ))}
       </div>
 
-      <div className="mt-10 border-t border-white/20 pt-10 text-center">
-        <p className="text-lg font-medium text-white md:text-xl">
+      <div className="mt-10 border-t border-slate-200 pt-10 text-center">
+        <p className="text-lg font-medium text-slate-700 md:text-xl">
           AI never rests.{' '}
           <span className="text-[var(--laneta-blue)]">
             Your brand should never stop testing.

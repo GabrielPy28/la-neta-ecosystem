@@ -61,7 +61,7 @@ function Option1() {
       <div className="relative z-10 grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-12">
         {/* Columna imagen — cuadro principal nítido */}
         <div className="relative w-full" style={{ paddingBottom: '75%' }}>
-        <div className="absolute inset-0 overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-white/10 shadow-2xl">
+        <div className="absolute inset-0 overflow-hidden rounded-2xl bg-slate-900 shadow-2xl ring-1 ring-slate-200/80">
         {/* Depth overlay — contraste y nitidez percibida */}
         <div
           className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-tr from-black/20 via-transparent to-white/5"
@@ -123,31 +123,31 @@ function Option1() {
         </div>
         </div>
         <div className="flex flex-col justify-center md:py-8">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-amber-400">
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-amber-600">
           High-performing hooks system
         </p>
-        <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
+        <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
           The Hook Hunter
         </h1>
-        <p className="mt-4 text-xl font-semibold text-amber-200/90 md:text-2xl">
+        <p className="mt-4 text-xl font-semibold text-amber-700 md:text-2xl">
           {TAGLINE}
         </p>
-        <p className="mt-4 text-base leading-relaxed font-medium text-slate-100 md:text-lg">
+        <p className="mt-4 text-base leading-relaxed font-medium text-slate-700 md:text-lg">
           {DESCRIPTION}
         </p>
         <div className="mt-6 border-l-[6px] border-amber-500 pl-6">
-          <p className="text-lg font-bold text-white md:text-xl">
+          <p className="text-lg font-bold text-slate-900 md:text-xl">
             People buy from other people.
           </p>
-          <p className="mt-1 text-base font-semibold text-amber-200/90 md:text-lg">
+          <p className="mt-1 text-base font-semibold text-amber-700 md:text-lg">
             It generates 45% more immediate trust.
           </p>
         </div>
         <div className="mt-6 flex flex-wrap gap-2">
-          <span className="rounded-full bg-amber-500/20 px-4 py-2 text-sm font-bold text-amber-300">
+          <span className="rounded-full bg-amber-500/20 px-4 py-2 text-sm font-bold text-amber-700">
             The Amplifier
           </span>
-          <span className="rounded-full bg-emerald-500/20 px-4 py-2 text-sm font-bold text-emerald-300">
+          <span className="rounded-full bg-emerald-500/20 px-4 py-2 text-sm font-bold text-emerald-700">
             Empire Mode
           </span>
         </div>
@@ -167,14 +167,14 @@ function Option2({ imageSrc }: { imageSrc: string }) {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/40 to-transparent" />
       <div className="absolute inset-0 flex items-end justify-center p-6 pb-12 md:p-10 md:pb-16">
-        <div className="w-full max-w-xl rounded-2xl border border-white/15 bg-slate-900/80 px-8 py-8 backdrop-blur-xl ring-1 ring-white/10">
-          <h1 className="text-center text-3xl font-bold tracking-tight text-white md:text-4xl">
+        <div className="w-full max-w-xl rounded-2xl border border-slate-200 bg-white px-8 py-8 shadow-xl ring-1 ring-slate-200/80">
+          <h1 className="text-center text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
             The Hook Hunter
           </h1>
-          <p className="mt-2 text-center text-lg text-amber-200/95">
+          <p className="mt-2 text-center text-lg text-amber-700">
             {TAGLINE}
           </p>
-          <p className="mt-4 text-center text-sm leading-relaxed text-slate-300">
+          <p className="mt-4 text-center text-sm leading-relaxed text-slate-700">
             {DESCRIPTION}
           </p>
         </div>
@@ -188,23 +188,23 @@ function Option3({ imageSrc }: { imageSrc: string }) {
     <div className="relative">
       <div className="grid gap-8 lg:grid-cols-12 lg:gap-0">
         <div className="lg:col-span-7 lg:pr-6">
-          <div className="flex flex-col justify-center rounded-2xl border border-white/10 bg-slate-900/60 p-8 backdrop-blur-sm md:p-10 lg:min-h-[380px]">
-            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
+          <div className="flex flex-col justify-center rounded-2xl border border-slate-200 bg-white p-8 shadow-lg ring-1 ring-slate-200/80 md:p-10 lg:min-h-[380px]">
+            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">
               SaaS · Hooks system
             </p>
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
               The Hook Hunter
             </h1>
-            <p className="mt-3 text-lg text-slate-200">
+            <p className="mt-3 text-lg text-slate-700">
               {TAGLINE}
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-slate-400">
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
               {DESCRIPTION}
             </p>
           </div>
         </div>
         <div className="relative lg:col-span-5 lg:-mt-16 lg:mb-16">
-          <div className="overflow-hidden rounded-2xl bg-slate-900 shadow-2xl ring-1 ring-white/10">
+          <div className="overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200/80">
             <img
               src={imageSrc}
               alt="The Hook Hunter — hooks that convert"
@@ -221,17 +221,17 @@ function Option4({ imageSrc }: { imageSrc: string }) {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600">
           High-performing hooks system
         </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+        <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
           The Hook Hunter
         </h1>
-        <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-300">
+        <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-700">
           {TAGLINE}
         </p>
       </div>
-      <div className="overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-white/10">
+      <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/80">
         <img
           src={imageSrc}
           alt="The Hook Hunter"
@@ -239,14 +239,14 @@ function Option4({ imageSrc }: { imageSrc: string }) {
         />
       </div>
       <div className="mx-auto max-w-2xl text-center">
-        <p className="leading-relaxed text-slate-400">
+        <p className="leading-relaxed text-slate-700">
           {DESCRIPTION}
         </p>
         <div className="mt-4 flex justify-center gap-3">
-          <span className="rounded-full bg-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-300">
+          <span className="rounded-full bg-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-700">
             The Amplifier
           </span>
-          <span className="rounded-full bg-emerald-500/20 px-4 py-1.5 text-sm font-medium text-emerald-300">
+          <span className="rounded-full bg-emerald-500/20 px-4 py-1.5 text-sm font-medium text-emerald-700">
             Empire Mode
           </span>
         </div>

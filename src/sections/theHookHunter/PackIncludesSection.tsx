@@ -67,7 +67,7 @@ function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80 shadow-xl ring-1 ring-white/10 scroll-mt-24"
+      className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl ring-1 ring-slate-200/80 scroll-mt-24"
     >
       <div
         className="absolute left-0 right-0 top-0 z-0 h-1"
@@ -84,31 +84,31 @@ function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index
             >
               {strategy.name}
             </p>
-            <h3 className="mt-2 text-2xl font-bold tracking-tight text-white md:text-3xl">
+            <h3 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               {strategy.strategyHeadline}
             </h3>
-            <p className="mt-3 text-sm font-medium text-slate-400 md:text-base">
+            <p className="mt-3 text-sm font-medium text-slate-600 md:text-base">
               {strategy.forWho}
             </p>
-            <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
               {strategy.description}
             </p>
-            <div className="mt-6 rounded-xl border border-white/10 bg-white/5 px-4 py-4">
+            <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
                 Strategic outcome
               </p>
-              <p className="mt-1 font-semibold text-white">{strategy.outcome}</p>
+              <p className="mt-1 font-semibold text-slate-900">{strategy.outcome}</p>
             </div>
           </div>
 
           {/* What this strategy delivers — factual, not “pack” */}
           <div className="shrink-0 lg:w-[320px]">
-            <div className="rounded-xl border border-white/10 bg-slate-800/50 px-5 py-5">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-5">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
                 What this strategy delivers
               </p>
-              <p className="mt-2 text-2xl font-bold text-white md:text-3xl">
-                {strategy.assets} <span className="text-sm font-medium text-slate-400">assets</span>
+              <p className="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">
+                {strategy.assets} <span className="text-sm font-medium text-slate-600">assets</span>
               </p>
               <div className="mt-4 space-y-4">
                 <div>
@@ -119,7 +119,7 @@ function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index
                     {strategy.production.map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-2 text-sm text-slate-300"
+                        className="flex items-center gap-2 text-sm text-slate-700"
                       >
                         <span
                           className="h-1.5 w-1.5 shrink-0 rounded-full"
@@ -139,7 +139,7 @@ function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index
                     {strategy.delivery.concat(strategy.rights).map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-2 text-sm text-slate-300"
+                        className="flex items-center gap-2 text-sm text-slate-700"
                       >
                         <span
                           className="h-1.5 w-1.5 shrink-0 rounded-full"
@@ -170,15 +170,15 @@ export function PackIncludesSection() {
     >
       <div className="mb-12 text-center md:mb-16">
         <p
-          className="mb-4 inline-block rounded-full px-5 py-2 text-sm font-bold uppercase tracking-wider text-amber-200/95"
-          style={{ backgroundColor: 'rgba(251, 191, 36, 0.2)' }}
+          className="mb-4 inline-block rounded-full px-5 py-2 text-sm font-bold uppercase tracking-wider text-amber-700"
+          style={{ backgroundColor: 'rgba(251, 191, 36, 0.22)' }}
         >
           Execution strategies
         </p>
-        <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-5xl">
+        <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
           Three strategies. Each with a defined role.
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-slate-300 md:text-xl">
+        <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-slate-700 md:text-xl">
           Each variant is built around a specific B2B objective—validation, dominance, or category ownership. Choose the strategy that matches where you are.
         </p>
       </div>

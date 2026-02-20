@@ -61,15 +61,15 @@ export function UGCTalentsSection() {
     >
       <div className="mb-12 text-center md:mb-16">
         <p
-          className="mb-4 inline-block rounded-full px-5 py-2 text-sm font-bold uppercase tracking-wider text-amber-200/95"
-          style={{ backgroundColor: 'rgba(251, 191, 36, 0.2)' }}
+          className="mb-4 inline-block rounded-full px-5 py-2 text-sm font-bold uppercase tracking-wider text-amber-700"
+          style={{ backgroundColor: 'rgba(251, 191, 36, 0.22)' }}
         >
           Meet our UGC talents
         </p>
-        <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-5xl">
+        <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
           Talents that sync with your style
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-slate-300 md:text-xl">
+        <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-slate-700 md:text-xl">
           You have your identity. Our talents create synergy with your brand
         </p>
       </div>
@@ -81,7 +81,7 @@ export function UGCTalentsSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: i * 0.08 }}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 ring-1 ring-white/5"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg ring-1 ring-slate-200/80"
           >
             <div className="relative aspect-[3/4] shrink-0 overflow-hidden">
               {talent.media === 'video' && talent.src ? (
@@ -117,8 +117,8 @@ export function UGCTalentsSection() {
               <p className="text-sm font-bold md:text-base" style={{ color: talent.accent }}>
                 {talent.unique}
               </p>
-              <p className="mt-1.5 text-xs leading-relaxed text-slate-400 md:text-sm">{talent.impact}</p>
-              <p className="mt-2 text-xs italic text-slate-500 md:text-sm">{talent.differentiator}</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-slate-600 md:text-sm">{talent.impact}</p>
+              <p className="mt-2 text-xs italic text-slate-600 md:text-sm">{talent.differentiator}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {talent.metrics.map((m) => (
                   <span
@@ -135,12 +135,12 @@ export function UGCTalentsSection() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl border border-amber-500/30 bg-amber-500/10 px-8 py-8 text-center backdrop-blur-sm md:mt-16 md:px-12 md:py-10">
-        <p className="text-xl font-bold text-white md:text-2xl">
+      <div className="mt-12 rounded-2xl border border-amber-300 bg-amber-50 px-8 py-8 text-center md:mt-16 md:px-12 md:py-10">
+        <p className="text-xl font-bold text-slate-900 md:text-2xl">
           Your brand deserves to grow.{' '}
-          <span className="text-amber-300">Our talents are ready to take it there.</span>
+          <span className="text-amber-700">Our talents are ready to take it there.</span>
         </p>
-        <p className="mt-2 text-base font-medium text-slate-300 md:text-lg">
+        <p className="mt-2 text-base font-medium text-slate-700 md:text-lg">
           You have your identity. We create the synergy.
         </p>
       </div>

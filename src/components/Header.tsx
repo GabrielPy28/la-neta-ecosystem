@@ -109,6 +109,8 @@ export function Header() {
     pathname === '/the-glitch' ||
     pathname === '/the-hook-hunter'
   const pageSectionLinks = isServicesPage ? SERVICES_PAGE_SECTION_LINKS : null
+  /** Services page uses light background: header text must be dark when at top. */
+  const isLightPageTop = isServicesPage && !isScrolled
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 48)
@@ -179,9 +181,11 @@ export function Header() {
           />
           <span
             className={`text-xl font-bold tracking-tight md:text-2xl ${
-              isScrolled
+              isLightPageTop
                 ? 'text-[var(--laneta-purple)]'
-                : 'text-white drop-shadow-md'
+                : isScrolled
+                  ? 'text-[var(--laneta-purple)]'
+                  : 'text-white drop-shadow-md'
             }`}
           >
             La Neta
@@ -201,9 +205,11 @@ export function Header() {
           />
           <span
             className={`text-xl font-bold tracking-tight md:text-2xl ${
-              isScrolled
+              isLightPageTop
                 ? 'text-[var(--laneta-purple)]'
-                : 'text-white drop-shadow-md'
+                : isScrolled
+                  ? 'text-[var(--laneta-purple)]'
+                  : 'text-white drop-shadow-md'
             }`}
           >
             La Neta
@@ -218,7 +224,7 @@ export function Header() {
               <Link
                 to="/"
                 className={`text-sm font-medium transition-colors ${
-                  isScrolled ? 'text-slate-700 hover:text-[var(--laneta-pink)]' : 'text-white/90 hover:text-white'
+                  isLightPageTop || isScrolled ? 'text-slate-700 hover:text-[var(--laneta-pink)]' : 'text-white/90 hover:text-white'
                 }`}
               >
                 Home
@@ -233,7 +239,7 @@ export function Header() {
                     className={`text-sm font-medium transition-colors ${
                       isActive
                         ? 'font-semibold text-[var(--laneta-pink)]'
-                        : isScrolled
+                        : isLightPageTop || isScrolled
                           ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
                           : 'text-white/90 hover:text-white'
                     }`}
@@ -354,7 +360,7 @@ export function Header() {
           type="button"
           onClick={() => setMobileOpen((o) => !o)}
           className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg min-[950px]:hidden ${
-            isScrolled ? 'text-slate-700' : 'text-white'
+            isLightPageTop || isScrolled ? 'text-slate-700' : 'text-white'
           }`}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}

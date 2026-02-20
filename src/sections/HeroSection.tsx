@@ -11,7 +11,7 @@ import {
   HiCash,
   HiArrowRight,
 } from 'react-icons/hi'
-import { SiMeta, SiSony } from 'react-icons/si'
+import { SiMeta, SiPinterest } from 'react-icons/si'
 import { MdAddReaction } from 'react-icons/md'
 import { ImEye } from 'react-icons/im'
 import { FaPhotoVideo } from 'react-icons/fa'
@@ -538,23 +538,23 @@ export function HeroSection() {
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
                 aria-hidden
               >
+                <img
+                  src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/air_media_tech.png"
+                  alt="Air Media Tech"
+                  className="h-25 w-25 object-contain md:h-25 md:w-25"
+                />
+              </div>
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
+                aria-hidden
+              >
                 <SiMeta className="h-7 w-7 md:h-8 md:w-8" style={{ color: '#1877F2' }} aria-label="Meta" />
               </div>
               <div
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
                 aria-hidden
               >
-                <SiSony className="h-12 w-12 md:h-12 md:w-12" style={{ color: '#000000' }} aria-label="Sony" />
-              </div>
-              <div
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
-                aria-hidden
-              >
-                <img
-                  src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/max-logo.png"
-                  alt="MAX"
-                  className="h-25 w-25 object-contain md:h-25 md:w-25"
-                />
+                <SiPinterest className="h-7 w-7 md:h-8 md:w-8" style={{ color: '#E60023' }} aria-label="Pinterest" />
               </div>
             </div>
           </div>
