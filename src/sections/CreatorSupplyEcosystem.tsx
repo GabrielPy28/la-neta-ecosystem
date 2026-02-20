@@ -140,6 +140,9 @@ const CREATOR_PROFILES: CreatorProfile[] = [
 
 const ELEVN_LOGO = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/elevn.png'
 
+/** CTA "Be one of the first to join" — link to landing / waitlist. Change to full URL if you have a dedicated landing. */
+const JOIN_LANDING_URL = '#lets-work-together'
+
 const PLATFORM_INSIGHTS = [
   { label: 'Connection with top creators worldwide', short: 'Access a global network of vetted talent across 15+ countries.' },
   { label: 'Weekly campaign management', short: 'Run recurring campaigns with clear briefs, deadlines, and deliverables.' },
@@ -308,12 +311,24 @@ export function CreatorSupplyEcosystem() {
               />
             </div>
             <h2 className="sr-only">Elevn</h2>
-            <p className="mx-auto max-w-2xl text-xl font-semibold leading-snug text-slate-800 md:text-2xl">
-              One system • <span className="text-[var(--laneta-purple)]">Full control</span> Every influencer campaign.
-            </p>
             <p className="mx-auto mt-3 max-w-lg text-base text-slate-600">
               Brands & creators aligned in one place.
             </p>
+            <p className="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-[var(--laneta-purple)] md:mt-8">
+              Coming soon — April
+            </p>
+            <a
+              href={JOIN_LANDING_URL}
+              onClick={(e) => {
+                if (JOIN_LANDING_URL.startsWith('#')) {
+                  e.preventDefault()
+                  document.querySelector(JOIN_LANDING_URL)?.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+              className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--laneta-purple)] px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 md:mt-5"
+            >
+              Be one of the first to join
+            </a>
           </div>
         </motion.div>
 
@@ -387,25 +402,6 @@ export function CreatorSupplyEcosystem() {
               <CreatorProfileCard key={creator.id} creator={creator} index={index} />
             ))}
           </div>
-        </motion.div>
-
-        {/* CTA: go to hub */}
-        <motion.div
-          className="mt-16 flex flex-col items-center justify-center gap-4 text-center md:mt-20"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-        >
-          <p className="text-base font-medium text-slate-600 md:text-lg">
-            Brief, produce, pay, and scale—all in <span className="text-[var(--laneta-purple)]">one place</span>.
-          </p>
-          <span
-            className="inline-flex cursor-not-allowed items-center gap-2 rounded-xl border-2 border-slate-300 bg-slate-100 px-8 py-4 text-base font-semibold text-slate-500"
-            aria-disabled="true"
-          >
-            Coming Soon — April
-          </span>
         </motion.div>
       </div>
     </section>

@@ -62,11 +62,12 @@ const STRATEGIES: ExecutionStrategy[] = [
 function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index: number }) {
   return (
     <motion.article
+      id={strategy.id}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80 shadow-xl ring-1 ring-white/10"
+      className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80 shadow-xl ring-1 ring-white/10 scroll-mt-24"
     >
       <div
         className="absolute left-0 right-0 top-0 z-0 h-1"

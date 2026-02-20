@@ -4,6 +4,8 @@
  * Single Header (global), single Footer, one general RoadmapSection.
  * Visual style: Hook Hunter (Liquid Glass amber/emerald/orange).
  */
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { LiquidGlassBackground } from '../components/LiquidGlassBackground'
 import { Footer } from '../components/Footer'
@@ -20,8 +22,29 @@ import { UGCTalentsSection } from '../sections/theHookHunter/UGCTalentsSection'
 import { PackIncludesSection as HookHunterPackIncludes } from '../sections/theHookHunter/PackIncludesSection'
 import { RoadmapSection } from '../sections/theAdFactory/RoadmapSection'
 import { LetsWorkTogetherSection } from '../sections/theAdFactory/LetsWorkTogetherSection'
+import { ServicesOverviewSection } from '../sections/ServicesOverviewSection'
 
 export function ServicesPage() {
+  const { hash } = useLocation()
+
+  // Scroll to section when landing with a hash (e.g. /the-ad-factory#the-glitch). In SPAs the DOM may not be ready on first paint.
+  useEffect(() => {
+    if (!hash) return
+    const id = hash.slice(1)
+    const scrollToEl = () => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    const t = requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToEl)
+    })
+    const fallback = setTimeout(scrollToEl, 150)
+    return () => {
+      cancelAnimationFrame(t)
+      clearTimeout(fallback)
+    }
+  }, [hash])
+
   return (
     <>
       <LiquidGlassBackground variant="hookHunter" />
@@ -29,7 +52,10 @@ export function ServicesPage() {
       <div className="relative z-10">
         <main className="min-h-screen">
           <div className="mx-auto max-w-6xl space-y-16 px-6 py-24 md:px-8 xl:max-w-7xl">
-            {/* The Ad Factory */}
+            {/* Decision layer: system overview (1 platform + 4 execution modes) before detail */}
+            <ServicesOverviewSection />
+
+            {/* The Ad Factory — detail */}
             <div id="service-presentation" className="scroll-mt-24">
               <AdFactoryPresentation />
             </div>

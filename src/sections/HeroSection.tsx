@@ -11,7 +11,7 @@ import {
   HiCash,
   HiArrowRight,
 } from 'react-icons/hi'
-import { SiMeta, SiPinterest } from 'react-icons/si'
+import { SiMeta, SiSony } from 'react-icons/si'
 import { MdAddReaction } from 'react-icons/md'
 import { ImEye } from 'react-icons/im'
 import { FaPhotoVideo } from 'react-icons/fa'
@@ -450,6 +450,30 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24 pb-20 md:pt-32 md:pb-28">
+        {/* Brand anchor: ancla institucional (marca = estabilidad, animación mínima) */}
+        <motion.div
+          className="mb-6 flex items-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.img
+            src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/logo.png"
+            alt="La Neta"
+            className="h-10 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:h-12 lg:h-14"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+              transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+            }}
+            viewport={{ once: true, amount: 0.2 }}
+          />
+          <div className="hidden h-8 w-px bg-white/20 md:block" aria-hidden />
+          <p className="text-sm font-medium tracking-wide text-white/70 md:text-base">
+            Content & Talent Infrastructure
+          </p>
+        </motion.div>
         {/* Labels */}
         <motion.p
           className="mb-3 text-sm font-medium tracking-[0.2em] text-white/70 uppercase md:mb-4 md:text-base"
@@ -520,7 +544,7 @@ export function HeroSection() {
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
                 aria-hidden
               >
-                <SiPinterest className="h-7 w-7 md:h-8 md:w-8" style={{ color: '#E60023' }} aria-label="Pinterest" />
+                <SiSony className="h-12 w-12 md:h-12 md:w-12" style={{ color: '#000000' }} aria-label="Sony" />
               </div>
               <div
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm md:h-16 md:w-16"
@@ -548,7 +572,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Stats grid */}
-        <div className="mb-18 grid grid-cols-2 gap-4 md:mb-20 md:grid-cols-4 md:gap-6">
+        <div className="mb-3 grid grid-cols-2 gap-4 md:mb-5 md:grid-cols-4 md:gap-6">
           {STATS.map((stat, index) => (
             <StatCard
               key={stat.label}
@@ -569,9 +593,6 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <p className="text-lg font-medium leading-relaxed text-white/90 md:text-xl">
-            We're not an agency. We're the content, data, and talent infrastructure your brand needs to scale today.
-          </p>
           <p className="mt-3 text-base font-medium text-white/70 md:text-lg">
             500+ brands powered · 98% client retention
           </p>

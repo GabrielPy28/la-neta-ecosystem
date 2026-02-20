@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
 /* La Neta brand palette — usar en tarjetas flotantes y acentos */
 :root {
   --laneta-pink: #ff47ac;
@@ -10,7 +14,7 @@
   --laneta-darker: #030712;
   --laneta-slate: #0f172a;
 
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -28,6 +32,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--laneta-darker);
+  font-family: "Montserrat", system-ui, sans-serif;
 }
 
 #root {

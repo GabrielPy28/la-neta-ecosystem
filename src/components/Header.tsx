@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { HiMenu, HiX, HiCog, HiArrowRight } from 'react-icons/hi'
+import { MdOutlineGroups3 } from "react-icons/md";
+import { RiVipCrownLine } from "react-icons/ri";
 import { PiWebhooksLogoDuotone } from "react-icons/pi";
 import { CgUserlane } from "react-icons/cg";
 import type { IconType } from 'react-icons'
@@ -13,14 +15,13 @@ type ServiceChild = {
   icon: IconType
 }
 
-/** Single services page: all services in one, one roadmap. Used for /the-ad-factory, /the-glitch, /the-hook-hunter */
+/** Services page nav: one link per section; each href must match a unique id so only one is active at a time. */
 const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
   { href: '#service-presentation', label: 'The Ad Factory' },
-  { href: '#problems-vs-solutions', label: 'Problems & Solutions' },
-  { href: '#modus-operandi', label: 'How we operate' },
   { href: '#the-glitch', label: 'The Glitch' },
   { href: '#the-hook-hunter', label: 'The Hook Hunter' },
-  { href: '#roadmap', label: '21-Day Roadmap' },
+  { href: '#amplifier', label: 'The Amplifier' },
+  { href: '#empire', label: 'Empire Mode' },
 ]
 
 /** Home page: section anchors for scroll spy (pathname === '/'). Order matches DOM order. */
@@ -41,7 +42,7 @@ const NAV_LINKS: (
     href: '#service-presentation', label: 'The Ad Factory',
     children: [
       {
-        href: '/the-ad-factory#service-presentation',
+        href: '/the-ad-factory',
         label: 'The Ad Factory',
         description: 'Full-service creative engine',
         icon: HiCog,
@@ -57,6 +58,18 @@ const NAV_LINKS: (
         label: 'The Hook Hunter',
         description: 'High-performing hooks system',
         icon: PiWebhooksLogoDuotone,
+      },
+      {
+        href: '/the-ad-factory#amplifier',
+        label: 'The Amplifier',
+        description: 'Scale winning hooks across three creators',
+        icon: MdOutlineGroups3,
+      },
+      {
+        href: '/the-ad-factory#empire',
+        label: 'Empire Mode',
+        description: 'Own your category with five talents',
+        icon: RiVipCrownLine,
       },
     ],
   },  
@@ -198,8 +211,8 @@ export function Header() {
         </Link>
         )}
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+        {/* Desktop nav: visible from 950px up */}
+        <nav className="hidden items-center gap-8 min-[950px]:flex" aria-label="Main">
           {pageSectionLinks ? (
             <>
               <Link
@@ -340,7 +353,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => setMobileOpen((o) => !o)}
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg md:hidden ${
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg min-[950px]:hidden ${
             isScrolled ? 'text-slate-700' : 'text-white'
           }`}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -358,7 +371,7 @@ export function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="overflow-hidden border-t border-slate-200 bg-white/98 backdrop-blur-md md:hidden"
+            className="overflow-hidden border-t border-slate-200 bg-white/98 backdrop-blur-md min-[950px]:hidden"
           >
             <nav className="flex flex-col gap-1 px-6 py-4" aria-label="Main">
               {pageSectionLinks ? (
