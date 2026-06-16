@@ -3,11 +3,10 @@ import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi'
 
-/** Services page nav: ordered as Home - The Ad Factory - Solutions - How we operate - Packages - Roadmap - FAQs.
+/** Services page nav: ordered as Home - Solutions - How we operate - Packages - Roadmap - FAQs.
  *  "Home" is rendered separately as a link back to the main homepage.
  */
 const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#the-ad-factory', label: 'The Ad Factory' },
   { href: '#problems-vs-solutions', label: 'Solutions' },
   { href: '#modus-operandi', label: 'How we operate' },
   { href: '#the-hook-hunter', label: 'Packages' },
@@ -15,17 +14,15 @@ const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
   { href: '#faqs', label: 'FAQs' },
 ]
 
-/** Home page: section anchors for scroll spy (pathname === '/'). Only the 3 main sections. Order matches DOM order. */
+/** Home page: section anchors for scroll spy (pathname === '/'). Order matches DOM order. */
 const HOME_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
   { href: '#who-is-la-neta', label: 'About us' },
-  { href: '#the-ad-factory', label: 'The Ad Factory' },
   { href: '#elevn', label: 'Elevn Hub' },
 ]
 
-/** Main nav on home: About us, The Ad Factory, Elevn Hub. Each scrolls to its section. Partnership is inside About us. */
+/** Main nav on home: About us, Elevn Hub. Each scrolls to its section. Partnership is inside About us. */
 const NAV_LINKS: { href: string; label: string }[] = [
   { href: '#who-is-la-neta', label: 'About us' },
-  { href: '#the-ad-factory', label: 'The Ad Factory' },
   { href: '#elevn', label: 'Elevn Hub' },
 ]
 
@@ -49,7 +46,6 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSectionHref, setActiveSectionHref] = useState<string | null>(null)
   const isServicesPage =
-    pathname === '/the-ad-factory' ||
     pathname === '/the-glitch' ||
     pathname === '/the-hook-hunter'
   const pageSectionLinks = isServicesPage ? SERVICES_PAGE_SECTION_LINKS : null

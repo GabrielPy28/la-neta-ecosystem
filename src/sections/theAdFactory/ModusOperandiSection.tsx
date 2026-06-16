@@ -66,7 +66,7 @@ export function ModusOperandiSection() {
             How we operate
           </p>
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-800 md:text-4xl lg:text-5xl">
-            The engine behind The Ad Factory
+            The engine behind our content
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base text-slate-600 md:text-lg">
             Three gears that run in sync. Create. Edit. Scale.

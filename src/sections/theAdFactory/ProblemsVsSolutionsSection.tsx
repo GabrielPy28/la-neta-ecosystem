@@ -86,7 +86,7 @@ export function ProblemsVsSolutionsSection() {
             Stop struggling with ads. Start scaling them.
           </p>
           <p className="mt-2 text-sm text-slate-500">
-            Every bottleneck you feel—we built The Ad Factory to remove it.
+            Every bottleneck you feel—we built our system to remove it.
           </p>
         </div>
 
@@ -155,7 +155,7 @@ export function ProblemsVsSolutionsSection() {
               One partner. Full pipeline. No more guesswork.
             </p>
             <p className="mt-2 text-sm text-slate-500">
-              The Ad Factory turns creative chaos into ads that scale.
+              We turn creative chaos into ads that scale.
             </p>
             <button
               type="button"
