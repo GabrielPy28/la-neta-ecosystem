@@ -10,7 +10,7 @@ import {
   HiSearchCircle,
   HiArrowRight,
 } from 'react-icons/hi'
-import { AD_FACTORY_SLOGAN } from '../constants/copy'
+import { BRAND_SLOGAN } from '../constants/copy'
 import { SiMeta, SiPinterest } from 'react-icons/si'
 import { MdAddReaction } from 'react-icons/md'
 import { ImEye } from 'react-icons/im'
@@ -54,7 +54,7 @@ const OFFER_SLIDES = [
     metric: '100%',
     metricLabel: 'turnkey production',
     impact: 'From idea to live campaign—we own it.',
-    copy: AD_FACTORY_SLOGAN,
+    copy: BRAND_SLOGAN,
   },
   {
     icon: HiChartBar,

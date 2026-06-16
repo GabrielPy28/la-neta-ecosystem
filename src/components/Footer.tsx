@@ -1,5 +1,5 @@
 import { SiFacebook, SiInstagram, SiLinkedin } from 'react-icons/si'
-import { AD_FACTORY_SLOGAN } from '../constants/copy'
+import { BRAND_SLOGAN } from '../constants/copy'
 
 /** Company: sections inside WhoIsLaNeta (home). Each href is an anchor on the home page. */
 const COMPANY_LINKS = [
@@ -9,9 +9,8 @@ const COMPANY_LINKS = [
   { href: '/#partnerships-alliances', label: 'Our ecosystem' },
 ] as const
 
-/** The Ad Factory & Elevn Hub: solo estas dos opciones en la columna. */
+/** Plataformas: solo Elevn Hub en la columna. */
 const PLATFORM_LINKS = [
-  { href: '/the-ad-factory', label: 'The Ad Factory' },
   { href: '/#elevn', label: 'Elevn Hub' },
 ] as const
 
@@ -38,7 +37,7 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-700 bg-[var(--laneta-darker)] text-white">
       <div className="mx-auto max-w-6xl px-6 py-14 md:px-8">
-        {/* 4 columnas: Logo, Company, The Ad Factory & Elevn Hub, Legal, Connect */}
+        {/* 4 columnas: Logo, Company, Our Platforms, Legal, Connect */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-12 lg:gap-y-0">
           {/* Col 1: Logo + nombre + entidad + presencia */}
           <div className="flex flex-col gap-3">
@@ -89,7 +88,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: The Ad Factory & Elevn Hub */}
+          {/* Col 3: Our Platforms */}
           <div className="flex flex-col">
             <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">
               Our Platforms
@@ -153,7 +152,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-slate-700 pt-6">
           <p className="text-center text-xs italic text-slate-500">
-            {AD_FACTORY_SLOGAN}
+            {BRAND_SLOGAN}
           </p>
           <div className="mt-4 flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-4">
             <p className="text-sm text-slate-500">

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { FloatingCard } from '../../components/FloatingCard'
 import { HiArrowRight, HiX } from 'react-icons/hi'
 import { useContactModal, type ContactModalVariant } from '../../contexts/ContactModalContext'
-import { AD_FACTORY_SLOGAN } from '../../constants/copy'
+import { BRAND_SLOGAN } from '../../constants/copy'
 
 const LETS_TALK_IMAGE = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/lets_talk.png'
 
@@ -19,7 +19,6 @@ const GOOGLE_FORM_ENTRIES = {
 } as const
 
 const SERVICE_TOPIC_OPTIONS: { label: string; value: string }[] = [
-  { label: 'The Ad Factory (Advertising / influencer campaigns)', value: 'The Ad Factory (Campañas publicitarias/de influencia)' },
   { label: 'The Glitch (Content / media strategy)', value: 'The Glitch (Estrategia de contenido/Medios)' },
   { label: 'The Hook Hunter (Opportunity / trend identification)', value: 'The Hook Hunter (Identificación de oportunidades/Tendencias)' },
   { label: 'The Amplifier (Surround audience with consistent proof)', value: 'The Amplifier (Rodear a la audiencia con prueba consistente)' },
@@ -29,7 +28,7 @@ const SERVICE_TOPIC_OPTIONS: { label: string; value: string }[] = [
 ]
 
 const VARIANT_TO_SERVICE_TOPIC: Record<ContactModalVariant, string> = {
-  adFactory: 'The Ad Factory (Campañas publicitarias/de influencia)',
+  adFactory: '',
   glitch: 'The Glitch (Estrategia de contenido/Medios)',
   hookHunter: 'The Hook Hunter (Identificación de oportunidades/Tendencias)',
   amplifier: 'The Amplifier (Rodear a la audiencia con prueba consistente)',
@@ -51,15 +50,15 @@ const COPY = {
   global: {
     intro: "Have a vision you'd like to bring to life? Let's talk.",
     body: "Whether you need UGC ads, AI-powered content, high-performing hooks, or a full creative pipeline—we're here to help your brand scale. Share your goals, timelines, or a rough idea. We'll match you with the right solution and get back to you with next steps.",
-    quote: AD_FACTORY_SLOGAN.split('. ')[0] + '.',
-    quoteAccent: AD_FACTORY_SLOGAN.split('. ').slice(1).join('. '),
+    quote: BRAND_SLOGAN.split('. ')[0] + '.',
+    quoteAccent: BRAND_SLOGAN.split('. ').slice(1).join('. '),
     messagePlaceholder: "Tell us about your brand and what you're looking for. Campaign goals, preferred formats, timeline—whatever helps us get started.",
   },
   adFactory: {
     intro: "Do you have an idea you'd like to bring to life? Don't waste time and talk to us.",
     body: "Whether you need ads that convert, creative that stands out, or a full pipeline from brief to feed—we're here to turn your vision into reality. Share your goals, timelines, or a rough concept. We'll get back to you with next steps.",
-    quote: AD_FACTORY_SLOGAN.split('. ')[0] + '.',
-    quoteAccent: AD_FACTORY_SLOGAN.split('. ').slice(1).join('. '),
+    quote: BRAND_SLOGAN.split('. ')[0] + '.',
+    quoteAccent: BRAND_SLOGAN.split('. ').slice(1).join('. '),
     messagePlaceholder: 'What do you want to bring to life? Campaign goals, formats, timeline—share whatever helps us get started.',
   },
   glitch: {
