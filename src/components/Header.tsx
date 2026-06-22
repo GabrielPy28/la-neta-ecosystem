@@ -18,12 +18,14 @@ const SERVICES_PAGE_SECTION_LINKS: { href: string; label: ReactNode }[] = [
 const HOME_PAGE_SECTION_LINKS: { href: string; label: ReactNode }[] = [
   { href: '#who-is-la-neta', label: 'About us' },
   { href: '#elevn', label: <span><span className="font-elevn">Elevn</span> Hub</span> },
+  { href: '#for-brands', label: 'For brands' },
 ]
 
 /** Main nav on home: About us, Elevn Hub. Each scrolls to its section. Partnership is inside About us. */
 const NAV_LINKS: { href: string; label: ReactNode }[] = [
   { href: '#who-is-la-neta', label: 'About us' },
   { href: '#elevn', label: <span><span className="font-elevn">Elevn</span> Hub</span> },
+  { href: '#for-brands', label: 'For brands' },
 ]
 
 function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
