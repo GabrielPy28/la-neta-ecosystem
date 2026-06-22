@@ -11,7 +11,7 @@ const COMPANY_LINKS = [
 
 /** Plataformas: solo Elevn Hub en la columna. */
 const PLATFORM_LINKS = [
-  { href: '/#elevn', label: 'Elevn Hub' },
+  { href: '/#elevn', label: <span><span className="font-elevn">Elevn</span> Hub</span> },
 ] as const
 
 const LEGAL_LINKS = [

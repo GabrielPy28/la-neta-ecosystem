@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi'
@@ -6,7 +6,7 @@ import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi'
 /** Services page nav: ordered as Home - Solutions - How we operate - Packages - Roadmap - FAQs.
  *  "Home" is rendered separately as a link back to the main homepage.
  */
-const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
+const SERVICES_PAGE_SECTION_LINKS: { href: string; label: ReactNode }[] = [
   { href: '#problems-vs-solutions', label: 'Solutions' },
   { href: '#modus-operandi', label: 'How we operate' },
   { href: '#the-hook-hunter', label: 'Packages' },
@@ -15,15 +15,15 @@ const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
 ]
 
 /** Home page: section anchors for scroll spy (pathname === '/'). Order matches DOM order. */
-const HOME_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
+const HOME_PAGE_SECTION_LINKS: { href: string; label: ReactNode }[] = [
   { href: '#who-is-la-neta', label: 'About us' },
-  { href: '#elevn', label: 'Elevn Hub' },
+  { href: '#elevn', label: <span><span className="font-elevn">Elevn</span> Hub</span> },
 ]
 
 /** Main nav on home: About us, Elevn Hub. Each scrolls to its section. Partnership is inside About us. */
-const NAV_LINKS: { href: string; label: string }[] = [
+const NAV_LINKS: { href: string; label: ReactNode }[] = [
   { href: '#who-is-la-neta', label: 'About us' },
-  { href: '#elevn', label: 'Elevn Hub' },
+  { href: '#elevn', label: <span><span className="font-elevn">Elevn</span> Hub</span> },
 ]
 
 function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {

@@ -138,9 +138,10 @@ const CREATOR_PROFILES: CreatorProfile[] = [
   },
 ]
 
-const ELEVN_LOGO = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/elevn.png'
+/** Black wordmark version — stands out on the light (slate-50) section background. */
+const ELEVN_LOGO = '/logo%20eleven%20negro.png'
 
-/** CTA "Be one of the first to join" — link to Elevn waitlist landing. */
+/** CTA "Join for free" — link to Elevn landing. */
 const JOIN_LANDING_URL = 'https://www.elevn.me/'
 
 const PLATFORM_INSIGHTS = [
@@ -305,8 +306,8 @@ export function CreatorSupplyEcosystem() {
               <img
                 src={ELEVN_LOGO}
                 alt="Elevn"
-                className="h-20 w-auto object-contain md:h-28"
-                width={200}
+                className="h-24 w-auto object-contain md:h-32"
+                width={232}
                 height={100}
               />
             </div>
@@ -314,16 +315,13 @@ export function CreatorSupplyEcosystem() {
             <p className="mx-auto mt-3 max-w-lg text-base text-slate-600">
               Brands & creators aligned in one place.
             </p>
-            <p className="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-[var(--laneta-purple)] md:mt-8">
-              Coming soon
-            </p>
             <a
               href={JOIN_LANDING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--laneta-purple)] px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 md:mt-5"
+              className="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--laneta-purple)] px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 md:mt-8"
             >
-              Be one of the first to join
+              Join for free
             </a>
           </div>
         </motion.div>
@@ -352,11 +350,11 @@ export function CreatorSupplyEcosystem() {
 
             <div className="relative px-6 pt-8 pb-6 md:px-12 md:pt-10 md:pb-8">
               <p className="mx-auto max-w-3xl text-center text-base leading-relaxed text-slate-600 md:text-lg">
-                Elevn is <span className="font-semibold text-[var(--laneta-purple)]">a curated space</span> where our creators find opportunities across fashion, food, tech, lifestyle, travel, and more. Every creator is here because they believe in the work—quality and brand fit come first. Brands get direct access to talent they can trust; long-term relationships, clear briefs, rights, and performance insights—all in <span className="font-medium text-[var(--laneta-blue)]">one place</span>.
+                <span className="font-elevn">Elevn</span> is <span className="font-semibold text-[var(--laneta-purple)]">a curated space</span> where our creators find opportunities across fashion, food, tech, lifestyle, travel, and more. Every creator is here because they believe in the work—quality and brand fit come first. Brands get direct access to talent they can trust; long-term relationships, clear briefs, rights, and performance insights—all in <span className="font-medium text-[var(--laneta-blue)]">one place</span>.
               </p>
 
               <p className="mt-10 mb-6 text-center text-sm font-semibold uppercase tracking-wider text-[var(--laneta-purple)] md:mt-12 md:mb-8">
-                Why Elevn
+                Why <span className="font-elevn">Elevn</span>
               </p>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -386,7 +384,7 @@ export function CreatorSupplyEcosystem() {
         >
           <div className="mb-10 text-center">
             <p className="mb-3 text-sm font-medium tracking-[0.2em] uppercase text-[var(--laneta-purple)]">
-              Creator Supply on Elevn
+              Creator Supply on <span className="font-elevn">Elevn</span>
             </p>
             <h3 className="text-2xl font-extrabold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
               <span className="text-[var(--laneta-pink)]">4,000+</span> vetted creators <span className="text-[var(--laneta-blue)]">curated for your campaigns</span>
