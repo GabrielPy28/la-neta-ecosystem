@@ -1,41 +1,34 @@
 import { motion } from 'motion/react'
 import { HiArrowRight } from 'react-icons/hi'
+import { useTranslation } from 'react-i18next'
 
 const SECTION_ID = 'for-brands'
 
 type BrandOption = {
-  id: string
-  eyebrow: string
-  title: string
-  description: string
+  id: 'business' | 'ads'
   url: string
   thumbnail: string
-  badge?: string
+  hasBadge?: boolean
 }
 
 const OPTIONS: BrandOption[] = [
   {
     id: 'business',
-    eyebrow: 'La Neta Business',
-    title: 'La Neta Business',
-    description:
-      'Conoce el producto que diseñamos para empresas que quieren posicionarse en Redes Sociales.',
     url: 'https://business.laneta.com',
     thumbnail: '/assets/businesslanetacom.png',
   },
   {
     id: 'ads',
-    eyebrow: 'Estrategia 1:1',
-    title: 'Agenda tu llamada estratégica con nosotros',
-    description:
-      'Hablemos de tu marca y armemos un plan a la medida para crecer en redes.',
     url: 'https://ads.laneta.com',
     thumbnail: '/assets/adslaneta.png',
-    badge: 'Free',
+    hasBadge: true,
   },
 ]
 
 function BrandOptionCard({ option, index }: { option: BrandOption; index: number }) {
+  const { t } = useTranslation('forBrands')
+  const title = t(`${option.id}.title`)
+
   return (
     <motion.a
       href={option.url}
@@ -47,11 +40,11 @@ function BrandOptionCard({ option, index }: { option: BrandOption; index: number
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg ring-1 ring-slate-200/50 transition-all hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2"
     >
-      {/* Thumbnail (live site screenshot) */}
+      {/* Thumbnail (site preview) */}
       <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-slate-100">
         <img
           src={option.thumbnail}
-          alt={`${option.title} — vista previa del sitio`}
+          alt={t('previewAlt', { name: title })}
           className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
@@ -59,9 +52,9 @@ function BrandOptionCard({ option, index }: { option: BrandOption; index: number
           aria-hidden
           className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
         />
-        {option.badge && (
+        {option.hasBadge && (
           <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-[var(--laneta-pink)] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
-            {option.badge}
+            {t('badge')}
           </span>
         )}
       </div>
@@ -69,16 +62,16 @@ function BrandOptionCard({ option, index }: { option: BrandOption; index: number
       {/* Copy */}
       <div className="flex flex-1 flex-col p-6 md:p-7">
         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--laneta-blue)]">
-          {option.eyebrow}
+          {t(`${option.id}.eyebrow`)}
         </p>
         <h3 className="text-xl font-extrabold leading-snug tracking-tight text-slate-800 md:text-2xl">
-          {option.title}
+          {title}
         </h3>
         <p className="mt-3 flex-1 text-base leading-relaxed text-slate-600">
-          {option.description}
+          {t(`${option.id}.description`)}
         </p>
         <span className="mt-5 inline-flex items-center gap-1.5 text-base font-semibold text-[var(--laneta-purple)] transition-colors group-hover:text-[var(--laneta-pink)]">
-          Conoce más
+          {t('cta')}
           <HiArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
         </span>
       </div>
@@ -87,6 +80,8 @@ function BrandOptionCard({ option, index }: { option: BrandOption; index: number
 }
 
 export function ForBrands() {
+  const { t } = useTranslation('forBrands')
+
   return (
     <section id={SECTION_ID} className="relative overflow-hidden bg-white py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
@@ -98,13 +93,13 @@ export function ForBrands() {
           transition={{ duration: 0.6 }}
         >
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--laneta-purple)] md:text-sm">
-            For businesses & brands
+            {t('eyebrow')}
           </p>
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-800 md:text-4xl lg:text-5xl">
-            For brands
+            {t('title')}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base text-slate-600 md:text-lg">
-            Two ways to start positioning your brand on social media with La Neta.
+            {t('subtitle')}
           </p>
         </motion.div>
 
