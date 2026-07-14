@@ -1,6 +1,6 @@
 /**
  * Unified services page (page 2).
- * All services in one: The Ad Factory, The Glitch, The Hook Hunter.
+ * Services in one: The Glitch, The Hook Hunter.
  * Single Header (global), single Footer, one general RoadmapSection.
  * Visual style: Hook Hunter (Liquid Glass amber/emerald/orange).
  */
@@ -8,7 +8,6 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { LiquidGlassBackground } from '../components/LiquidGlassBackground'
 import { Footer } from '../components/Footer'
-//import { ServicePresentationSection as AdFactoryPresentation } from '../sections/theAdFactory/ServicePresentationSection'
 import { ProblemsVsSolutionsSection } from '../sections/theAdFactory/ProblemsVsSolutionsSection'
 import { ModusOperandiSection } from '../sections/theAdFactory/ModusOperandiSection'
 //import { ServicePresentationSection as GlitchPresentation } from '../sections/theGlitch/ServicePresentationSection'
@@ -21,14 +20,13 @@ import { ModusOperandiSection } from '../sections/theAdFactory/ModusOperandiSect
 import { PackIncludesSection as HookHunterPackIncludes } from '../sections/theHookHunter/PackIncludesSection'
 import { RoadmapSection } from '../sections/theAdFactory/RoadmapSection'
 import { LetsWorkTogetherSection } from '../sections/theAdFactory/LetsWorkTogetherSection'
-import { ServicesOverviewSection } from '../sections/ServicesOverviewSection'
 import { TrustedByBrandsSection } from '../sections/TrustedByBrandsSection'
 import { ServicesFAQSection } from '../sections/ServicesFAQSection'
 
 export function ServicesPage() {
   const { hash } = useLocation()
 
-  // Default view: top of page (The Ad Factory overview). When no hash, scroll to start so Ad Factory is the first thing seen.
+  // Default view: top of page. When no hash, scroll to start.
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0)
@@ -60,22 +58,12 @@ export function ServicesPage() {
             className="mx-auto max-w-6xl space-y-16 px-6 py-24 md:px-8 xl:max-w-7xl"
           >
 
-            {/* Decision layer: system overview (1 platform + 4 execution modes) before detail */}
-            <div id="the-ad-factory" className="scroll-mt-24">
-              <ServicesOverviewSection />
-            </div>
-            
             <div id="problems-vs-solutions" className="scroll-mt-24">
-              <ProblemsVsSolutionsSection /> 
+              <ProblemsVsSolutionsSection />
             </div>
 
             {/* Brands that trust us — 5–6 logos + Discover Our Packages CTA */}
             <TrustedByBrandsSection />
-
-            {/* The Ad Factory — detail */}
-            {/*<div id="service-presentation" className="scroll-mt-24">
-              <AdFactoryPresentation />
-            </div>*/}
 
             {/* Bridge: execution modes — intro to The Glitch (light theme) */}
             {/*<motion.section

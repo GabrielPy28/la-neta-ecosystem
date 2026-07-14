@@ -1,7 +1,7 @@
 /**
  * Liquid Glass background — inspired by Apple's WWDC25 "Meet Liquid Glass".
  * Frosted, translucent layers; rounded floating forms; subtle organic motion;
- * lensing (soft light gradients). Base for The Ad Factory and service pages.
+ * lensing (soft light gradients). Base for service pages.
  */
 import { motion } from 'motion/react'
 

@@ -6,8 +6,8 @@ import { HeroSection } from './sections/HeroSection'
 import { WhoIsLaNeta } from './sections/WhoIsLaNeta'
 //import { BranchOfficeLocations } from './sections/BranchOfficeLocations'
 import { PartnershipsAlliances } from './sections/PartnershipsAlliances'
-import { ServicesCTA } from './sections/ServicesCTA'
 import { CreatorSupplyEcosystem } from './sections/CreatorSupplyEcosystem'
+import { ForBrands } from './sections/ForBrands'
 import { LetsWorkTogetherSection } from './sections/theAdFactory/LetsWorkTogetherSection'
 import { ServicesPage } from './pages/ServicesPage'
 
@@ -22,9 +22,10 @@ function App() {
             <>
               <HeroSection />
               <WhoIsLaNeta />
+              {/* For businesses & brands justo debajo de About Us (antes estaba muy abajo). */}
+              <ForBrands />
               {/* B2B: Partnerships right after main offer = proof before second pillar (Elevn) and CTA */}
               <PartnershipsAlliances />
-              <ServicesCTA />
               <CreatorSupplyEcosystem />
               {/*<BranchOfficeLocations />*/}
               <div id="lets-work-together" className="scroll-mt-24 bg-[var(--laneta-bg)] py-16 md:py-20">
@@ -34,7 +35,6 @@ function App() {
             </>
           }
         />
-        <Route path="/the-ad-factory" element={<ServicesPage />} />
         <Route path="/the-glitch" element={<ServicesPage />} />
         <Route path="/the-hook-hunter" element={<ServicesPage />} />
       </Routes>
